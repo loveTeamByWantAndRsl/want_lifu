@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <!--  Start Header  -->
+    <header id="header_area" th:fragment="header_area">
+        <div class="header_top_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="hdr_tp_left">
+                            <div class="call_area">
+                                <span class="single_con_add"><i class="ti-mobile"></i> +0123456789</span>
+                                <span class="single_con_add"><i class="ti-email"></i> example@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <ul class="hdr_tp_right text-right">
+                            <li class="lan_area dropdown">
+                                <a class="account_area" href="#"><i class="ti-user"></i> 用户名：Kerwin</a>
+                            </li>
+                            <li class="lan_area dropdown">
+                                <a class="account_area" href="#"><i class="ti-user"></i> 退出登陆</a>
+                            </li>
+                            <li class="account_area"><a href="/account"><i class="ti-user"></i> 我的账户</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div> <!--  HEADER START  -->
+
+        <div class="header_btm_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        <a class="logo" href="index"> <img alt="" src="img/logo.png"></a>
+                    </div><!--  End Col -->
+
+                    <div class="col-xs-12 col-sm-12 col-md-7 text-center">
+                        <div class="menu_wrap">
+                            <div class="main-menu">
+                                <nav>
+                                    <ul>
+                                        <li><a href="/index">首页</a></li>
+
+                                        <li><a href="/shop">礼服</a></li>
+                                        <li><a href="/cart">购物车</a></li>
+                                        <li><a href="/wishlist">我的收藏</a></li>
+                                        <li><a href="/full-width-blog">客户评价</a></li>
+                                        <li><a href="/about-us">关于本店<i class="fa fa-angle-down"></i></a>
+                                            <!-- Sub Menu -->
+                                            <ul class="sub-menu">
+                                                <li><a href="/about-us">公司简介</a></li>
+                                                <li><a href="/servers">服务介绍</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="/about-us">个人中心<i class="fa fa-angle-down"></i></a>
+                                            <!-- Sub Menu -->
+                                            <ul class="sub-menu">
+                                                <li><a href="/user/userInfo">个人信息修改</a></li>
+                                                <li><a href="/user/changePassword">密码修改</a></li>
+                                                <li><a href="/user/myAddress">地址管理</a></li>
+                                                <li><a href="/user/myselfComment">我的评论</a></li>
+                                                <li><a href="/user/myOrders">我的订单</a></li>
+                                                <li><a href="/user/myMessages">我的消息</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div> <!--  End Main Menu -->
+
+                            <div class="mobile-menu text-right ">
+                                <nav>
+                                    <ul>
+                                        <li><a href="/index">首页</a></li>
+
+                                        <li><a href="/shop">礼服</a></li>
+                                        <li><a href="/cart">购物车</a></li>
+                                        <li><a href="/wishlist">我的收藏</a></li>
+                                        <li><a href="/full-width-blog">客户评价</a></li>
+                                        <li><a href="/about-us">关于本店<i class="fa fa-angle-down"></i></a>
+                                            <!-- Sub Menu -->
+                                            <ul class="sub-menu">
+                                                <li><a href="/about-us">公司简介</a></li>
+                                                <li><a href="/servers">服务介绍</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="/about-us">个人中心<i class="fa fa-angle-down"></i></a>
+                                            <!-- Sub Menu -->
+                                            <ul class="sub-menu">
+                                                <li><a href="/userInfo">个人信息修改</a></li>
+                                                <li><a href="/changePassword">密码修改</a></li>
+                                                <li><a href="/myAddress">地址管理</a></li>
+                                                <li><a href="/myselfComment">我的评论</a></li>
+                                                <li><a href="/myOrders">我的订单</a></li>
+                                                <li><a href="/myMessages">我的消息</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div> <!--  End mobile-menu -->
+                        </div>
+                    </div><!--  End Col -->
+
+                    <div class="col-xs-12 col-sm-12 col-md-2">
+                        <div class="right_menu pull-right">
+                            <ul class="nav">
+                                <li>
+                                    <div class="cart_menu_area">
+                                        <div class="cart_icon">
+                                            <a href="/#"><i class="ti-shopping-cart-full" aria-hidden="true"></i></a>
+                                            <span class="cart_number">2</span>
+                                        </div>
+                                        <!-- Mini Cart Wrapper -->
+                                        <div class="mini-cart-wrapper">
+                                            <!-- Product List -->
+                                            <div class="mc-pro-list fix">
+                                                <div class="mc-sin-pro fix">
+                                                    <a href="/#" class="mc-pro-image float-left"><img src="img/mini-cart/1.jpg" alt="" /></a>
+                                                    <div class="mc-pro-details fix">
+                                                        <a href="/#">This is Product Name</a>
+                                                        <span>1x$25.00</span>
+                                                        <a class="pro-del" href="#"><i class="fa fa-times-circle"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div class="mc-sin-pro fix">
+                                                    <a href="/#" class="mc-pro-image float-left"><img src="img/mini-cart/2.jpg" alt="" /></a>
+                                                    <div class="mc-pro-details fix">
+                                                        <a href="/#">This is Product Name</a>
+                                                        <span>1x$25.00</span>
+                                                        <a class="pro-del" href="#"><i class="fa fa-times-circle"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Sub Total -->
+                                            <div class="mc-subtotal fix">
+                                                <h4>Subtotal <span>$50.00</span></h4>
+                                            </div>
+                                            <!-- Cart Button -->
+                                            <div class="mc-button">
+                                                <a href="/#" class="checkout_btn">checkout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!--  End Col -->
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--  End Header  -->
+
+    <!--  FOOTER START  -->
+    <footer class="footer_area" th:fragment="footer_area">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="single_ftr footer-contact-info">
+                            <h4 class="sf_title">Contacts</h4>
+                            <ul>
+                                <li><i class="ti-location-pin"></i> 4060 Reppert Coal Road Jackson,<br> MS 39201 USA</li>
+                                <li><i class="ti-mobile"></i> (+123) 685 78 <br> (+064) 987 245</li>
+                                <li><i class="ti-email"></i> contact@yoursite.com <br> support@yoursite.com</li>
+                            </ul>
+                        </div>
+                    </div> <!--  End Col -->
+
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="single_ftr">
+                            <h4 class="sf_title">Information</h4>
+                            <ul>
+                                <li><a href="/#">About Us</a></li>
+                                <li><a href="/#">Delivery Information</a></li>
+                                <li><a href="/#">Privacy Policy</a></li>
+                                <li><a href="/#">Terms & Conditions</a></li>
+                                <li><a href="/#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div> <!--  End Col -->
+
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="single_ftr">
+                            <h4 class="sf_title">Services</h4>
+                            <ul>
+                                <li><a href="/#">Returns</a></li>
+                                <li><a href="/#">Site Map</a></li>
+                                <li><a href="/#">Wish List</a></li>
+                                <li><a href="/#">My Account</a></li>
+                                <li><a href="/#">Order History</a></li>
+                            </ul>
+                        </div>
+                    </div> <!--  End Col -->
+
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="single_ftr">
+                            <h4 class="sf_title">Join Us Newsletter</h4>
+                            <div class="newsletter_form">
+                                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Aenean lobortis  </p>
+                                <form method="post" class="form-inline">
+                                    <input name="EMAIL" id="email" placeholder="Enter Your Email" class="form-control" type="email">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-paper-plane-o"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div> <!--  End Col -->
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="ftr_btm_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="ftr_social_icon">
+                            <ul>
+                                <li><a href="/#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="/#"><i class="fa fa-pinterest"></i></a></li>
+                                <li><a href="/#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="/#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="/#"><i class="fa fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <p class="copyright_text text-center">Copyright &copy; 2019 RapidShop, All rights Reserved.</p>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="payment_mthd_icon text-right">
+                            <img src="img/card.png"  alt="Card">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--  FOOTER END  -->
+</body>
+</html>
