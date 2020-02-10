@@ -40,6 +40,11 @@ public class HelloController {
             }
         }
 
+    @GetMapping("oss/upload")
+    public String upload(HttpServletResponse httpResponse){
+        return "/upload";
+    }
+
     @RequestMapping(value = "/returnUrl", method = RequestMethod.GET)
     @ResponseBody
     public String returnUrl(HttpServletRequest request, HttpServletResponse response)

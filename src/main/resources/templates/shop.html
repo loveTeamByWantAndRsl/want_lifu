@@ -332,7 +332,7 @@
 		
 		
 		<!-- Shop Product Area -->
-		<div class="shop_page_area">
+		<div class="shop_page_area" id="shop">
 			<div class="container">
 				<div class="shop_bar_tp fix">
 					<h3 class="sdbr_title" >
@@ -772,5 +772,87 @@
 		<script src="/js/simplePlayer.js"></script>
 		<script src="/js/scrolltopcontrol.js"></script>
 		<script src="/js/main.js"></script>
+		<script src="/js/vue.js"></script>
+		<script src="/js/axios.js"></script>
+	<script>
+		var shop = new Vue({
+			el:"#shop",
+			data:{
+				lifus:[],
+				priceArea:[],
+				totalPage:1,
+				pageSearchEntity:{
+					keyWord:'',
+					//礼服 品牌
+					type : -1,
+					//价格区间
+					priceArea : "*",
+					//礼服 类型
+					LifuType : -1,
+					//排序依据
+					orderByKey : "created_time ",
+					orderType : "desc",
+					//礼服状态
+					status : 1,
+					//是否热门
+					isHot : 0,
+					//是否新品
+					isNew : 0,
+					//是否折扣
+					discount : 0,
+					//定制 还是 租聘 -- 大类型
+					bigType : 1,
+				},
+				searchEntity:{
+					start:1,
+					size:12,
+					keyWord:'',
+					//礼服 品牌
+					type : -1,
+					//价格区间
+					priceArea : "*",
+					//礼服 类型
+					LifuType : -1,
+					//排序依据
+					orderByKey : "created_time ",
+					orderType : "desc",
+					//礼服状态
+					status : 1,
+					//是否热门
+					isHot : 0,
+					//是否新品
+					isNew : 0,
+					//是否折扣
+					discount : 0,
+					//定制 还是 租聘 -- 大类型
+					bigType : 1,
+				},
+			},
+			created() {
+				this.getZuPinPriceArea();
+				this.getLifu(1);
+			},
+			methods:{
+				getLifu:function(index){
+					axios.post("/lifu/show",this.searchEntity).then(function(res){
+						alert(res.data.data);
+						this.lifus = res.data.data.list;
+					});
+				},
+				getPriceArea:function (type) {
+					axios.get("/getPriceArea?type="+type).then(function(res) {
+						this.priceArea = res.data.data;
+					});
+				},
+				getZuPinPriceArea:function() {
+					this.getPriceArea(0);
+				},
+				getDinZhiPriceArea:function() {
+					this.getPriceArea(1);
+				}
+			},
+
+		});
+	</script>
 	</body>
 </html>

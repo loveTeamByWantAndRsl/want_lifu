@@ -8,6 +8,9 @@ public class ApiResponseFactory {
     public static ApiResponse genApiResponse(int code,String message){
         return new ApiResponse(code,message);
     }
+    public static ApiResponse genSuccessApiResponse(String message,Object data){
+        return new ApiResponse(ApiResponse.Status.SUCCESS.getCode(),message,data);
+    }
     public static ApiResponse genSuccessApiResponse(String message){
         return new ApiResponse(ApiResponse.Status.SUCCESS.getCode(),message);
     }
@@ -15,4 +18,7 @@ public class ApiResponseFactory {
         return new ApiResponse(ApiResponse.Status.NOT_LOGIN.getCode(),ApiResponse.Status.NOT_LOGIN.getMsg());
     }
 
+    public static ApiResponse genFailApiResponse(String message) {
+        return new ApiResponse(ApiResponse.Status.SERVER_ERROR.getCode(),message);
+    }
 }

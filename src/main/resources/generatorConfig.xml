@@ -31,15 +31,18 @@
             <property name="nullCatalogMeansCurrent" value="true" />
         </jdbcConnection>
         <!--指定生成model的路径-->
-        <javaModelGenerator targetPackage="com.example.wantlifu.mbg.model" targetProject="src\main\java"/>
+        <javaModelGenerator targetPackage="com.example.wantlifu.entity" targetProject="src\main\java"/>
         <!--指定生成mapper.xml的路径-->
-        <sqlMapGenerator targetPackage="com.example.wantlifu.mbg.mapper" targetProject="src\main\resources"/>
+        <sqlMapGenerator targetPackage="com.example.wantlifu.mapper" targetProject="src\main\resources"/>
         <!--指定生成mapper接口的的路径-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.wantlifu.mbg.mapper"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.wantlifu.dao"
                              targetProject="src\main\java"/>
         <!--生成全部表tableName设为%-->
-        <table tableName="users">
-            <generatedKey column="userid" sqlStatement="MySql" identity="true"/>
+        <table tableName="user_comment">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <!--    Mybatis自动生成插件对数据库类型为text的处理     -->
+            <!--    修改generatorConfig.xml配置文件，其中column为你需要覆盖的数据库字段        -->
+<!--            <columnOverride column="company_desc" jdbcType="VARCHAR" />-->
         </table>
     </context>
 </generatorConfiguration>

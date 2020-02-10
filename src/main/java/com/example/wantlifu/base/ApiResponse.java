@@ -67,7 +67,8 @@ public class ApiResponse {
         INTERNET_SERVER_ERROR(500,"Unknown internet error"),
         NOT_VALID_PARAM(40005,"Not valid params"),
         NOT_SUPPORT_OPERATION(40006,"Operation not support"),
-        NOT_LOGIN(50000,"You have not login");
+        NOT_LOGIN(50000,"You have not login"),
+        SERVER_ERROR(40006,"服务错误！");
 
         int code;
         String msg;

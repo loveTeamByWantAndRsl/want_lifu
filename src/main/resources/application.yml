@@ -2,8 +2,13 @@ server:
   port: 8080
 
 spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
   datasource:
-    url: jdbc:mysql://localhost:3306/rightmanager?useUnicode=true
+    url: jdbc:mysql://localhost:3306/want_lifu?useUnicode=true
     username: root
     password: 110412
   #邮箱配置
@@ -26,7 +31,48 @@ spring:
     servlet:
       content-type: text/html
     cache: false
-
+  redis:
+    host: localhost
+    port: 6379
+    jedis:
+      pool:
+        max-wait: 30000
+        max-active: 100
+        max-idle: 20
+        min-idle: 0
+    timeout: 5000
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+mail:
+  queue:
+    name: local.mail.queue
+  exchange:
+    name: local.mail.exchange
+  routing:
+    key:
+      name: local.mail.routing.key
+elasticSearch:
+  host: 127.0.0.1
+  port: 9200
+  client:
+    connectNum: 10
+    connectPerRoute: 50
+# OSS相关配置信息
+aliyun:
+  oss:
+    endpoint: http://oss-cn-beijing.aliyuncs.com # oss对外服务的访问域名
+    accessKeyId: LTAI4FgRjW61NiLHLbLJdLkx # 访问身份验证中用到用户标识
+    accessKeySecret: 6NznrJTR3Q2YrDbMd5bfLhFGjpCOAT # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
+    bucketName: team-pic # oss的存储空间
+    policy:
+      expire: 300 # 签名有效期(S)
+    #maxSize: 20 # 上传文件大小(M)
+    callback: http://localhost:8080/aliyun/oss/callback # 文件上传成功后的回调地址
+    dir:
+      prefix: want-lifu/ # 上传文件夹路径前缀
 
 #设置一个邮件发送人
 want:
@@ -35,6 +81,8 @@ want:
 
 
 mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations:
     - classpath:mapper/*.xml
     - classpath*:com/**/mapper/*.xml
@@ -44,4 +92,9 @@ elasticsearch:
   cluster:
     name: want-lifu
   pool: 5
+jwt:
+  tokenHeader: Authorization
+  secret: mySecret
+  expiration: 604800
+  tokenHead: Bearer
 

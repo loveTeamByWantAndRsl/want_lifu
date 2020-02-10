@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.wantlifu.dao.TrademarkMapper">
+  <resultMap id="BaseResultMap" type="com.example.wantlifu.entity.Trademark">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="loveCount" jdbcType="INTEGER" property="lovecount" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="lifuCount" jdbcType="INTEGER" property="lifucount" />
+    <result column="firstChar" jdbcType="VARCHAR" property="firstchar" />
+    <result column="commentCount" jdbcType="INTEGER" property="commentcount" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="remark1" jdbcType="VARCHAR" property="remark1" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, detail, loveCount, pic, logo, lifuCount, firstChar, commentCount, status, 
+    remark, remark1
+  </sql>
+  <select id="selectByExample" parameterType="com.example.wantlifu.entity.TrademarkExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from trademark
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trademark
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from trademark
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.wantlifu.entity.TrademarkExample">
+    delete from trademark
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.wantlifu.entity.Trademark">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into trademark (name, detail, loveCount, 
+      pic, logo, lifuCount, 
+      firstChar, commentCount, status, 
+      remark, remark1)
+    values (#{name,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, #{lovecount,jdbcType=INTEGER}, 
+      #{pic,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, #{lifucount,jdbcType=INTEGER}, 
+      #{firstchar,jdbcType=VARCHAR}, #{commentcount,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.wantlifu.entity.Trademark">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into trademark
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="lovecount != null">
+        loveCount,
+      </if>
+      <if test="pic != null">
+        pic,
+      </if>
+      <if test="logo != null">
+        logo,
+      </if>
+      <if test="lifucount != null">
+        lifuCount,
+      </if>
+      <if test="firstchar != null">
+        firstChar,
+      </if>
+      <if test="commentcount != null">
+        commentCount,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="remark1 != null">
+        remark1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="lovecount != null">
+        #{lovecount,jdbcType=INTEGER},
+      </if>
+      <if test="pic != null">
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="lifucount != null">
+        #{lifucount,jdbcType=INTEGER},
+      </if>
+      <if test="firstchar != null">
+        #{firstchar,jdbcType=VARCHAR},
+      </if>
+      <if test="commentcount != null">
+        #{commentcount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null">
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.wantlifu.entity.TrademarkExample" resultType="java.lang.Long">
+    select count(*) from trademark
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update trademark
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detail != null">
+        detail = #{record.detail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lovecount != null">
+        loveCount = #{record.lovecount,jdbcType=INTEGER},
+      </if>
+      <if test="record.pic != null">
+        pic = #{record.pic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logo != null">
+        logo = #{record.logo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lifucount != null">
+        lifuCount = #{record.lifucount,jdbcType=INTEGER},
+      </if>
+      <if test="record.firstchar != null">
+        firstChar = #{record.firstchar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commentcount != null">
+        commentCount = #{record.commentcount,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null">
+        remark1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update trademark
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      detail = #{record.detail,jdbcType=VARCHAR},
+      loveCount = #{record.lovecount,jdbcType=INTEGER},
+      pic = #{record.pic,jdbcType=VARCHAR},
+      logo = #{record.logo,jdbcType=VARCHAR},
+      lifuCount = #{record.lifucount,jdbcType=INTEGER},
+      firstChar = #{record.firstchar,jdbcType=VARCHAR},
+      commentCount = #{record.commentcount,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      remark1 = #{record.remark1,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.wantlifu.entity.Trademark">
+    update trademark
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="lovecount != null">
+        loveCount = #{lovecount,jdbcType=INTEGER},
+      </if>
+      <if test="pic != null">
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="lifucount != null">
+        lifuCount = #{lifucount,jdbcType=INTEGER},
+      </if>
+      <if test="firstchar != null">
+        firstChar = #{firstchar,jdbcType=VARCHAR},
+      </if>
+      <if test="commentcount != null">
+        commentCount = #{commentcount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null">
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.wantlifu.entity.Trademark">
+    update trademark
+    set name = #{name,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      loveCount = #{lovecount,jdbcType=INTEGER},
+      pic = #{pic,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      lifuCount = #{lifucount,jdbcType=INTEGER},
+      firstChar = #{firstchar,jdbcType=VARCHAR},
+      commentCount = #{commentcount,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
