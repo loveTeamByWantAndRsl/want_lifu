@@ -2,7 +2,11 @@ package com.example.wantlifu.controller;
 
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.internal.util.AlipaySignature;
+import com.example.wantlifu.base.ApiResponse;
+import com.example.wantlifu.base.ApiResponseFactory;
 import com.example.wantlifu.config.AliPayConfig;
+import com.example.wantlifu.controller.reciveEntity.A;
+import com.example.wantlifu.controller.reciveEntity.B;
 import com.example.wantlifu.service.IAliPayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +30,13 @@ public class HelloController {
     @Autowired
     AliPayConfig aliPayConfig;
 
+
+    @ResponseBody
+    @RequestMapping("ms")
+    public ApiResponse ms(@RequestBody B b){
+        System.out.println("B = " + b);
+        return ApiResponseFactory.genSuccessApiResponse("",b);
+    }
 
         @GetMapping("payTest")
         public void payTest(HttpServletResponse httpResponse){

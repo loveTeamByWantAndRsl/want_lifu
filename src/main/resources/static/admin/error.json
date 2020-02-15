@@ -1,0 +1,33 @@
+{
+  "timestamp": "2020-02-15T06:55:25.733+0000",
+  "status": 400,
+  "error": "Bad Request",
+  "errors": [
+    {
+      "codes": [
+        "NotNull.priceAreaReciveEntity.priceAreaSearchEntity",
+        "NotNull.priceAreaSearchEntity",
+        "NotNull"
+      ],
+      "arguments": [
+        {
+          "codes": [
+            "priceAreaReciveEntity.priceAreaSearchEntity",
+            "priceAreaSearchEntity"
+          ],
+          "arguments": null,
+          "defaultMessage": "priceAreaSearchEntity",
+          "code": "priceAreaSearchEntity"
+        }
+      ],
+      "defaultMessage": "参数错误！价格查询实体错误！",
+      "objectName": "priceAreaReciveEntity",
+      "field": "priceAreaSearchEntity",
+      "rejectedValue": null,
+      "bindingFailure": false,
+      "code": "NotNull"
+    }
+  ],
+  "message": "Validation failed for object='priceAreaReciveEntity'. Error count: 1",
+  "path": "/admin/priceArea/select"
+}

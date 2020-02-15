@@ -5,6 +5,8 @@ import com.example.wantlifu.entity.PriceArea;
 import com.example.wantlifu.entity.PriceAreaExample;
 import com.example.wantlifu.service.search.PriceAreaSearchEntity;
 import com.example.wantlifu.util.StaticPool;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
@@ -81,9 +83,12 @@ public class PriceAreaService {
      * @param priceAreaSearchEntity
      * @return
      */
-    public List<PriceArea> selectPriceAreaByPriceAreaSearchEntity(PriceAreaSearchEntity priceAreaSearchEntity){
+    public PageInfo<PriceArea> selectPriceAreaByPriceAreaSearchEntity(PriceAreaSearchEntity priceAreaSearchEntity,Integer start,Integer pageSize){
+        PageHelper.startPage(start,pageSize);
         PriceAreaExample example = new PriceAreaExample();
         PriceAreaExample.Criteria criteria = example.createCriteria();
+        if(priceAreaSearchEntity.getType() != null && priceAreaSearchEntity.getType() >=0)
+            criteria.andTypeEqualTo(priceAreaSearchEntity.getType());
         if( !StringUtils.isEmpty(priceAreaSearchEntity.getExpress()))
             criteria.andExpressLike(priceAreaSearchEntity.getExpress()+"%");
         if( priceAreaSearchEntity.getMin() != null && priceAreaSearchEntity.getMin() >= 0)
@@ -93,7 +98,7 @@ public class PriceAreaService {
         if( priceAreaSearchEntity.getStatus() != null && priceAreaSearchEntity.getStatus() >= 0)
             criteria.andStatusEqualTo(priceAreaSearchEntity.getStatus());
 
-        return priceAreaMapper.selectByExample(example);
+        return PageInfo.of(priceAreaMapper.selectByExample(example));
     }
 
     /**

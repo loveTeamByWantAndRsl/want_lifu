@@ -1,11 +1,14 @@
 package com.example.wantlifu.service.impl;
 
+import com.example.wantlifu.base.ApiResponse;
+import com.example.wantlifu.base.ApiResponseFactory;
 import com.example.wantlifu.dao.LifuMapper;
 import com.example.wantlifu.dao.LifuSkuMapper;
 import com.example.wantlifu.entity.Lifu;
 import com.example.wantlifu.entity.LifuExample;
 import com.example.wantlifu.service.search.LifuSearchEntity;
 import com.example.wantlifu.service.search.RentValueBlock;
+import com.example.wantlifu.util.StaticPool;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 礼服 服务层
@@ -123,5 +127,12 @@ public class LifuService {
         List<Lifu> lifus = lifuMapper.selectByExample(example);
         PageInfo<Lifu> lifuPageInfo = PageInfo.of(lifus);
         return lifuPageInfo;
+    }
+
+    public Map<String,String> addLifu(Lifu lifu){
+        int flag = lifuMapper.insertSelective(lifu);
+        if(flag > 0)
+            return StaticPool.genSuccessRes();
+        return StaticPool.genFailRes();
     }
 }

@@ -17,6 +17,8 @@ import java.util.UUID;
 /**
  * @author 王志坚
  * @createTime 2019.12.09.15:45
+ *
+ * 支付包 沙箱操作
  */
 @Service
 public class AliPayService implements IAliPayService, InitializingBean {

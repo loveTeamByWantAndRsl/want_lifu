@@ -27,6 +27,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 @Service
 public class UserService {
@@ -44,6 +45,13 @@ public class UserService {
     JwtTokenUtil jwtTokenUtil;
 
 
+    /**
+     * 忘记密码
+     * @param emailCode
+     * @param newPassword
+     * @param code
+     * @return
+     */
     public Map<String, String> forgetPassword(String emailCode, String newPassword, String code) {
         Map<String,String> res = new HashMap<>();
 
@@ -112,7 +120,6 @@ public class UserService {
      * @param username
      * @return
      */
-
     public Map<String,String> login(String username, String password) {
         Map<String,String> res = new HashMap<>();
         try{
@@ -139,7 +146,6 @@ public class UserService {
      * @param u
      * @return
      */
-
     public Map<String, String> addUser(User u) {
         //检查用户名 是否 重复
         //检查email 是否 重复
@@ -233,9 +239,11 @@ public class UserService {
         PageHelper.startPage(start,pageSize);
         UserExample example = new UserExample();
         UserExample.Criteria criteria = example.createCriteria();
+        // key
         if( !StringUtils.isEmpty(entity.getKeyWord()))
             criteria.andUsernameLike(entity.getKeyWord()+"%");
-        if( entity.getStatus() != null )
+        // status
+        if( entity.getStatus() != null && entity.getStatus() >= 0)
             criteria.andStatusEqualTo(entity.getStatus());
         example.setOrderByClause(entity.getOrderKey()+entity.getOrderBy());
         List<User> User = UserMapper.selectByExample(example);
@@ -266,6 +274,37 @@ public class UserService {
         return UserMapper.selectByPrimaryKey(id);
     }
 
+
+    /**
+     * 冻结用户
+     */
+    public Map<String, String> iceUserById(Integer id){
+        return changeUserStatusById(id,StaticPool.notUseful);
+    }
+
+    public Map<String, String> updateOrIceUsersByIds(Integer[] ids){
+        for(Integer id : ids){
+            if(!iceUserById(id).containsKey(StaticPool.SUCCESS))
+                throw new RuntimeException("冻结出错！");
+        }
+        return StaticPool.genSuccessRes();
+    }
+
+    /**
+     * 修改用户状态
+     * @param id
+     * @param status
+     * @return
+     */
+    public Map<String,String> changeUserStatusById(Integer id,Integer status){
+        User user = new User();
+        user.setId(id);
+        user.setStatus(status);
+        int flag = UserMapper.updateByPrimaryKeySelective(user);
+        if(flag > 0)
+            return StaticPool.genSuccessRes();
+        return StaticPool.genFailRes();
+    }
 
 //    public List<User> queryAllUses() {
 //        UserExample example = new UserExample();

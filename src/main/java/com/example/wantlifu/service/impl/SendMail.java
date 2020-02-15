@@ -17,6 +17,7 @@ import javax.mail.internet.MimeUtility;
 import java.util.Map;
 
 /**
+ * 发送邮件服务
  * @author 王志坚
  * @createTime 2019.12.05.20:44
  */

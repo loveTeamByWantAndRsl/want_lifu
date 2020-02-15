@@ -21,11 +21,13 @@ public class ApiResponse {
         this.code = code;
         this.message = message;
         this.data = data;
+        this.more = true;
     }
 
     public ApiResponse(int code, String message) {
         this.code = code;
         this.message = message;
+        this.more = true;
     }
 
 

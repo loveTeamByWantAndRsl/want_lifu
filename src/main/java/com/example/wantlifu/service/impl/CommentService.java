@@ -46,7 +46,7 @@ public class CommentService {
     public Map<String,String> deleteComment(int id,Integer userid,boolean flag){
         if(!flag){
             Comment comment = commentMapper.selectByPrimaryKey(id);
-            if(comment.getUserid() != userid)
+            if(!comment.getUserid().equals(userid) )
                 return StaticPool.genFailRes();
         }
         Comment comment = new Comment();

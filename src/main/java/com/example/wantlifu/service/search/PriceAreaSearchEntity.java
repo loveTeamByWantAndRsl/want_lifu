@@ -10,12 +10,35 @@ package com.example.wantlifu.service.search;
 public class PriceAreaSearchEntity {
     private String express;
     private Integer status = 1;
+
     private Integer min;
+
     private Integer max;
+
+    private Integer type;
     //排序依据
 //    private String orderByKey = "created_time ";
 //    private String orderType = "desc";
 
+
+    public PriceAreaSearchEntity() {
+    }
+
+    public PriceAreaSearchEntity(String express, Integer status, Integer min, Integer max,Integer type) {
+        this.express = express;
+        this.status = status;
+        this.min = min;
+        this.max = max;
+        this.type = type;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
     public String getExpress() {
         return express;
