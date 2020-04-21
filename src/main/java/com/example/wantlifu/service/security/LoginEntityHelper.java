@@ -9,10 +9,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginEntityHelper {
 
-    ThreadLocal<OnlineEntity> entityThreadLocal;
+
 
     public Object getEntity(){
-        //return entityThreadLocal.get();
         if(SecurityContextHolder.getContext().getAuthentication() != null)
             return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return null;

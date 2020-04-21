@@ -38,7 +38,7 @@ public class AliPayService implements IAliPayService, InitializingBean {
     }
 
     @Override
-    public String genPage() {
+    public String genPage(String out_trade_no,Double total_amount,String subject,String body) {
         Random r=new Random();
         //实例化客户端,填入所需参数
         AlipayClient alipayClient = new DefaultAlipayClient(aliPayConfig.GATEWAY_URL
@@ -49,15 +49,13 @@ public class AliPayService implements IAliPayService, InitializingBean {
         request.setReturnUrl(aliPayConfig.RETURN_URL);
         request.setNotifyUrl(aliPayConfig.NOTIFY_URL);
 
-        //商户订单号，商户网站订单系统中唯一订单号，必填
-        //生成随机Id
-        String out_trade_no = UUID.randomUUID().toString();
+
         //付款金额，必填
-        String total_amount =Integer.toString(10);
+//        String total_amount =Integer.toString(10);
         //订单名称，必填
-        String subject ="奥迪A8 2016款 A8L 60 TFSl quattro豪华型";
+//        String subject ="奥迪A8 2016款 A8L 60 TFSl quattro豪华型";
         //商品描述，可空
-        String body = "尊敬的会员欢迎购买奥迪A8 2016款 A8L 60 TFSl quattro豪华型";
+//        String body = "尊敬的会员欢迎购买奥迪A8 2016款 A8L 60 TFSl quattro豪华型";
         request.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\","
                 + "\"total_amount\":\""+ total_amount +"\","
                 + "\"subject\":\""+ subject +"\","

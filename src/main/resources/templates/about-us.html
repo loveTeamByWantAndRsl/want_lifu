@@ -314,7 +314,8 @@
 				<div class="row">
 					<div class="col-sm-6 text-left">
 						<h3>关于本店</h3>
-					</div>		
+					</div>
+
 
 					<div class="col-sm-6 text-right">
 						<ul class="p_items">
@@ -334,14 +335,14 @@
 			<div class="row about_inner">
 				<div class="about_img_area col-lg-6 col-md-12 col-xs-12">
 					<div data-video="NrmMk1Myrxc" id="video">
-					  <img src="img/screenshot.jpg" alt="Video Screenshot">
+					  <img th:src="@{${aboutUs.pic}}" src="img/screenshot.jpg" alt="Video Screenshot">
 					</div>
 				</div>
 				
 				<div class="about_content_area col-lg-6  col-md-12 col-xs-12">
-					<h2>Who we are</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat enim ad minim veniam, quis nostrud exercita.</p>
-					<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+					<h2>关于我们</h2>
+					<p th:utext="${aboutUs.detail}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat enim ad minim veniam, quis nostrud exercita.</p>
+
 				</div>
 				
 			</div>
@@ -358,80 +359,80 @@
 					</div>
 				</div>	
 
-				<div class="row">
-					<div class="col-lg-3 col-md-4 col-sm-6">
-						<div class="our-team">
-							<div class="pic">
-								<img src="img/team/1.jpg" alt="">
-							</div>
-							<div class="team-content">
-								<h3 class="title">Williamson</h3>
-								<span class="post">web developer</span>
-								<ul class="social">
-									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div><!-- End Col -->
+<!--				<div class="row">-->
+<!--					<div class="col-lg-3 col-md-4 col-sm-6">-->
+<!--						<div class="our-team">-->
+<!--							<div class="pic">-->
+<!--								<img src="img/team/1.jpg" alt="">-->
+<!--							</div>-->
+<!--							<div class="team-content">-->
+<!--								<h3 class="title">Williamson</h3>-->
+<!--								<span class="post">web developer</span>-->
+<!--								<ul class="social">-->
+<!--									<li><a href="#"><i class="fa fa-facebook"></i></a></li>-->
+<!--									<li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+<!--									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
+<!--									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
+<!--								</ul>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>&lt;!&ndash; End Col &ndash;&gt;-->
 
-					<div class="col-lg-3 col-md-4 col-sm-6">
-						<div class="our-team">
-							<div class="pic">
-								<img src="img/team/2.jpg" alt="">
-							</div>
-							<div class="team-content">
-								<h3 class="title">kristina</h3>
-								<span class="post">Web Designer</span>
-								<ul class="social">
-									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div><!-- End Col -->				
+<!--					<div class="col-lg-3 col-md-4 col-sm-6">-->
+<!--						<div class="our-team">-->
+<!--							<div class="pic">-->
+<!--								<img src="img/team/2.jpg" alt="">-->
+<!--							</div>-->
+<!--							<div class="team-content">-->
+<!--								<h3 class="title">kristina</h3>-->
+<!--								<span class="post">Web Designer</span>-->
+<!--								<ul class="social">-->
+<!--									<li><a href="#"><i class="fa fa-facebook"></i></a></li>-->
+<!--									<li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+<!--									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
+<!--									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
+<!--								</ul>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>&lt;!&ndash; End Col &ndash;&gt;				-->
 
-					<div class="col-lg-3 col-md-4 col-sm-6">
-						<div class="our-team">
-							<div class="pic">
-								<img src="img/team/3.jpg" alt="">
-							</div>
-							<div class="team-content">
-								<h3 class="title">Steve Thomas</h3>
-								<span class="post">Web Designer</span>
-								<ul class="social">
-									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div><!-- End Col -->			
-					
-					<div class="col-lg-3 col-md-4 col-sm-6">
-						<div class="our-team">
-							<div class="pic">
-								<img src="img/team/4.jpg" alt="">
-							</div>
-							<div class="team-content">
-								<h3 class="title">Miranda joy</h3>
-								<span class="post">Web Designer</span>
-								<ul class="social">
-									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div><!-- End Col -->
-					
-				</div>				
+<!--					<div class="col-lg-3 col-md-4 col-sm-6">-->
+<!--						<div class="our-team">-->
+<!--							<div class="pic">-->
+<!--								<img src="img/team/3.jpg" alt="">-->
+<!--							</div>-->
+<!--							<div class="team-content">-->
+<!--								<h3 class="title">Steve Thomas</h3>-->
+<!--								<span class="post">Web Designer</span>-->
+<!--								<ul class="social">-->
+<!--									<li><a href="#"><i class="fa fa-facebook"></i></a></li>-->
+<!--									<li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+<!--									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
+<!--									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
+<!--								</ul>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>&lt;!&ndash; End Col &ndash;&gt;			-->
+<!--					-->
+<!--					<div class="col-lg-3 col-md-4 col-sm-6">-->
+<!--						<div class="our-team">-->
+<!--							<div class="pic">-->
+<!--								<img src="img/team/4.jpg" alt="">-->
+<!--							</div>-->
+<!--							<div class="team-content">-->
+<!--								<h3 class="title">Miranda joy</h3>-->
+<!--								<span class="post">Web Designer</span>-->
+<!--								<ul class="social">-->
+<!--									<li><a href="#"><i class="fa fa-facebook"></i></a></li>-->
+<!--									<li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+<!--									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
+<!--									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
+<!--								</ul>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>&lt;!&ndash; End Col &ndash;&gt;-->
+<!--					-->
+<!--				</div>				-->
 				
 			</div>
 		</div>
@@ -544,5 +545,11 @@
 		<script src="/js/simplePlayer.js"></script>
 		<script src="/js/scrolltopcontrol.js"></script>
 		<script src="/js/main.js"></script>
+		<script src="/js/public.js"></script>
+		<script>
+			$(function () {
+				loadCart();
+			})
+		</script>
 	</body>
 </html>

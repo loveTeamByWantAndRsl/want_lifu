@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class Generator {
     public static void main(String[] args) throws Exception {
+
         //MBG 执行过程中的警告信息
         List<String> warnings = new ArrayList<String>();
         //当生成的代码重复时，覆盖原代码
@@ -35,4 +36,5 @@ public class Generator {
             System.out.println(warning);
         }
     }
+
 }

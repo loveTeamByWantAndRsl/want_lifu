@@ -1,5 +1,8 @@
 package com.example.wantlifu.entity;
 
+import com.example.wantlifu.util.StaticPool;
+import com.example.wantlifu.util.order.help.OrderStatus;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -7,29 +10,32 @@ import java.util.Date;
 public class WtOrder implements Serializable {
     private Integer id;
 
+    //创建时需要
     private Integer userid;
-
+    //创建时需要
     private String userName;
-
+    //创建时需要
     private String address;
+    //创建时需要
+    private String orderNo;
+    //创建时需要
+    private Integer ispay = 0;
 
-    private Integer orderNo;
-
-    private String ispay;
-
+    private Date payTime;
+    //创建时需要
     private Date createdTime;
 
-    private String status;
+    private Integer status = OrderStatus.NOT_PAY.getNum();
 
-    private String delivertype;
+    private Integer deliverType = 0;
 
-    private String isRefund;
+    private Integer isRefund = 0;
 
-    private String deliverMoney;
+    private BigDecimal deliverMoney = new BigDecimal(0);
 
-    private String isAppraise;
+    private Integer isAppraise = 0;
 
-    private String rejectOtherReason;
+    private String rejectOtherReason = "";
 
     private Integer expressId;
 
@@ -37,11 +43,11 @@ public class WtOrder implements Serializable {
 
     private String tradeNo;
 
-    private Integer showInUser;
-
+    private Integer showInUser = StaticPool.useful;
+    //创建时需要
     private BigDecimal lifuTotalPrice;
-
-    private Long realTotalMoney;
+    //创建时需要
+    private BigDecimal realTotalMoney;
 
     private static final long serialVersionUID = 1L;
 
@@ -77,20 +83,28 @@ public class WtOrder implements Serializable {
         this.address = address;
     }
 
-    public Integer getOrderNo() {
+    public String getOrderNo() {
         return orderNo;
     }
 
-    public void setOrderNo(Integer orderNo) {
+    public void setOrderNo(String orderNo) {
         this.orderNo = orderNo;
     }
 
-    public String getIspay() {
+    public Integer getIspay() {
         return ispay;
     }
 
-    public void setIspay(String ispay) {
+    public void setIspay(Integer ispay) {
         this.ispay = ispay;
+    }
+
+    public Date getPayTime() {
+        return payTime;
+    }
+
+    public void setPayTime(Date payTime) {
+        this.payTime = payTime;
     }
 
     public Date getCreatedTime() {
@@ -101,43 +115,43 @@ public class WtOrder implements Serializable {
         this.createdTime = createdTime;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public String getDelivertype() {
-        return delivertype;
+    public Integer getDeliverType() {
+        return deliverType;
     }
 
-    public void setDelivertype(String delivertype) {
-        this.delivertype = delivertype;
+    public void setDeliverType(Integer deliverType) {
+        this.deliverType = deliverType;
     }
 
-    public String getIsRefund() {
+    public Integer getIsRefund() {
         return isRefund;
     }
 
-    public void setIsRefund(String isRefund) {
+    public void setIsRefund(Integer isRefund) {
         this.isRefund = isRefund;
     }
 
-    public String getDeliverMoney() {
+    public BigDecimal getDeliverMoney() {
         return deliverMoney;
     }
 
-    public void setDeliverMoney(String deliverMoney) {
+    public void setDeliverMoney(BigDecimal deliverMoney) {
         this.deliverMoney = deliverMoney;
     }
 
-    public String getIsAppraise() {
+    public Integer getIsAppraise() {
         return isAppraise;
     }
 
-    public void setIsAppraise(String isAppraise) {
+    public void setIsAppraise(Integer isAppraise) {
         this.isAppraise = isAppraise;
     }
 
@@ -189,11 +203,11 @@ public class WtOrder implements Serializable {
         this.lifuTotalPrice = lifuTotalPrice;
     }
 
-    public Long getRealTotalMoney() {
+    public BigDecimal getRealTotalMoney() {
         return realTotalMoney;
     }
 
-    public void setRealTotalMoney(Long realTotalMoney) {
+    public void setRealTotalMoney(BigDecimal realTotalMoney) {
         this.realTotalMoney = realTotalMoney;
     }
 
@@ -209,9 +223,10 @@ public class WtOrder implements Serializable {
         sb.append(", address=").append(address);
         sb.append(", orderNo=").append(orderNo);
         sb.append(", ispay=").append(ispay);
+        sb.append(", payTime=").append(payTime);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", status=").append(status);
-        sb.append(", delivertype=").append(delivertype);
+        sb.append(", deliverType=").append(deliverType);
         sb.append(", isRefund=").append(isRefund);
         sb.append(", deliverMoney=").append(deliverMoney);
         sb.append(", isAppraise=").append(isAppraise);

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>欢迎页面-X-admin2.2</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <link rel="stylesheet" href="./css/font.css">
+        <link rel="stylesheet" href="./css/xadmin.css">
+        <script src="./lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./js/xadmin.js"></script>
+        <!--[if lt IE 9]>
+          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    
+    <body>
+        <div class="x-nav">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a href="">演示</a>
+                <a>
+                    <cite>导航元素</cite></a>
+            </span>
+            <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+                <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
+            </a>
+        </div>
+<!--        搜索-->
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body ">
+                            <div class="demoTable">
+                                搜索：
+                                <div class="layui-inline">
+                                    <input class="layui-input" placeholder="关键字" name="express" id="key" autocomplete="off">
+                                </div>
+                                <div class="layui-inline">
+                                    <select class="layui-input" name="status" id="status" autocomplete="off">
+                                        <option value="-1"> 全部快速评论</option>
+                                        <option value="0"> 冻结快速评论</option>
+                                        <option value="1"> 有效快速评论</option>
+                                    </select>
+                                </div>
+                                <button class="layui-btn" data-type="reload">搜索</button>
+                            </div>
+                        </div>
+                        <div class="layui-card-body ">
+                            <table id="demo" class="layui-table" lay-filter="test"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="/js/axios.js"></script>
+
+<!--    监听button操作 -->
+    <!--    toolbar-->
+    <script type="text/html" id="userButtons">
+        <button class = "layui-btn layui-btn-sm" lay-event = "icePriceArea" > 批量删除 </button>
+    <button class = "layui-btn layui-btn-sm" lay-event = "rebackPriceAre" > 批量恢复 </button>
+        <button class = "layui-btn layui-btn-sm" lay-event = "addPriceArea" > 增加 </button>
+        <button class = "layui-btn layui-btn-sm" lay-event = "updatePriceArea" > 修改该区间 </button>
+    </script>
+<!--    bar-->
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    </script>
+
+<!--    状态-->
+    <script type="text/html" id="statusButton">
+        <input type = "checkbox" name = "status" value = "{{d.id}}" lay-skin = "switch" lay-text = "冻结|启用" lay-filter = "statusDemo" {{ d.status == 1 ? 'checked': ''}} >
+    </script>
+<!--    user table 初始化-->
+    <script>
+        myKey = "";
+        myStatus = -1;
+
+        layui.use('table', function(){
+            var table = layui.table;
+
+            //第一个实例
+            table.render({
+                elem: '#demo'
+                ,height: 390
+                ,url: '/admin/quickComment/select' //数据接口
+                ,page: true //开启分页
+                ,response: {
+                    statusCode: 200 //规定成功的状态码，默认：0
+                }
+                ,toolbar: '#userButtons'
+                ,method:'post'
+                ,parseData: function(res){ //res 即为原始返回的数据
+                    return {
+                        "code": res.code, //解析接口状态
+                        "msg": res.message, //解析提示文本
+                        "count": res.data.total, //解析数据长度
+                        "data": res.data.list //解析数据列表
+                    };
+                }
+                ,where: {entity:{key:myKey,status:myStatus}}
+                ,request: {
+                    pageName: 'start' //页码的参数名称，默认：page
+                    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+                }
+                ,contentType: 'application/json'
+                ,cols: [[ //表头
+                    {type:'checkbox',title: 'ID',}
+                    ,{field: 'id', title: 'ID', width:80, sort: true, }//fixed: 'left'
+                    ,{field: 'content', title: '内容', width:80}
+                    ,{field: 'status', title: '删除', width: 90, sort: true,templet:'#statusButton'}
+                    ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+                ]]
+                ,id:"priceAreaTable"
+            });
+            var $ = layui.$, active = {
+                reload: function(){
+                    console.log("reload");
+                    //监听锁定操作
+                    var keyDom = $('#key');
+                    var statusDom = $('#status');
+
+                    myKey = keyDom.val();
+                    myStatus = statusDom.val();
+
+                    table.reload('priceAreaTable',{
+                        where: {
+                            entity:{key:myKey,status:myStatus}
+                        }
+                        ,page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                    });
+                }
+            };
+            // 搜索时间促发
+            $('.demoTable .layui-btn').on('click', function(){
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+
+            var date = layui.table.cache.demoFin;  //获取当前表格数据
+            console.log(date)
+        });
+        layui.use('table', function(){
+
+            var form = layui.form;
+            //监听性别操作
+            //监听锁定操作
+            form.on('switch(statusDemo)', function(obj){
+                var url;
+                console.log(obj.elem.checked+"--"+obj.othis)
+                if(obj.elem.checked){
+                    url = "/admin/quickComment/reback";
+                }else{
+                    url = "/admin/quickComment/ice";
+                }
+                var ids = [];
+                ids.push(this.value);
+                axios.post(url,ids).then(function(res){
+                    if (res.data.code == 200) {
+                        layer.alert("操作成功！");
+                    }else {
+                        layer.alert(res.data.msg);
+                    }
+                }).catch(function () {
+                    layer.alert("操作失败");
+                });
+            });
+        });
+    </script>
+
+<!--    未知操作-->
+    <script>
+
+        layui.use('laydate',
+        function() {
+            var laydate = layui.laydate;
+
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#start' //指定元素
+            });
+
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#end' //指定元素
+            });
+
+        });</script>
+<!--    table 监听-->
+    <script>
+        layui.use('table',
+        function() {
+            var table = layui.table;
+
+            //监听工具条
+            table.on('tool(test)', function(obj){
+                var data = obj.data;
+                if(obj.event === 'detail'){
+                    layer.open({
+                        type: 2,
+                        title: '查看',
+                        maxmin: true,
+                        area: ['420px', '330px'],
+                        shadeClose: false, //点击遮罩关闭
+                        content: 'quickCommentLook-form.html?id='+data.id,
+                    });
+                }else if(obj.event === 'edit'){
+                    layer.open({
+                        type: 2,
+                        title: '修改',
+                        maxmin: true,
+                        area: ['420px', '330px'],
+                        shadeClose: false, //点击遮罩关闭
+                        content: 'quickCommentUpdate-form.html?id='+data.id,
+                    });
+                }
+            });
+            //头工具栏事件
+            table.on('toolbar(test)',
+                function(obj) {
+                // console.log(checkStatus)
+                    var checkStatus = table.checkStatus(obj.config.id);//获取 选中数据
+                    var ids = [];//容器
+                    for (var c of checkStatus.data){    //遍历添加到容器中
+                        ids.push(c.id);
+                    }
+                    switch (obj.event) {
+                        case 'icePriceArea':
+                            axios.post("/admin/quickComment/ice",ids).then(function(res){
+                                console.log(res);
+                                if (res.data.code == 200) {
+                                    layer.alert("冻结成功！");
+                                    setTimeout(function(){
+                                        window.location.reload();//修改成功后刷新本界面
+                                    }, 1000);
+                                }else {
+                                    layer.alert(res.data.msg);
+                                }
+                            }).catch(function () {
+                                alert("操作失败");
+                            });
+                            break;
+                        case 'addPriceArea':
+                            layer.open({
+                                type: 2,
+                                title: '添加',
+                                maxmin: true,
+                                area: ['420px', '330px'],
+                                shadeClose: false, //点击遮罩关闭
+                                content: 'quickCommentAdd-form.html',
+                            });
+                            break;
+                        case 'updatePriceArea':
+                            if(ids.length > 1 || ids.length == 0){
+                                layer.alert("只能选择一条记录！！！");
+                                return;
+                            }
+                            layer.open({
+                                type: 2,
+                                title: '修改',
+                                maxmin: true,
+                                area: ['420px', '330px'],
+                                shadeClose: false, //点击遮罩关闭
+                                content: 'quickCommentUpdate-form.html?id='+ checkStatus.data[0].id,
+                            });
+                            break;
+                        case 'rebackPriceAre':
+                            axios.post("/admin/quickComment/reback",ids).then(function(res){
+                                console.log(res);
+                                if (res.data.code == 200) {
+                                    layer.alert("恢复成功！");
+                                    setTimeout(function(){
+                                        window.location.reload();//修改成功后刷新本界面
+                                    }, 1000);
+                                }else {
+                                    layer.alert(res.data.msg);
+                                }
+                            }).catch(function () {
+                                alert("操作失败");
+                            });
+                            break;
+                    };
+                });
+        });</script>
+    <script>
+        var _hmt = _hmt || []; (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</html>

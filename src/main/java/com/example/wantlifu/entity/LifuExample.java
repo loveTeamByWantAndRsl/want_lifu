@@ -1344,6 +1344,66 @@ public class LifuExample {
             addCriterion("can_zu_pin not between", value1, value2, "canZuPin");
             return (Criteria) this;
         }
+
+        public Criteria andShowInIndexIsNull() {
+            addCriterion("show_in_index is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowInIndexIsNotNull() {
+            addCriterion("show_in_index is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowInIndexEqualTo(Integer value) {
+            addCriterion("show_in_index =", value, "showInIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowInIndexNotEqualTo(Integer value) {
+            addCriterion("show_in_index <>", value, "showInIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowInIndexGreaterThan(Integer value) {
+            addCriterion("show_in_index >", value, "showInIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowInIndexGreaterThanOrEqualTo(Integer value) {
+            addCriterion("show_in_index >=", value, "showInIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowInIndexLessThan(Integer value) {
+            addCriterion("show_in_index <", value, "showInIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowInIndexLessThanOrEqualTo(Integer value) {
+            addCriterion("show_in_index <=", value, "showInIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowInIndexIn(List<Integer> values) {
+            addCriterion("show_in_index in", values, "showInIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowInIndexNotIn(List<Integer> values) {
+            addCriterion("show_in_index not in", values, "showInIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowInIndexBetween(Integer value1, Integer value2) {
+            addCriterion("show_in_index between", value1, value2, "showInIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowInIndexNotBetween(Integer value1, Integer value2) {
+            addCriterion("show_in_index not between", value1, value2, "showInIndex");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

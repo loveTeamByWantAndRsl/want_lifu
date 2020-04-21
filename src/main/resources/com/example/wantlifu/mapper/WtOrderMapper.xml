@@ -6,14 +6,15 @@
     <result column="userid" jdbcType="INTEGER" property="userid" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="order_no" jdbcType="INTEGER" property="orderNo" />
-    <result column="ispay" jdbcType="VARCHAR" property="ispay" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="ispay" jdbcType="INTEGER" property="ispay" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
-    <result column="status" jdbcType="VARCHAR" property="status" />
-    <result column="deliverType" jdbcType="VARCHAR" property="delivertype" />
-    <result column="is_refund" jdbcType="VARCHAR" property="isRefund" />
-    <result column="deliver_money" jdbcType="VARCHAR" property="deliverMoney" />
-    <result column="is_appraise" jdbcType="VARCHAR" property="isAppraise" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="deliver_type" jdbcType="INTEGER" property="deliverType" />
+    <result column="is_refund" jdbcType="INTEGER" property="isRefund" />
+    <result column="deliver_money" jdbcType="DECIMAL" property="deliverMoney" />
+    <result column="is_appraise" jdbcType="INTEGER" property="isAppraise" />
     <result column="reject_other_reason" jdbcType="VARCHAR" property="rejectOtherReason" />
     <result column="express_id" jdbcType="INTEGER" property="expressId" />
     <result column="express_no" jdbcType="VARCHAR" property="expressNo" />
@@ -81,9 +82,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, userid, user_name, address, order_no, ispay, created_time, status, deliverType, 
-    is_refund, deliver_money, is_appraise, reject_other_reason, express_id, express_no, 
-    trade_no, show_in_user, lifu_total_price, real_total_money
+    id, userid, user_name, address, order_no, ispay, pay_time, created_time, status, 
+    deliver_type, is_refund, deliver_money, is_appraise, reject_other_reason, express_id, 
+    express_no, trade_no, show_in_user, lifu_total_price, real_total_money
   </sql>
   <select id="selectByExample" parameterType="com.example.wantlifu.entity.WtOrderExample" resultMap="BaseResultMap">
     select
@@ -120,19 +121,19 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into wt_order (userid, user_name, address, 
-      order_no, ispay, created_time, 
-      status, deliverType, is_refund, 
-      deliver_money, is_appraise, reject_other_reason, 
-      express_id, express_no, trade_no, 
-      show_in_user, lifu_total_price, real_total_money
-      )
+      order_no, ispay, pay_time, 
+      created_time, status, deliver_type, 
+      is_refund, deliver_money, is_appraise, 
+      reject_other_reason, express_id, express_no, 
+      trade_no, show_in_user, lifu_total_price, 
+      real_total_money)
     values (#{userid,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{orderNo,jdbcType=INTEGER}, #{ispay,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=VARCHAR}, #{delivertype,jdbcType=VARCHAR}, #{isRefund,jdbcType=VARCHAR}, 
-      #{deliverMoney,jdbcType=VARCHAR}, #{isAppraise,jdbcType=VARCHAR}, #{rejectOtherReason,jdbcType=VARCHAR}, 
-      #{expressId,jdbcType=INTEGER}, #{expressNo,jdbcType=VARCHAR}, #{tradeNo,jdbcType=VARCHAR}, 
-      #{showInUser,jdbcType=INTEGER}, #{lifuTotalPrice,jdbcType=DECIMAL}, #{realTotalMoney,jdbcType=DECIMAL}
-      )
+      #{orderNo,jdbcType=VARCHAR}, #{ispay,jdbcType=INTEGER}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{deliverType,jdbcType=INTEGER}, 
+      #{isRefund,jdbcType=INTEGER}, #{deliverMoney,jdbcType=DECIMAL}, #{isAppraise,jdbcType=INTEGER}, 
+      #{rejectOtherReason,jdbcType=VARCHAR}, #{expressId,jdbcType=INTEGER}, #{expressNo,jdbcType=VARCHAR}, 
+      #{tradeNo,jdbcType=VARCHAR}, #{showInUser,jdbcType=INTEGER}, #{lifuTotalPrice,jdbcType=DECIMAL}, 
+      #{realTotalMoney,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.example.wantlifu.entity.WtOrder">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -155,14 +156,17 @@
       <if test="ispay != null">
         ispay,
       </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
       <if test="createdTime != null">
         created_time,
       </if>
       <if test="status != null">
         status,
       </if>
-      <if test="delivertype != null">
-        deliverType,
+      <if test="deliverType != null">
+        deliver_type,
       </if>
       <if test="isRefund != null">
         is_refund,
@@ -206,28 +210,31 @@
         #{address,jdbcType=VARCHAR},
       </if>
       <if test="orderNo != null">
-        #{orderNo,jdbcType=INTEGER},
+        #{orderNo,jdbcType=VARCHAR},
       </if>
       <if test="ispay != null">
-        #{ispay,jdbcType=VARCHAR},
+        #{ispay,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createdTime != null">
         #{createdTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null">
-        #{status,jdbcType=VARCHAR},
+        #{status,jdbcType=INTEGER},
       </if>
-      <if test="delivertype != null">
-        #{delivertype,jdbcType=VARCHAR},
+      <if test="deliverType != null">
+        #{deliverType,jdbcType=INTEGER},
       </if>
       <if test="isRefund != null">
-        #{isRefund,jdbcType=VARCHAR},
+        #{isRefund,jdbcType=INTEGER},
       </if>
       <if test="deliverMoney != null">
-        #{deliverMoney,jdbcType=VARCHAR},
+        #{deliverMoney,jdbcType=DECIMAL},
       </if>
       <if test="isAppraise != null">
-        #{isAppraise,jdbcType=VARCHAR},
+        #{isAppraise,jdbcType=INTEGER},
       </if>
       <if test="rejectOtherReason != null">
         #{rejectOtherReason,jdbcType=VARCHAR},
@@ -274,28 +281,31 @@
         address = #{record.address,jdbcType=VARCHAR},
       </if>
       <if test="record.orderNo != null">
-        order_no = #{record.orderNo,jdbcType=INTEGER},
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
       </if>
       <if test="record.ispay != null">
-        ispay = #{record.ispay,jdbcType=VARCHAR},
+        ispay = #{record.ispay,jdbcType=INTEGER},
+      </if>
+      <if test="record.payTime != null">
+        pay_time = #{record.payTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.createdTime != null">
         created_time = #{record.createdTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.status != null">
-        status = #{record.status,jdbcType=VARCHAR},
+        status = #{record.status,jdbcType=INTEGER},
       </if>
-      <if test="record.delivertype != null">
-        deliverType = #{record.delivertype,jdbcType=VARCHAR},
+      <if test="record.deliverType != null">
+        deliver_type = #{record.deliverType,jdbcType=INTEGER},
       </if>
       <if test="record.isRefund != null">
-        is_refund = #{record.isRefund,jdbcType=VARCHAR},
+        is_refund = #{record.isRefund,jdbcType=INTEGER},
       </if>
       <if test="record.deliverMoney != null">
-        deliver_money = #{record.deliverMoney,jdbcType=VARCHAR},
+        deliver_money = #{record.deliverMoney,jdbcType=DECIMAL},
       </if>
       <if test="record.isAppraise != null">
-        is_appraise = #{record.isAppraise,jdbcType=VARCHAR},
+        is_appraise = #{record.isAppraise,jdbcType=INTEGER},
       </if>
       <if test="record.rejectOtherReason != null">
         reject_other_reason = #{record.rejectOtherReason,jdbcType=VARCHAR},
@@ -329,14 +339,15 @@
       userid = #{record.userid,jdbcType=INTEGER},
       user_name = #{record.userName,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
-      order_no = #{record.orderNo,jdbcType=INTEGER},
-      ispay = #{record.ispay,jdbcType=VARCHAR},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      ispay = #{record.ispay,jdbcType=INTEGER},
+      pay_time = #{record.payTime,jdbcType=TIMESTAMP},
       created_time = #{record.createdTime,jdbcType=TIMESTAMP},
-      status = #{record.status,jdbcType=VARCHAR},
-      deliverType = #{record.delivertype,jdbcType=VARCHAR},
-      is_refund = #{record.isRefund,jdbcType=VARCHAR},
-      deliver_money = #{record.deliverMoney,jdbcType=VARCHAR},
-      is_appraise = #{record.isAppraise,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      deliver_type = #{record.deliverType,jdbcType=INTEGER},
+      is_refund = #{record.isRefund,jdbcType=INTEGER},
+      deliver_money = #{record.deliverMoney,jdbcType=DECIMAL},
+      is_appraise = #{record.isAppraise,jdbcType=INTEGER},
       reject_other_reason = #{record.rejectOtherReason,jdbcType=VARCHAR},
       express_id = #{record.expressId,jdbcType=INTEGER},
       express_no = #{record.expressNo,jdbcType=VARCHAR},
@@ -361,28 +372,31 @@
         address = #{address,jdbcType=VARCHAR},
       </if>
       <if test="orderNo != null">
-        order_no = #{orderNo,jdbcType=INTEGER},
+        order_no = #{orderNo,jdbcType=VARCHAR},
       </if>
       <if test="ispay != null">
-        ispay = #{ispay,jdbcType=VARCHAR},
+        ispay = #{ispay,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createdTime != null">
         created_time = #{createdTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=VARCHAR},
+        status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="delivertype != null">
-        deliverType = #{delivertype,jdbcType=VARCHAR},
+      <if test="deliverType != null">
+        deliver_type = #{deliverType,jdbcType=INTEGER},
       </if>
       <if test="isRefund != null">
-        is_refund = #{isRefund,jdbcType=VARCHAR},
+        is_refund = #{isRefund,jdbcType=INTEGER},
       </if>
       <if test="deliverMoney != null">
-        deliver_money = #{deliverMoney,jdbcType=VARCHAR},
+        deliver_money = #{deliverMoney,jdbcType=DECIMAL},
       </if>
       <if test="isAppraise != null">
-        is_appraise = #{isAppraise,jdbcType=VARCHAR},
+        is_appraise = #{isAppraise,jdbcType=INTEGER},
       </if>
       <if test="rejectOtherReason != null">
         reject_other_reason = #{rejectOtherReason,jdbcType=VARCHAR},
@@ -413,14 +427,15 @@
     set userid = #{userid,jdbcType=INTEGER},
       user_name = #{userName,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      order_no = #{orderNo,jdbcType=INTEGER},
-      ispay = #{ispay,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      ispay = #{ispay,jdbcType=INTEGER},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
       created_time = #{createdTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=VARCHAR},
-      deliverType = #{delivertype,jdbcType=VARCHAR},
-      is_refund = #{isRefund,jdbcType=VARCHAR},
-      deliver_money = #{deliverMoney,jdbcType=VARCHAR},
-      is_appraise = #{isAppraise,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      deliver_type = #{deliverType,jdbcType=INTEGER},
+      is_refund = #{isRefund,jdbcType=INTEGER},
+      deliver_money = #{deliverMoney,jdbcType=DECIMAL},
+      is_appraise = #{isAppraise,jdbcType=INTEGER},
       reject_other_reason = #{rejectOtherReason,jdbcType=VARCHAR},
       express_id = #{expressId,jdbcType=INTEGER},
       express_no = #{expressNo,jdbcType=VARCHAR},

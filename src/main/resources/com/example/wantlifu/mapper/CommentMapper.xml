@@ -8,6 +8,7 @@
     <result column="time" jdbcType="TIMESTAMP" property="time" />
     <result column="entity_id" jdbcType="INTEGER" property="entityId" />
     <result column="entity_type" jdbcType="INTEGER" property="entityType" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="userid" jdbcType="INTEGER" property="userid" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="father_id" jdbcType="INTEGER" property="fatherId" />
@@ -74,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, type, score, time, entity_id, entity_type, userid, content, father_id, status, 
-    remark, remark1
+    id, type, score, time, entity_id, entity_type, user_name, userid, content, father_id, 
+    status, remark, remark1
   </sql>
   <select id="selectByExample" parameterType="com.example.wantlifu.entity.CommentExample" resultMap="BaseResultMap">
     select
@@ -112,13 +113,15 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into comment (type, score, time, 
-      entity_id, entity_type, userid, 
-      content, father_id, status, 
-      remark, remark1)
+      entity_id, entity_type, user_name, 
+      userid, content, father_id, 
+      status, remark, remark1
+      )
     values (#{type,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
-      #{entityId,jdbcType=INTEGER}, #{entityType,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
-      #{content,jdbcType=VARCHAR}, #{fatherId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
-      #{remark,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR})
+      #{entityId,jdbcType=INTEGER}, #{entityType,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{fatherId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.example.wantlifu.entity.Comment">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -140,6 +143,9 @@
       </if>
       <if test="entityType != null">
         entity_type,
+      </if>
+      <if test="userName != null">
+        user_name,
       </if>
       <if test="userid != null">
         userid,
@@ -175,6 +181,9 @@
       </if>
       <if test="entityType != null">
         #{entityType,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
       </if>
       <if test="userid != null">
         #{userid,jdbcType=INTEGER},
@@ -223,6 +232,9 @@
       <if test="record.entityType != null">
         entity_type = #{record.entityType,jdbcType=INTEGER},
       </if>
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
       <if test="record.userid != null">
         userid = #{record.userid,jdbcType=INTEGER},
       </if>
@@ -254,6 +266,7 @@
       time = #{record.time,jdbcType=TIMESTAMP},
       entity_id = #{record.entityId,jdbcType=INTEGER},
       entity_type = #{record.entityType,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=VARCHAR},
       userid = #{record.userid,jdbcType=INTEGER},
       content = #{record.content,jdbcType=VARCHAR},
       father_id = #{record.fatherId,jdbcType=INTEGER},
@@ -281,6 +294,9 @@
       </if>
       <if test="entityType != null">
         entity_type = #{entityType,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
       </if>
       <if test="userid != null">
         userid = #{userid,jdbcType=INTEGER},
@@ -310,6 +326,7 @@
       time = #{time,jdbcType=TIMESTAMP},
       entity_id = #{entityId,jdbcType=INTEGER},
       entity_type = #{entityType,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
       userid = #{userid,jdbcType=INTEGER},
       content = #{content,jdbcType=VARCHAR},
       father_id = #{fatherId,jdbcType=INTEGER},

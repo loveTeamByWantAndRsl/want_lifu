@@ -63,4 +63,9 @@ public class CommentGenerator extends DefaultCommentGenerator {
     public void addJavaFileComment(CompilationUnit compilationUnit) {
         super.addJavaFileComment(compilationUnit);
     }
+
+//    public static void main(String[] args) {
+////        int i;
+////        System.out.println("i = " + i);
+////    }
 }

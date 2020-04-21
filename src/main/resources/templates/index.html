@@ -5,8 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Zking - Ecommerce - 主页</title>
 		<link href="https://fonts.googleapis.com/css?family=Muli:400,600,700,800" rel="stylesheet" >
-		<link href="http://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet" type="text/css" >		 
-		<link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">	
+		<link href="http://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet" type="text/css" >
+		<link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
 		<link rel="stylesheet" href="/css/font-awesome.css" />
 		<link rel="stylesheet" href="/css/themify-icons.css" />
 		<link rel="stylesheet" href="/css/animate.css" />
@@ -16,11 +16,11 @@
 		<link rel="stylesheet" href="/css/remodal.css" />
 		<link rel="stylesheet" href="/css/remodal-default-theme.css" />
 		<link rel="stylesheet" href="/css/venobox.css" />
-		<link rel="stylesheet" href="/css/bootstrap.min.css" />	
+		<link rel="stylesheet" href="/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="/css/style.css" />
-		<link rel="stylesheet" href="/css/responsive.css" />	
+		<link rel="stylesheet" href="/css/responsive.css" />
 	</head>
-	<body>
+	<body >
 	
 		<!--  Start Preloader  -->
 		
@@ -46,7 +46,6 @@
 						</div>
 						
 						<div class="col-xs-12 col-sm-6">
-			
 							<ul class="hdr_tp_right text-right">
 								<li class="account_area"><a href="login.html"><i class="ti-book"></i> 个人中心</a></li>
 								<li class="lan_area dropdown">
@@ -290,151 +289,253 @@
 			</div>
 		</header>
 		<!--  End Header  -->
-		
-		
-		<!-- Start Slider Area -->
-		<section id="slider_area" class="text-center">
-			<div class="slider_active owl-carousel">
-				<div class="single_slide" style="background-image: url(img/slider/1.jpg); background-size: cover; background-position: center;">
-					<div class="container">	
-						<div class="single-slide-item-table">
-							<div class="single-slide-item-tablecell">
-								<div class="slider_content text-left slider-animated-1">						
-									<p class="animated">2019年新品</p>
-									<h1 class="animated">最好的购物时间</h1>
-									<h4 class="animated">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam <br> vitae posuere est Sed placerat ligula </h4>
-									<a href="#" class="btn main_btn animated">Shop Now</a>
-									<a href="#" class="btn main_btn coll_btn animated">Collection</a>
-								</div>
-							</div>
-						</div>						
+		<div class="modal fade" id="temp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
-				</div>
-				
-				<div class="single_slide" style="background-image: url(img/slider/2.jpg); background-size: cover; background-position: center ;">
-					<div class="container">		
-						<div class="single-slide-item-table">
-							<div class="single-slide-item-tablecell">
-								<div class="slider_content text-center slider-animated-2">						
-									<p class="animated">女装时尚</p>
-									<h1 class="animated">New Collection</h1>
-									<h4 class="animated">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam <br> vitae posuere est Sed placerat ligula </h4>
-									<a href="#" class="btn main_btn animated">Shop Now</a>
-									<a href="#" class="btn main_btn coll_btn animated">Collection</a>
-								</div>
+					<div class="modal-body">
+						<form id="temp2">
+
+							<input   hidden="hidden" type="text" class="form-control" id="id">
+							<input   hidden="hidden" type="text" class="form-control" id="pic">
+							<input   hidden="hidden" type="text" class="form-control" id="lifuName">
+							<input   hidden="hidden" type="text" class="form-control" id="price">
+							<div class="form-group">
+								<label for="count" class="col-form-label">数量:</label>
+								<input name="reciverName" type="number" class="form-control" id="count">
 							</div>
-						</div>	
+							<div class="form-group">
+								<label for="size" class="col-form-label">型号:</label>
+								<option name="size" class="form-control" id="size"></option>
+							</div>
+							<div class="form-group">
+								<label for="color" class="col-form-label">颜色:</label>
+								<option name="color" type="text" class="form-control" id="color"></option>
+							</div>
+						</form>
 					</div>
-				</div>
-				
-				<div class="single_slide" style="background-image: url(img/slider/3.jpg); background-size: cover; background-position: center ;">
-					<div class="container">
-						<div class="single-slide-item-table">
-							<div class="single-slide-item-tablecell">
-								<div class="slider_content text-right slider-animated-3">						
-									<p class="animated">男士系列</p>
-									<h1 class="animated">New Collection</h1>
-									<h4 class="animated">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam <br> vitae posuere est Sed placerat ligula </h4>
-									<a href="#" class="btn main_btn animated">Shop Now</a>
-									<a href="#" class="btn main_btn coll_btn animated">Collection</a>
-								</div>
-							</div>
-						</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+						<button onclick="formAddToCart()" type="button" class="btn btn-primary">确认添加</button>
 					</div>
 				</div>
 			</div>
-		</section>
-		<!-- End Slider Area -->		
-	
-		<!--  Promo ITEM STRAT  -->
-		<section id="promo_area" class="section_padding">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-4 col-md-6 col-sm-12">							
-						<div class="single_promo">
-							<img src="img/promo/1.jpg" alt="promo image">
-							<div class="box-content">
-								<div class="promo-content">
-									<h3 class="title">鞋类</h3>
-									<span class="post">2019 Collection</span>
-									<p>You Will Love Upto 60% Off</p>
-									<a class="shop_now_btn" href="#">Shop Now</a>
-								</div>
-							</div>
-						</div>													
-					</div><!--  End Col -->						
-					
-					<div class="col-lg-4 col-md-6 col-sm-12">							
-						<div class="single_promo">
-							<img src="img/promo/2.jpg" alt="promo image">
-							<div class="box-content">
-								<div class="promo-content">
-									<h3 class="title">手表</h3>
-									<span class="post">Sprint Collection</span>
-									<p>You Will Love Upto 50% Off</p>
-									<a class="shop_now_btn" href="#">Shop Now</a>
-								</div>
-							</div>
-						</div>														
-					</div><!--  End Col -->					
+		</div>
 
-					<div class="col-lg-4 col-md-6 col-sm-12">					
-						<div class="single_promo">
-							<img src="img/promo/3.jpg" alt="promo image">
-							<div class="box-content">
-								<div class="promo-content">
-									<h3 class="title">包类</h3>
-									<span class="post">Exclusive Desgin</span>
-									<p>You Will Love Upto 20% Off</p>
-									<a class="shop_now_btn" href="#">Shop Now</a>
+		<div id="v">
+			<!-- Start Slider Area -->
+			<section id="slider_area" class="text-center">
+				<div class="slider_active owl-carousel">
+<!--					-->
+					<div th:each="i : ${indexLunBoLifu} " th:style="'background-image:url(' + @{(${i.pic}=='' ? 'img/slider/1.jpg' : ${i.pic})} + ')'" class="single_slide" style="background-image: url(img/slider/1.jpg); background-size: cover; background-position: center;">
+						<div class="container">
+							<div class="single-slide-item-table">
+								<div class="single-slide-item-tablecell">
+									<div class="slider_content text-left slider-animated-1">
+										<p class="animated">新品礼服</p>
+										<h1 class="animated" th:text="${i.name}">xxx</h1>
+<!--										{{l.name}}-->
+										<h4 class="animated">最新的潮流礼服 <br> 快来看看吧 </h4>
+										<a href="#" class="btn main_btn animated">去看看</a>
+										<!--									<a href="#" class="btn main_btn coll_btn animated">Collection</a>-->
+									</div>
 								</div>
 							</div>
-						</div>									
-					</div><!--  End Col -->					
-				</div>			
-			</div>		
-		</section>
-		<!--  Promo ITEM END -->	
-		
-
-		<!-- Start product Area -->
-		<section id="product_area" class="section_padding">
-			<div class="container">		
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<div class="section_title">	
-							<span class="sub-title">热卖产品</span>
-							<h2>我们的产品</h2>
-							<div class="divider"></div>							
 						</div>
 					</div>
 				</div>
-			
-				<div class="text-center">
-					<div class="product_filter">
-						<ul>
-							<li class=" active filter" data-filter="all">新品</li>
-							<li class="filter" data-filter=".sale">特卖</li>
-							<li class="filter" data-filter=".bslr">畅销</li>
-							<li class="filter" data-filter=".ftrd">精选</li>
-						</ul>
+			</section>
+			<!-- End Slider Area -->
+
+			<!--  Promo ITEM STRAT  -->
+			<section id="promo_area" class="section_padding">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-4 col-md-6 col-sm-12">
+							<div class="single_promo">
+								<img src="img/promo/1.jpg" alt="promo image">
+								<div class="box-content">
+									<div class="promo-content">
+										<h3 class="title">晚间礼服</h3>
+										<span class="post">2019 Collection</span>
+										<p>款式大开领、充分露肩、无袖为原则。裙长应坠地，缎、塔夫绸等闪光织物，搭配钻石等金属饰品，有光泽的华丽小包，肘关节以上的手套，如鞋与礼服为同一质地，正式感为最高。</p>
+										<a class="shop_now_btn" href="#">去看看</a>
+									</div>
+								</div>
+							</div>
+						</div><!--  End Col -->
+
+						<div class="col-lg-4 col-md-6 col-sm-12">
+							<div class="single_promo">
+								<img src="img/promo/2.jpg" alt="promo image">
+								<div class="box-content">
+									<div class="promo-content">
+										<h3 class="title">伴郎/伴娘礼服</h3>
+										<span class="post">Sprint Collection</span>
+										<p>伴郎/伴娘衣服最主要的就是要正式一些，不要特立独行彰显个性，穿着需要以婚礼主题能够吻合，如果实在不知道该怎么穿，可以选择深色，少花纹的礼服，这样不会显得标新立异。</p>
+										<a class="shop_now_btn" href="#">去看看</a>
+									</div>
+								</div>
+							</div>
+						</div><!--  End Col -->
+
+						<div class="col-lg-4 col-md-6 col-sm-12">
+							<div class="single_promo">
+								<img src="img/promo/3.jpg" alt="promo image">
+								<div class="box-content">
+									<div class="promo-content">
+										<h3 class="title">日间礼服</h3>
+										<span class="post">Exclusive Desgin</span>
+										<p>日间礼服适应白天以严肃的仪式居多</p>
+										<a class="shop_now_btn" href="#">去看看</a>
+									</div>
+								</div>
+							</div>
+						</div><!--  End Col -->
 					</div>
-					
-					<div class="product_item">
-						<div class="row">					
-							<div class="col-lg-3 col-md-4 col-sm-6 mix sale">
+				</div>
+			</section>
+			<!--  Promo ITEM END -->
+
+
+			<!-- Start product Area -->
+			<section id="product_area" class="section_padding">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<div class="section_title">
+								<span class="sub-title">热卖礼服</span>
+								<h2>我们的礼服</h2>
+								<div class="divider"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="text-center">
+
+						<div class="product_filter">
+							<ul>
+								<li class="active filter" data-filter=".new">新品</li>
+								<li class="filter" data-filter=".discount">折扣</li>
+								<li class="filter" data-filter=".hot">畅销</li>
+								<li class="filter" data-filter=".ftrd">精选</li>
+							</ul>
+						</div>
+
+						<div class="product_item">
+
+							<div class="row">
+								<div th:each="n : ${newLifu}" class="col-lg-3 col-md-4 col-sm-6 mix new">
+									<div class="product-grid">
+										<div class="product-image">
+											<a href="#">
+												<img class="pic-1" th:src="@{${n.pic}}" src="img/product/1.jpg" alt="product image">
+												<img class="pic-2" th:src="@{${n.pic}}" src="img/product/2.jpg" alt="product image">
+											</a>
+											<ul class="social">
+												<li><a href="" data-tip="快捷 查看"><i class="ti-zoom-in"></i></a></li>
+												<li><a th:onclick="collect([[${n.id}]])" data-tip="添加到收藏"><i class="ti-bag"></i></a></li>
+												<li><a th:onclick="addToCart([[${n.id}]],[[${n.pic}]],[[${n.name}]],1,[[${n.truePrice}]])" data-tip="添加到购物车"><i class="ti-shopping-cart"></i></a></li>
+											</ul>
+											<span class="product-new-label">新品</span>
+										</div>
+										<ul class="rating">
+											<li class="fa fa-star"></li>
+											<li class="fa fa-star"></li>
+											<li class="fa fa-star"></li>
+											<li class="fa fa-star"></li>
+											<li class="fa fa-star"></li>
+										</ul>
+										<div class="product-content">
+											<h3 class="title"><a th:href="'product-details?id='+${n.id}" href="#" th:text="${n.name}">时尚女装</a></h3>
+											<div class="price" th:text="${n.truePrice}">
+												<span th:text="${n.originPrice}"></span>
+											</div>
+											<a class="add-to-cart" href="">+ 添加至购物车</a>
+										</div>
+									</div>
+								</div><!-- End Col -->
+
+
+								<div th:each="d : ${disCountLifu}" class="col-lg-3 col-md-4 col-sm-6 mix discount">
+									<div class="product-grid">
+										<div class="product-image">
+											<a href="#">
+												<img class="pic-1" th:src="@{${d.pic}}" src="img/product/1.jpg" alt="product image">
+												<img class="pic-2" th:src="@{${d.pic}}" src="img/product/2.jpg" alt="product image">
+											</a>
+											<ul class="social">
+												<li><a href="" data-tip="快捷 查看"><i class="ti-zoom-in"></i></a></li>
+												<li><a th:onclick="collect([[${d.id}]])" href="" data-tip="添加到收藏"><i class="ti-bag"></i></a></li>
+												<li><a th:onclick="addToCart([[${d.id}]],[[${d.pic}]],[[${d.name}]],1,[[${d.truePrice}]])"  data-tip="添加到购物车"><i class="ti-shopping-cart"></i></a></li>
+											</ul>
+											<span class="product-new-label">新品</span>
+										</div>
+										<ul class="rating">
+											<li class="fa fa-star"></li>
+											<li class="fa fa-star"></li>
+											<li class="fa fa-star"></li>
+											<li class="fa fa-star"></li>
+											<li class="fa fa-star"></li>
+										</ul>
+										<div class="product-content">
+											<h3 class="title"><a th:href="'product-details?id='+${d.id}" href="#" th:text="${d.name}">时尚女装</a></h3>
+											<div class="price">$16.00
+												<span>$200.00</span>
+											</div>
+											<a class="add-to-cart" href="">+ 添加至购物车</a>
+										</div>
+									</div>
+								</div><!-- End Col -->
+								<div th:each="h : ${hotLifu}" class="col-lg-3 col-md-4 col-sm-6 mix hot">
+									<div class="product-grid">
+										<div class="product-image">
+											<a href="#">
+												<img class="pic-1" th:src="@{${h.pic}}" src="img/product/1.jpg" alt="product image">
+												<img class="pic-2" th:src="@{${h.pic}}" src="img/product/2.jpg" alt="product image">
+											</a>
+											<ul class="social">
+												<li><a href="" data-tip="快捷 查看"><i class="ti-zoom-in"></i></a></li>
+												<li><a href="" data-tip="添加到收藏"><i class="ti-bag"></i></a></li>
+												<li><a href="" data-tip="添加到购物车"><i class="ti-shopping-cart"></i></a></li>
+											</ul>
+											<span class="product-new-label">新品</span>
+										</div>
+										<ul class="rating">
+											<li class="fa fa-star"></li>
+											<li class="fa fa-star"></li>
+											<li class="fa fa-star"></li>
+											<li class="fa fa-star"></li>
+											<li class="fa fa-star"></li>
+										</ul>
+										<div class="product-content">
+											<h3 class="title"><a th:href="'product-details?id='+${h.id}"  th:text="${h.name}">时尚女装</a></h3>
+											<div class="price">$16.00
+												<span>$200.00</span>
+											</div>
+											<a class="add-to-cart" href="">+ 添加至购物车</a>
+										</div>
+									</div>
+								</div><!-- End Col -->
+
+								<div th:each="c : ${bestLifu}" class="col-lg-3 col-md-4 col-sm-6 mix ftrd">
 								<div class="product-grid">
 									<div class="product-image">
 										<a href="#">
-											<img class="pic-1" src="img/product/1.jpg" alt="product image">
-											<img class="pic-2" src="img/product/2.jpg" alt="product image">
+											<img class="pic-1" th:src="@{${c.pic}}" src="img/product/1.jpg" alt="product image">
+											<img class="pic-2" th:src="@{${c.pic}}" src="img/product/2.jpg" alt="product image">
 										</a>
 										<ul class="social">
-											<li><a href="" data-tip="Quick View"><i class="ti-zoom-in"></i></a></li>
-											<li><a href="" data-tip="Add to Wishlist"><i class="ti-bag"></i></a></li>
-											<li><a href="" data-tip="Add to Cart"><i class="ti-shopping-cart"></i></a></li>
+											<li><a  href="" data-tip="快捷 查看"><i class="ti-zoom-in"></i></a></li>
+											<li><a th:onclick="collect([[${c.id}]])" href="" data-tip="添加到收藏"><i class="ti-bag"></i></a></li>
+											<li><a th:onclick="addToCart([[${c.id}]],[[${c.pic}]],[[${c.name}]],1,[[${c.truePrice}]])"  data-tip="添加到购物车"><i class="ti-shopping-cart"></i></a></li>
 										</ul>
-										<span class="product-new-label">Sale</span>
+										<span class="product-new-label">新品</span>
 									</div>
 									<ul class="rating">
 										<li class="fa fa-star"></li>
@@ -444,241 +545,23 @@
 										<li class="fa fa-star"></li>
 									</ul>
 									<div class="product-content">
-										<h3 class="title"><a href="#">时尚女装</a></h3>
+										<h3 class="title"><a th:href="'product-details?id='+${c.id}"  th:text="${c.name}">时尚女装</a></h3>
 										<div class="price">$16.00
 											<span>$200.00</span>
 										</div>
 										<a class="add-to-cart" href="">+ 添加至购物车</a>
 									</div>
 								</div>
-							</div><!-- End Col -->	
-							
-							<div class="col-lg-3 col-md-4 col-sm-6 mix ftrd">
-								<div class="product-grid">
-									<div class="product-image">
-										<a href="#">
-											<img class="pic-1" src="img/product/3.jpg" alt="product image">
-											<img class="pic-2" src="img/product/4.jpg" alt="product image">
-										</a>
-										<ul class="social">
-											<li><a href="" data-tip="Quick View"><i class="ti-zoom-in"></i></a></li>
-											<li><a href="" data-tip="Add to Wishlist"><i class="ti-bag"></i></a></li>
-											<li><a href="" data-tip="Add to Cart"><i class="ti-shopping-cart"></i></a></li>
-										</ul>
-										<span class="product-new-label">-20%</span>				
-									</div>
-									<ul class="rating">
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-									</ul>
-									<div class="product-content">
-										<h3 class="title"><a href="#">Product Title</a></h3>
-										<div class="price">$16.00
-											<span>$20.00</span>
-										</div>
-										<a class="add-to-cart" href="">+ Add To Cart</a>
-									</div>
-								</div>
-							</div><!-- End Col -->	
-									
-							<div class="col-lg-3 col-md-4 col-sm-6 mix">
-								<div class="product-grid">
-									<div class="product-image">
-										<a href="#">
-											<img class="pic-1" src="img/product/5.jpg" alt="product image">
-											<img class="pic-2" src="img/product/6.jpg" alt="product image">
-										</a>
-										<ul class="social">
-											<li><a href="" data-tip="Quick View"><i class="ti-zoom-in"></i></a></li>
-											<li><a href="" data-tip="Add to Wishlist"><i class="ti-bag"></i></a></li>
-											<li><a href="" data-tip="Add to Cart"><i class="ti-shopping-cart"></i></a></li>
-										</ul>
-										<span class="product-new-label">Sale</span>
-									</div>
-									<ul class="rating">
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star disable"></li>
-									</ul>
-									<div class="product-content">
-										<h3 class="title"><a href="#">Product Title</a></h3>
-										<div class="price">$16.00
-											<span>$20.00</span>
-										</div>
-										<a class="add-to-cart" href="">+ Add To Cart</a>
-									</div>
-								</div>
-							</div><!-- End Col -->	
+							</div><!-- End Col -->
 
-							
-							<div class="col-lg-3 col-md-4 col-sm-6 mix sale bslr">
-								<div class="product-grid">
-									<div class="product-image">
-										<a href="#">
-											<img class="pic-1" src="img/product/7.jpg" alt="product image">
-											<img class="pic-2" src="img/product/8.jpg" alt="product image">
-										</a>
-										<ul class="social">
-											<li><a href="" data-tip="Quick View"><i class="ti-zoom-in"></i></a></li>
-											<li><a href="" data-tip="Add to Wishlist"><i class="ti-bag"></i></a></li>
-											<li><a href="" data-tip="Add to Cart"><i class="ti-shopping-cart"></i></a></li>
-										</ul>
-										<span class="product-new-label">New</span>
-									</div>
-									<ul class="rating">
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-									</ul>
-									<div class="product-content">
-										<h3 class="title"><a href="#">Product Title</a></h3>
-										<div class="price">$16.00
-											<span>$20.00</span>
-										</div>
-										<a class="add-to-cart" href="">+ Add To Cart</a>
-									</div>
-								</div>
-							</div><!-- End Col -->			
-							
-							
-							<div class="col-lg-3 col-md-4 col-sm-6 mix ftrd">
-								<div class="product-grid">
-									<div class="product-image">
-										<a href="#">
-											<img class="pic-1" src="img/product/5.jpg" alt="product image">
-											<img class="pic-2" src="img/product/6.jpg" alt="product image">
-										</a>
-										<ul class="social">
-											<li><a href="" data-tip="Quick View"><i class="ti-zoom-in"></i></a></li>
-											<li><a href="" data-tip="Add to Wishlist"><i class="ti-bag"></i></a></li>
-											<li><a href="" data-tip="Add to Cart"><i class="ti-shopping-cart"></i></a></li>
-										</ul>
-										<span class="product-new-label">Sale</span>
-									</div>
-									<ul class="rating">
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-									</ul>
-									<div class="product-content">
-										<h3 class="title"><a href="#">Product Title</a></h3>
-										<div class="price">$16.00
-											<span>$20.00</span>
-										</div>
-										<a class="add-to-cart" href="">+ Add To Cart</a>
-									</div>
-								</div>
-							</div><!-- End Col -->			
-							
-							<div class="col-lg-3 col-md-4 col-sm-6 mix sale bslr">
-								<div class="product-grid">
-									<div class="product-image">
-										<a href="#">
-											<img class="pic-1" src="img/product/1.jpg" alt="product image">
-											<img class="pic-2" src="img/product/2.jpg" alt="product image">
-										</a>
-										<ul class="social">
-											<li><a href="" data-tip="Quick View"><i class="ti-zoom-in"></i></a></li>
-											<li><a href="" data-tip="Add to Wishlist"><i class="ti-bag"></i></a></li>
-											<li><a href="" data-tip="Add to Cart"><i class="ti-shopping-cart"></i></a></li>
-										</ul>
-										<span class="product-new-label">-30%</span>
-									</div>
-									<ul class="rating">
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-									</ul>
-									<div class="product-content">
-										<h3 class="title"><a href="#">Product Title</a></h3>
-										<div class="price">$16.00
-											<span>$20.00</span>
-										</div>
-										<a class="add-to-cart" href="">+ Add To Cart</a>
-									</div>
-								</div>
-							</div><!-- End Col -->		
-							
-							<div class="col-lg-3 col-md-4 col-sm-6 mix sale bslr">
-								<div class="product-grid">
-									<div class="product-image">
-										<a href="#">
-											<img class="pic-1" src="img/product/7.jpg" alt="product image">
-											<img class="pic-2" src="img/product/8.jpg" alt="product image">
-										</a>
-										<ul class="social">
-											<li><a href="" data-tip="Quick View"><i class="ti-zoom-in"></i></a></li>
-											<li><a href="" data-tip="Add to Wishlist"><i class="ti-bag"></i></a></li>
-											<li><a href="" data-tip="Add to Cart"><i class="ti-shopping-cart"></i></a></li>
-										</ul>
-										<span class="product-new-label">Sale</span>
-									</div>
-									<ul class="rating">
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-									</ul>
-									<div class="product-content">
-										<h3 class="title"><a href="#">Product Title</a></h3>
-										<div class="price">$16.00
-											<span>$20.00</span>
-										</div>
-										<a class="add-to-cart" href="">+ Add To Cart</a>
-									</div>
-								</div>
-							</div><!-- End Col -->	
-
-							
-							<div class="col-lg-3 col-md-4 col-sm-6 mix sale bslr">
-								<div class="product-grid">
-									<div class="product-image">
-										<a href="#">
-											<img class="pic-1" src="img/product/3.jpg" alt="product image">
-											<img class="pic-2" src="img/product/4.jpg" alt="product image">
-										</a>
-										<ul class="social">
-											<li><a href="" data-tip="Quick View"><i class="ti-zoom-in"></i></a></li>
-											<li><a href="" data-tip="Add to Wishlist"><i class="ti-bag"></i></a></li>
-											<li><a href="" data-tip="Add to Cart"><i class="ti-shopping-cart"></i></a></li>
-										</ul>
-										<span class="product-new-label">-50%</span>
-									</div>
-									<ul class="rating">
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-										<li class="fa fa-star"></li>
-									</ul>
-									<div class="product-content">
-										<h3 class="title"><a href="#">Product Title</a></h3>
-										<div class="price">$16.00
-											<span>$20.00</span>
-										</div>
-										<a class="add-to-cart" href="">+ Add To Cart</a>
-									</div>
-								</div>
-							</div><!-- End Col -->			
-		
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
-		<!-- End product Area -->
+			</section>
+			<!-- End product Area -->
+		</div>
+
 
 		<!-- Special Offer Area -->
 		<div class="special_offer_area gray_section section_padding">
@@ -709,9 +592,9 @@
 		</div> <!-- End Special Offer Area -->
 
 
-		
+		</section>
 
-        <!--  Brand -->
+		<!--  Brand -->
 		<section id="brand_area" class="text-center">
 			<div class="container">					
 				<div class="row">
@@ -895,5 +778,12 @@
 		<script src="/js/simplePlayer.js"></script>
 		<script src="/js/scrolltopcontrol.js"></script>
 		<script src="/js/main.js"></script>
+		<script src="/js/axios.js"></script>
+		<script src="/js/public.js"></script>
+		<script>
+			$(function () {
+				loadCart();
+			})
+		</script>
 	</body>
 </html>

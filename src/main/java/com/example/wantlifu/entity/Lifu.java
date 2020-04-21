@@ -1,50 +1,57 @@
 package com.example.wantlifu.entity;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
 public class Lifu implements Serializable {
     private Integer id;
 
+    @NotNull(message = "礼服名字不能为空！")
     private String name;
 
+    @NotNull(message = "礼服描述不能为空！")
+    private String detal;
+
+    @NotNull(message = "商品图片不能为空不能为空！")
     private String pic;
 
-    private Integer buyCount;
+    private Integer buyCount = 0;
 
-    private Integer commentCount;
+    private Integer commentCount = 0;
 
-    private Integer loveCount;
+    private Integer loveCount = 0;
 
-    private Integer isHot;
+    private Integer isHot = 0;
 
-    private Integer discount;
+    private Integer discount = 0;
 
-    private Integer warningCount;
+    private Integer warningCount = 0;
 
-    private Integer isNew;
+    private Integer isNew = 1;
 
     private Date createTime;
-
+    @NotNull(message = "礼服品牌不能为空")
     private Integer trademarkId;
-
+    @NotNull(message = "真实价格不能为空")
     private Float truePrice;
-
+    @NotNull(message = "原始（标签）价格不能为空")
     private Float originPrice;
 
-    private Integer count;
+    private Integer count = 0;
 
     private String remark;
 
     private String remark1;
-
-    private Integer status;
-
+    @NotNull(message = "上架/下架状态不能为空")
+    private Integer status = 1;
+    @NotNull(message = "礼服类型不能为空不能为空")
     private Integer typeId;
-
+    @NotNull(message = "必须选择能否被租聘不能为空")
     private Integer canZuPin;
 
-    private byte[] detal;
+    private Integer showInIndex = 0;
+
 
     private static final long serialVersionUID = 1L;
 
@@ -208,11 +215,19 @@ public class Lifu implements Serializable {
         this.canZuPin = canZuPin;
     }
 
-    public byte[] getDetal() {
+    public Integer getShowInIndex() {
+        return showInIndex;
+    }
+
+    public void setShowInIndex(Integer showInIndex) {
+        this.showInIndex = showInIndex;
+    }
+
+    public String getDetal() {
         return detal;
     }
 
-    public void setDetal(byte[] detal) {
+    public void setDetal(String detal) {
         this.detal = detal;
     }
 
@@ -242,6 +257,7 @@ public class Lifu implements Serializable {
         sb.append(", status=").append(status);
         sb.append(", typeId=").append(typeId);
         sb.append(", canZuPin=").append(canZuPin);
+        sb.append(", showInIndex=").append(showInIndex);
         sb.append(", detal=").append(detal);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

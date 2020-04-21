@@ -51,4 +51,12 @@ public class UserWorkController {
             return ApiResponseFactory.genSuccessApiResponse(map.get(StaticPool.SUCCESS));
         return ApiResponseFactory.genFailApiResponse(map.get(StaticPool.ERROR));
     }
+    @ResponseBody
+    @RequestMapping("/admin/user/rebackUser")
+    public ApiResponse rebackUsersByIds(@RequestBody Integer[] ids){
+        Map<String, String> map = userService.updateOrRebackUsersByIds(ids);
+        if(map.containsKey(StaticPool.SUCCESS))
+            return ApiResponseFactory.genSuccessApiResponse(map.get(StaticPool.SUCCESS));
+        return ApiResponseFactory.genFailApiResponse(map.get(StaticPool.ERROR));
+    }
 }

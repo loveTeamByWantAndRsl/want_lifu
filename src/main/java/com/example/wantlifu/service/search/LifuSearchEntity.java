@@ -1,5 +1,7 @@
 package com.example.wantlifu.service.search;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * lifu 查询实体
  *
@@ -8,26 +10,29 @@ package com.example.wantlifu.service.search;
  */
 public class LifuSearchEntity {
     //礼服 名 关键字
+    @NotNull(message = "礼服类型 的 ")
     private String keyWord;
     //礼服 品牌
     private int type;
     //价格区间
     private String priceArea;
     //礼服 类型
-    private int LifuType;
+    private int lifuType;
     //排序依据
-    private String orderByKey = "created_time ";
+    private String orderByKey = "create_time ";
     private String orderType = "desc";
     //礼服状态
     private int status = 1;
     //是否热门
-    private int isHot = 0;
+    private int isHot = -1;
     //是否新品
-    private int isNew = 0;
+    private int isNew = -1;
     //是否折扣
-    private int discount = 0;
+    private int discount = -1;
     //定制 还是 租聘 -- 大类型
-    private int bigType = 1;
+    private int bigType = -1;
+
+    private int showInIndex = -1;
 
     public String getKeyWord() {
         return keyWord;
@@ -35,6 +40,14 @@ public class LifuSearchEntity {
 
     public int getBigType() {
         return bigType;
+    }
+
+    public int getShowInIndex() {
+        return showInIndex;
+    }
+
+    public void setShowInIndex(int showInIndex) {
+        this.showInIndex = showInIndex;
     }
 
     public void setBigType(int bigType) {
@@ -62,11 +75,11 @@ public class LifuSearchEntity {
     }
 
     public int getLifuType() {
-        return LifuType;
+        return lifuType;
     }
 
     public void setLifuType(int lifuType) {
-        LifuType = lifuType;
+        this.lifuType = lifuType;
     }
 
     public String getOrderByKey() {

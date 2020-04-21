@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 <!DOCTYPE HTML>
-<html lang="cn" xmlns:th="http://www.thymeleaf.org">
+<html  lang="cn" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>404 - RapidShop</title>
+    <title>产品列表 - ZkingShop</title>
     <link href="https://fonts.googleapis.com/css?family=Muli:400,600,700,800" rel="stylesheet" >
     <link href="http://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet" type="text/css" >
     <link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
@@ -30,8 +23,9 @@
 
 <body>
 
+
 <!--  Start Header  -->
-<header id="header_area" th:replace="commons::header_area" >
+<header id="header_area" th:replace="commons::header_area">
     <div class="header_top_area">
         <div class="container">
             <div class="row">
@@ -75,7 +69,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-3">
-                    <a class="logo" href="index.html"> <img alt="" src="img/logo.png"></a>
+                    <a class="logo" href="../index.html"> <img alt="" src="/img/logo.png"></a>
                 </div><!--  End Col -->
 
                 <div class="col-xs-12 col-sm-12 col-md-7 text-center">
@@ -83,20 +77,20 @@
                         <div class="main-menu">
                             <nav>
                                 <ul>
-                                    <li><a href="index.html">home</a>
+                                    <li><a href="../index.html">home</a>
                                     </li>
 
-                                    <li><a href="shop.html">Shop <i class="fa fa-angle-down"></i></a>
+                                    <li><a href="../shop.html">Shop <i class="fa fa-angle-down"></i></a>
                                         <!-- Sub Menu -->
                                         <ul class="sub-menu">
-                                            <li><a href="product-details.html">Product Details</a></li>
-                                            <li><a href="cart.html">Cart</a></li>
+                                            <li><a href="../product-details.html">Product Details</a></li>
+                                            <li><a href="../cart.html">Cart</a></li>
                                             <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                            <li><a href="account.html">Account</a></li>
+                                            <li><a href="../wishlist.html">Wishlist</a></li>
+                                            <li><a href="../account.html">Account</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="shop.html">Men <i class="fa fa-angle-down"></i></a>
+                                    <li><a href="../shop.html">Men <i class="fa fa-angle-down"></i></a>
                                         <!-- Mega Menu -->
                                         <div class="mega-menu mm-4-column mm-left">
                                             <div class="mm-column mm-column-link float-left">
@@ -180,16 +174,16 @@
                                     <li><a href="#">pages <i class="fa fa-angle-down"></i></a>
                                         <!-- Sub Menu -->
                                         <ul class="sub-menu">
-                                            <li><a href="left-sidebar-blog.html">Left Sidebar Blog</a></li>
-                                            <li><a href="right-sidebar-blog.html">Right Sidebar Blog</a></li>
-                                            <li><a href="full-width-blog.html">Full Width Blog</a></li>
-                                            <li><a href="blog-details.html">Blog Details</a></li>
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="contact.html">Contact Us</a></li>
-                                            <li><a href="404.html">404 Page</a></li>
+                                            <li><a href="../left-sidebar-blog.html">Left Sidebar Blog</a></li>
+                                            <li><a href="../right-sidebar-blog.html">Right Sidebar Blog</a></li>
+                                            <li><a href="../full-width-blog.html">Full Width Blog</a></li>
+                                            <li><a href="../blog-details.html">Blog Details</a></li>
+                                            <li><a href="../about-us.html">About Us</a></li>
+                                            <li><a href="../contact.html">Contact Us</a></li>
+                                            <li><a href="../404.html">404 Page</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="contact.html">contact</a></li>
+                                    <li><a href="../contact.html">contact</a></li>
                                 </ul>
                             </nav>
                         </div> <!--  End Main Menu -->
@@ -197,14 +191,14 @@
                         <div class="mobile-menu text-right ">
                             <nav>
                                 <ul>
-                                    <li><a href="index.html">home</a></li>
+                                    <li><a href="../index.html">home</a></li>
                                     <li><a href="#">Shop</a>
                                         <!-- Sub Menu -->
                                         <ul>
-                                            <li><a href="product-details.html">Product Details</a></li>
-                                            <li><a href="cart.html">Cart</a></li>
+                                            <li><a href="../product-details.html">Product Details</a></li>
+                                            <li><a href="../cart.html">Cart</a></li>
                                             <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="../wishlist.html">Wishlist</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Men</a>
@@ -232,10 +226,10 @@
                                     <li><a href="#">pages</a>
                                         <ul>
                                             <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-details.html">Blog Details</a></li>
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="contact.html">Contact Us</a></li>
-                                            <li><a href="404.html">404 Page</a></li>
+                                            <li><a href="../blog-details.html">Blog Details</a></li>
+                                            <li><a href="../about-us.html">About Us</a></li>
+                                            <li><a href="../contact.html">Contact Us</a></li>
+                                            <li><a href="../404.html">404 Page</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">contact</a></li>
@@ -277,7 +271,7 @@
                                         <!-- Product List -->
                                         <div class="mc-pro-list fix">
                                             <div class="mc-sin-pro fix">
-                                                <a href="#" class="mc-pro-image float-left"><img src="img/mini-cart/1.jpg" alt="" /></a>
+                                                <a href="#" class="mc-pro-image float-left"><img src="/img/mini-cart/1.jpg" alt="" /></a>
                                                 <div class="mc-pro-details fix">
                                                     <a href="#">This is Product Name</a>
                                                     <span>1x$25.00</span>
@@ -285,7 +279,7 @@
                                                 </div>
                                             </div>
                                             <div class="mc-sin-pro fix">
-                                                <a href="#" class="mc-pro-image float-left"><img src="img/mini-cart/2.jpg" alt="" /></a>
+                                                <a href="#" class="mc-pro-image float-left"><img src="/img/mini-cart/2.jpg" alt="" /></a>
                                                 <div class="mc-pro-details fix">
                                                     <a href="#">This is Product Name</a>
                                                     <span>1x$25.00</span>
@@ -315,84 +309,93 @@
 </header>
 <!--  End Header  -->
 
+
+
 <!-- Page item Area -->
 <div id="page_item_area">
     <div class="container">
         <div class="row">
             <div class="col-sm-6 text-left">
-                <h3>个人信息修改</h3>
+                <h3>我的消息</h3>
             </div>
 
             <div class="col-sm-6 text-right">
                 <ul class="p_items">
-                    <li><a href="/index">首页</a></li>
-                    <li><span>个人信息修改</span></li>
+                    <li><a href="/index">主页</a></li>
+                    <li><span>产品列表</span></li>
                 </ul>
             </div>
+
         </div>
     </div>
 </div>
 
-<!--  Page -->
-<div id="page_user_info_area">
-    <div class="container">
-        <form>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputEmail4">Email</label>
-                    <input type="email" class="form-control" id="inputEmail4">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inputPassword4">Password</label>
-                    <input type="password" class="form-control" id="inputPassword4">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlFile1">Example file input</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-            </div>
-            <div class="form-group">
-                <label for="inputAddress">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="form-group">
-                <label for="inputAddress2">Address 2</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputCity">City</label>
-                    <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="inputState">State</label>
-                    <select id="inputState" class="form-control">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="inputZip">Zip</label>
-                    <input type="text" class="form-control" id="inputZip">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                        Check me out
-                    </label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        </form>
 
+
+<!-- Shop Product Area -->
+<div id="content" class="shop_page_area">
+
+    <div class="container">
+<!--        <div class="shop_bar_tp fix">-->
+<!--            <h3 class="sdbr_title" >-->
+<!--                <font style="vertical-align: inherit;">搜索条件</font>-->
+<!--            </h3>-->
+
+<!--            <div class="row">-->
+<!--                &lt;!&ndash;						keyword&ndash;&gt;-->
+<!--                <div class="col-sm-3 col-xs-12 short_by_area">-->
+<!--                    <div class="single_sidebar category" style="vertical-align: inherit;">-->
+<!--                        <div class="input-group" >-->
+<!--                            <input v-model="pageSearchEntity.keyWord" type="text" class="form-control"  placeholder="请输入商品名称..."/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div style="float:right">-->
+<!--                <button type="button" @click="getLifu" class="btn" style="background-color: #FF546E;color:#FFF"><i class="ti-search"></i></button>-->
+<!--            </div>-->
+<!--        </div>-->
+        <div class="accordion" id="accordionExample">
+            <div th:each="i : ${services}" class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button th:text="${i.name}" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Collapsible Group Item #1
+                        </button>
+<!--                        <span style="float:right;font-size:14px">2019-12-06</span>-->
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div  th:text="${i.detail}" class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Blog Pagination -->
+<!--        <div class="col-xs-12">-->
+<!--            <div class="blog_pagination pgntn_mrgntp fix">-->
+<!--                <div class="pagination text-center">-->
+<!--                    <ul>-->
+<!--                        <li><a href="#"><i class="fa fa-angle-left"></i></a></li>-->
+<!--                        <li><a href="#">1</a></li>-->
+<!--                        <li><a href="#">2</a></li>-->
+<!--                        <li><a href="#" class="active">3</a></li>-->
+<!--                        <li><a href="#">4</a></li>-->
+<!--                        <li><a href="#">5</a></li>-->
+<!--                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 </div>
 
 
 <!--  FOOTER START  -->
-<footer class="footer_area" th:replace="commons::footer_area" >
+<footer class="footer_area"  th:replace="commons::footer_area">
     <div class="footer-top">
         <div class="container">
             <div class="row">
@@ -472,7 +475,7 @@
 
                 <div class="col-sm-4">
                     <div class="payment_mthd_icon text-right">
-                        <img src="img/card.png"  alt="Card">
+                        <img src="/img/card.png" alt="Card">
                     </div>
                 </div>
             </div>
@@ -496,7 +499,39 @@
 <script src="/js/simplePlayer.js"></script>
 <script src="/js/scrolltopcontrol.js"></script>
 <script src="/js/main.js"></script>
-</body>
-</html>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.js"></script>
+<script src="/js/public.js"></script>
+<script>
+    $(function () {
+        loadCart();
+    })
+</script>
+<script>
+    // var mv = new Vue({
+    //     el:"#content",
+    //     data:{
+    //         servers:[],
+    //         totalPage:1,
+    //         curPage:1,
+    //         pageSize:8,
+    //         pageSearchEntity:{
+    //             keyWord:'',
+    //         },
+    //         searchEntity:{
+    //             keyWord:'',
+    //         },
+    //     }
+    //     ,created(){
+    //
+    //     }
+    //     ,methods:{
+    //         getServers(index){
+    //
+    //         }
+    //     }
+    // })
+</script>
+
 </body>
 </html>

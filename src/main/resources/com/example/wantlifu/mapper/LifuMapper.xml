@@ -22,9 +22,10 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="type_id" jdbcType="INTEGER" property="typeId" />
     <result column="can_zu_pin" jdbcType="INTEGER" property="canZuPin" />
+    <result column="show_in_index" jdbcType="INTEGER" property="showInIndex" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.wantlifu.entity.Lifu">
-    <result column="detal" jdbcType="LONGVARBINARY" property="detal" />
+    <result column="detal" jdbcType="LONGVARCHAR" property="detal" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -87,7 +88,7 @@
   <sql id="Base_Column_List">
     id, name, pic, buy_count, comment_count, love_count, is_hot, discount, warning_count, 
     is_new, create_time, trademark_id, true_price, origin_price, count, remark, remark1, 
-    status, type_id, can_zu_pin
+    status, type_id, can_zu_pin, show_in_index
   </sql>
   <sql id="Blob_Column_List">
     detal
@@ -150,14 +151,16 @@
       create_time, trademark_id, true_price, 
       origin_price, count, remark, 
       remark1, status, type_id, 
-      can_zu_pin, detal)
+      can_zu_pin, show_in_index, detal
+      )
     values (#{name,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{buyCount,jdbcType=INTEGER}, 
       #{commentCount,jdbcType=INTEGER}, #{loveCount,jdbcType=INTEGER}, #{isHot,jdbcType=INTEGER}, 
       #{discount,jdbcType=INTEGER}, #{warningCount,jdbcType=INTEGER}, #{isNew,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{trademarkId,jdbcType=INTEGER}, #{truePrice,jdbcType=REAL}, 
       #{originPrice,jdbcType=REAL}, #{count,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{remark1,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, 
-      #{canZuPin,jdbcType=INTEGER}, #{detal,jdbcType=LONGVARBINARY})
+      #{canZuPin,jdbcType=INTEGER}, #{showInIndex,jdbcType=INTEGER}, #{detal,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.example.wantlifu.entity.Lifu">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -222,6 +225,9 @@
       <if test="canZuPin != null">
         can_zu_pin,
       </if>
+      <if test="showInIndex != null">
+        show_in_index,
+      </if>
       <if test="detal != null">
         detal,
       </if>
@@ -284,8 +290,11 @@
       <if test="canZuPin != null">
         #{canZuPin,jdbcType=INTEGER},
       </if>
+      <if test="showInIndex != null">
+        #{showInIndex,jdbcType=INTEGER},
+      </if>
       <if test="detal != null">
-        #{detal,jdbcType=LONGVARBINARY},
+        #{detal,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -358,8 +367,11 @@
       <if test="record.canZuPin != null">
         can_zu_pin = #{record.canZuPin,jdbcType=INTEGER},
       </if>
+      <if test="record.showInIndex != null">
+        show_in_index = #{record.showInIndex,jdbcType=INTEGER},
+      </if>
       <if test="record.detal != null">
-        detal = #{record.detal,jdbcType=LONGVARBINARY},
+        detal = #{record.detal,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -388,7 +400,8 @@
       status = #{record.status,jdbcType=INTEGER},
       type_id = #{record.typeId,jdbcType=INTEGER},
       can_zu_pin = #{record.canZuPin,jdbcType=INTEGER},
-      detal = #{record.detal,jdbcType=LONGVARBINARY}
+      show_in_index = #{record.showInIndex,jdbcType=INTEGER},
+      detal = #{record.detal,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -414,7 +427,8 @@
       remark1 = #{record.remark1,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       type_id = #{record.typeId,jdbcType=INTEGER},
-      can_zu_pin = #{record.canZuPin,jdbcType=INTEGER}
+      can_zu_pin = #{record.canZuPin,jdbcType=INTEGER},
+      show_in_index = #{record.showInIndex,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -479,8 +493,11 @@
       <if test="canZuPin != null">
         can_zu_pin = #{canZuPin,jdbcType=INTEGER},
       </if>
+      <if test="showInIndex != null">
+        show_in_index = #{showInIndex,jdbcType=INTEGER},
+      </if>
       <if test="detal != null">
-        detal = #{detal,jdbcType=LONGVARBINARY},
+        detal = #{detal,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -506,7 +523,8 @@
       status = #{status,jdbcType=INTEGER},
       type_id = #{typeId,jdbcType=INTEGER},
       can_zu_pin = #{canZuPin,jdbcType=INTEGER},
-      detal = #{detal,jdbcType=LONGVARBINARY}
+      show_in_index = #{showInIndex,jdbcType=INTEGER},
+      detal = #{detal,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.wantlifu.entity.Lifu">
@@ -529,7 +547,8 @@
       remark1 = #{remark1,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       type_id = #{typeId,jdbcType=INTEGER},
-      can_zu_pin = #{canZuPin,jdbcType=INTEGER}
+      can_zu_pin = #{canZuPin,jdbcType=INTEGER},
+      show_in_index = #{showInIndex,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

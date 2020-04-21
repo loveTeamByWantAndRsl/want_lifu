@@ -285,6 +285,76 @@ public class OrdersGoodsExample {
             return (Criteria) this;
         }
 
+        public Criteria andGoodColorIsNull() {
+            addCriterion("good_color is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodColorIsNotNull() {
+            addCriterion("good_color is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodColorEqualTo(String value) {
+            addCriterion("good_color =", value, "goodColor");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodColorNotEqualTo(String value) {
+            addCriterion("good_color <>", value, "goodColor");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodColorGreaterThan(String value) {
+            addCriterion("good_color >", value, "goodColor");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodColorGreaterThanOrEqualTo(String value) {
+            addCriterion("good_color >=", value, "goodColor");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodColorLessThan(String value) {
+            addCriterion("good_color <", value, "goodColor");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodColorLessThanOrEqualTo(String value) {
+            addCriterion("good_color <=", value, "goodColor");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodColorLike(String value) {
+            addCriterion("good_color like", value, "goodColor");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodColorNotLike(String value) {
+            addCriterion("good_color not like", value, "goodColor");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodColorIn(List<String> values) {
+            addCriterion("good_color in", values, "goodColor");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodColorNotIn(List<String> values) {
+            addCriterion("good_color not in", values, "goodColor");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodColorBetween(String value1, String value2) {
+            addCriterion("good_color between", value1, value2, "goodColor");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodColorNotBetween(String value1, String value2) {
+            addCriterion("good_color not between", value1, value2, "goodColor");
+            return (Criteria) this;
+        }
+
         public Criteria andGoodSizeIsNull() {
             addCriterion("good_size is null");
             return (Criteria) this;

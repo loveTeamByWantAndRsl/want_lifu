@@ -12,7 +12,7 @@ public interface IAliPayService {
 
     void updateById(String id);
 
-    String genPage();
+    String genPage(String out_trade_no,Double total_amount,String subject,String body);
 
     String refund(String outTradeNo) throws AlipayApiException;
 }

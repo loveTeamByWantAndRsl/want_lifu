@@ -5,6 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="orderid" jdbcType="INTEGER" property="orderid" />
     <result column="goodid" jdbcType="INTEGER" property="goodid" />
+    <result column="good_color" jdbcType="VARCHAR" property="goodColor" />
     <result column="good_size" jdbcType="VARCHAR" property="goodSize" />
     <result column="good_name" jdbcType="VARCHAR" property="goodName" />
     <result column="good_num" jdbcType="INTEGER" property="goodNum" />
@@ -71,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, orderid, goodid, good_size, good_name, good_num, goods_price, goods_img, remark
+    id, orderid, goodid, good_color, good_size, good_name, good_num, goods_price, goods_img, 
+    remark
   </sql>
   <select id="selectByExample" parameterType="com.example.wantlifu.entity.OrdersGoodsExample" resultMap="BaseResultMap">
     select
@@ -107,12 +109,14 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into orders_goods (orderid, goodid, good_size, 
-      good_name, good_num, goods_price, 
-      goods_img, remark)
-    values (#{orderid,jdbcType=INTEGER}, #{goodid,jdbcType=INTEGER}, #{goodSize,jdbcType=VARCHAR}, 
-      #{goodName,jdbcType=VARCHAR}, #{goodNum,jdbcType=INTEGER}, #{goodsPrice,jdbcType=DECIMAL}, 
-      #{goodsImg,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+    insert into orders_goods (orderid, goodid, good_color, 
+      good_size, good_name, good_num, 
+      goods_price, goods_img, remark
+      )
+    values (#{orderid,jdbcType=INTEGER}, #{goodid,jdbcType=INTEGER}, #{goodColor,jdbcType=VARCHAR}, 
+      #{goodSize,jdbcType=VARCHAR}, #{goodName,jdbcType=VARCHAR}, #{goodNum,jdbcType=INTEGER}, 
+      #{goodsPrice,jdbcType=DECIMAL}, #{goodsImg,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.example.wantlifu.entity.OrdersGoods">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -125,6 +129,9 @@
       </if>
       <if test="goodid != null">
         goodid,
+      </if>
+      <if test="goodColor != null">
+        good_color,
       </if>
       <if test="goodSize != null">
         good_size,
@@ -151,6 +158,9 @@
       </if>
       <if test="goodid != null">
         #{goodid,jdbcType=INTEGER},
+      </if>
+      <if test="goodColor != null">
+        #{goodColor,jdbcType=VARCHAR},
       </if>
       <if test="goodSize != null">
         #{goodSize,jdbcType=VARCHAR},
@@ -190,6 +200,9 @@
       <if test="record.goodid != null">
         goodid = #{record.goodid,jdbcType=INTEGER},
       </if>
+      <if test="record.goodColor != null">
+        good_color = #{record.goodColor,jdbcType=VARCHAR},
+      </if>
       <if test="record.goodSize != null">
         good_size = #{record.goodSize,jdbcType=VARCHAR},
       </if>
@@ -218,6 +231,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       orderid = #{record.orderid,jdbcType=INTEGER},
       goodid = #{record.goodid,jdbcType=INTEGER},
+      good_color = #{record.goodColor,jdbcType=VARCHAR},
       good_size = #{record.goodSize,jdbcType=VARCHAR},
       good_name = #{record.goodName,jdbcType=VARCHAR},
       good_num = #{record.goodNum,jdbcType=INTEGER},
@@ -236,6 +250,9 @@
       </if>
       <if test="goodid != null">
         goodid = #{goodid,jdbcType=INTEGER},
+      </if>
+      <if test="goodColor != null">
+        good_color = #{goodColor,jdbcType=VARCHAR},
       </if>
       <if test="goodSize != null">
         good_size = #{goodSize,jdbcType=VARCHAR},
@@ -262,6 +279,7 @@
     update orders_goods
     set orderid = #{orderid,jdbcType=INTEGER},
       goodid = #{goodid,jdbcType=INTEGER},
+      good_color = #{goodColor,jdbcType=VARCHAR},
       good_size = #{goodSize,jdbcType=VARCHAR},
       good_name = #{goodName,jdbcType=VARCHAR},
       good_num = #{goodNum,jdbcType=INTEGER},

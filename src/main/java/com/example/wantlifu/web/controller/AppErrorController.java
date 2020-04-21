@@ -29,7 +29,7 @@ import java.util.Map;
  * @author 王志坚
  * @createTime 2019.11.25.21:21
  */
-@Controller
+//@Controller
 public class AppErrorController extends BasicErrorController implements ErrorController {
     private static final String ERROR_PATH = "/error";
 

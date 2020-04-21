@@ -10,6 +10,8 @@ public class OrdersGoods implements Serializable {
 
     private Integer goodid;
 
+    private String goodColor;
+
     private String goodSize;
 
     private String goodName;
@@ -23,7 +25,15 @@ public class OrdersGoods implements Serializable {
     private String remark;
 
     private static final long serialVersionUID = 1L;
-
+    public OrdersGoods(Lifu lifu, Integer count, String size, String color) {
+        goodid = lifu.getId();
+        goodSize = size;
+        goodName = lifu.getName();
+        goodColor = color;
+        goodsImg = lifu.getPic();
+        goodNum = count;
+        goodsPrice = new BigDecimal(lifu.getTruePrice()*count);
+    }
     public Integer getId() {
         return id;
     }
@@ -46,6 +56,14 @@ public class OrdersGoods implements Serializable {
 
     public void setGoodid(Integer goodid) {
         this.goodid = goodid;
+    }
+
+    public String getGoodColor() {
+        return goodColor;
+    }
+
+    public void setGoodColor(String goodColor) {
+        this.goodColor = goodColor;
     }
 
     public String getGoodSize() {
@@ -105,6 +123,7 @@ public class OrdersGoods implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", orderid=").append(orderid);
         sb.append(", goodid=").append(goodid);
+        sb.append(", goodColor=").append(goodColor);
         sb.append(", goodSize=").append(goodSize);
         sb.append(", goodName=").append(goodName);
         sb.append(", goodNum=").append(goodNum);

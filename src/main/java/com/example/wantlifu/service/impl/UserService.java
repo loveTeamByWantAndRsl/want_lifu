@@ -4,6 +4,9 @@ package com.example.wantlifu.service.impl;
 import com.example.wantlifu.dao.UserMapper;
 import com.example.wantlifu.entity.User;
 import com.example.wantlifu.entity.UserExample;
+import com.example.wantlifu.exception.IceException;
+import com.example.wantlifu.exception.IceOrBack;
+import com.example.wantlifu.exception.ReBackException;
 import com.example.wantlifu.service.search.UserSearchEntity;
 import com.example.wantlifu.util.JwtTokenUtil;
 import com.example.wantlifu.util.StaticPool;
@@ -150,6 +153,9 @@ public class UserService {
         //检查用户名 是否 重复
         //检查email 是否 重复
 
+        u.setNickName(u.getUsername());
+        u.setUsername(u.getEmail());
+
         Map<String,String> result = new HashMap<>();
 
         UserExample example = new UserExample();
@@ -163,7 +169,7 @@ public class UserService {
         //设置 默认状态
         //增加 创建时间
         u.setPassword(encoder.encode(u.getPassword()));
-        u.setStatus(0);
+        u.setStatus(1);
         u.setCreateTime(new Date());
         int res = UserMapper.insert(u);
         if(res > 0){
@@ -282,14 +288,38 @@ public class UserService {
         return changeUserStatusById(id,StaticPool.notUseful);
     }
 
+    /**
+     * 批量冻结
+     * @param ids
+     * @return
+     */
     public Map<String, String> updateOrIceUsersByIds(Integer[] ids){
         for(Integer id : ids){
             if(!iceUserById(id).containsKey(StaticPool.SUCCESS))
-                throw new RuntimeException("冻结出错！");
+                throw new IceException(IceOrBack.USER);
         }
         return StaticPool.genSuccessRes();
     }
+    /**
+     * 冻结用户
+     */
+    public Map<String, String> rebackUserById(Integer id){
+        return changeUserStatusById(id,StaticPool.useful);
+    }
 
+    /**
+     * 批量冻结
+     * @param ids
+     * @return
+     */
+
+    public Map<String, String> updateOrRebackUsersByIds(Integer[] ids){
+        for(Integer id : ids){
+            if(!rebackUserById(id).containsKey(StaticPool.SUCCESS))
+                throw new ReBackException(IceOrBack.USER);
+        }
+        return StaticPool.genSuccessRes();
+    }
     /**
      * 修改用户状态
      * @param id

@@ -1,207 +1,407 @@
 <!DOCTYPE html>
-<html class="x-admin-sm">
-    
-    <head>
-        <meta charset="UTF-8">
-        <title>欢迎页面-X-admin2.2</title>
-        <meta name="renderer" content="webkit">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-        <link rel="stylesheet" href="./css/font.css">
-        <link rel="stylesheet" href="./css/xadmin.css">
-        <script src="./lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" src="./js/xadmin.js"></script>
-        <!--[if lt IE 9]>
-          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-    
-    <body>
-        <div class="x-nav">
-            <span class="layui-breadcrumb">
-                <a href="">首页</a>
-                <a href="">演示</a>
-                <a>
-                    <cite>导航元素</cite></a>
-            </span>
-            <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
-                <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
-            </a>
-        </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>表单</title>
+    <link rel="stylesheet" href="./lib/layui/css/layui.css">
+    <style>
+        .layui-form-label{
+            width: 100px;
+        }
+        .layui-input-block {
+            margin-left: 130px;
+            min-height: 36px
+        }
+    </style>
+</head>
+<body class="body">
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>添加礼服</legend>
+</fieldset>
 
-        <div class="layui-fluid">
-            <div class="layui-row layui-col-space15">
-                <div class="layui-col-md12">
-                    <div class="layui-card">
-                        <div class="layui-card-body ">
-                            <form class="layui-form layui-col-space5">
-                                <div class="layui-inline layui-show-xs-block">
-                                    <input class="layui-input" autocomplete="off" placeholder="开始日" name="start" id="start"></div>
-                                <div class="layui-inline layui-show-xs-block">
-                                    <input class="layui-input" autocomplete="off" placeholder="截止日" name="end" id="end"></div>
-                                <div class="layui-inline layui-show-xs-block">
-                                    <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input"></div>
-                                <div class="layui-inline layui-show-xs-block">
-                                    <button class="layui-btn" lay-submit="" lay-filter="sreach">
-                                        <i class="layui-icon">&#xe615;</i></button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="layui-card-body ">
-                            <table id="demo" class="layui-table" lay-filter="test"></table>
-                        </div>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body" style="padding-top: 40px;">
+            <form class="layui-form" id="lifuForm" style="margin: 0 auto;max-width: 460px;padding-top: 40px;">
+                <input id="id" name="id" value="-1" hidden>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">礼服名字</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" id="name"  required  lay-verify="required" autocomplete="off" placeholder="请输入礼服名称" class="layui-input">
                     </div>
                 </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">礼服详细</label>
+                    <div class="layui-input-block">
+                        <textarea name="detal" id="detal" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商品图片</label>
+                    <div class="layui-input-block">
+                        <img id="picImg" src="" style="width: 125px;height: 125px">
+                        <input type="file" name="pic" id="pic" cols="30" rows="10">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否热品</label>
+                    <div class="layui-input-block">
+                        <select id="hot" name="hot">
+                            <option  value="1" >热门</option>
+                            <option value="0">普通</option>
+                        </select><br>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否折扣</label>
+                    <div class="layui-input-block">
+                        <select id="discount" name="discount">
+                            <option  value="1" >折扣</option>
+                            <option value="0">不打折</option>
+                        </select><br>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否新品</label>
+                    <div class="layui-input-block">
+                        <select id="isNew" name="isNew">
+                            <option  value="1" >新品</option>
+                            <option value="0">非新品</option>
+                        </select><br>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">隶属品牌</label>
+                    <div class="layui-input-block">
+                        <select id="trademarkId" name="trademarkId">
+                        </select><br>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">警告数量</label>
+                    <div class="layui-input-block">
+                        <input type="number" id="warningCount" name="warningCount" value="10">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">真实价格</label>
+                    <div class="layui-input-block">
+                        <input type="number" id="truePrice" name="truePrice">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">原始价格</label>
+                    <div class="layui-input-block">
+                        <input type="number" id="originPrice" name="originPrice">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-block">
+                        <select id="fStatus1" name="status">
+                            <option  value="1" >启用</option>
+                            <option value="0">冻结</option>
+                        </select><br>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">礼服类型</label>
+                    <div class="layui-input-block">
+                        <select id="typeId" name="typeId">
+                        </select><br>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">大类型</label>
+                    <div class="layui-input-block">
+                        <select id="canZuPin" name="canZuPin">
+                            <option  value="1" >租聘类型</option>
+                            <option value="0">定制类型</option>
+                        </select><br>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">首页轮播展示</label>
+                    <div class="layui-input-block">
+                        <select id="showInIndex" name="showInIndex">
+                            <option  value="0" >不展示在首页轮播</option>
+                            <option value="1">展示在首页轮播</option>
+                        </select><br>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="formStep">
+                            &emsp;确认添加
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div style="color: #666;margin-top: 30px;margin-bottom: 40px;padding-left: 30px;">
+                <h3>说明</h3><br>
+                <h4>入款到保险箱</h4>
+                <p>如果需要，这里可以放一些关于产品的常见问题说明。</p>
+                <br><h4>入款到现金</h4>
+                <p>如果需要，这里可以放一些关于产品的常见问题说明。</p>
             </div>
         </div>
-<!--        <div class="layui-card-body ">-->
-<!--            <table class="layui-table"-->
-<!--                   lay-data="{url:'./user.json',page:true,toolbar: '#toolbarDemo',id:'test'}" lay-filter="test">-->
-<!--                <thead>-->
-<!--                <tr>-->
-<!--                    <th lay-data="{type:'checkbox'}">ID</th>-->
-<!--                    <th lay-data="{field:'id', width:80, sort: true}">ID</th>-->
-<!--                    <th lay-data="{field:'username', width:120, sort: true, edit: 'text'}">用户名</th>-->
-<!--                    <th lay-data="{field:'email', edit: 'text', minWidth: 150}">邮箱</th>-->
-<!--                    <th lay-data="{field:'sex', width:80,templet: '#switchTpl'}">性别</th>-->
-<!--                    <th lay-data="{field:'city', edit: 'text', minWidth: 100}">城市</th>-->
-<!--                    <th lay-data="{field:'experience', sort: true, edit: 'text'}">积分</th>-->
-<!--                    <th lay-data="{field:'dw_xinzhi',templet: function(d){ return d.dw_xinzhi.titel;}}">学校</th></tr>-->
-<!--                </thead>-->
-<!--            </table>-->
-<!--        </div>-->
-    </body>
-    <script src="/js/axios.js"></script>
-    <script type="text/html" id="toolbarDemo">
-        <div class = "layui-btn-container" > 
-            <button class = "layui-btn layui-btn-sm" lay-event = "getCheckData" > 获取选中行数据 </button>
-            <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button > 
-            <button class = "layui-btn layui-btn-sm" lay-event = "isAll" > 验证是否全选</button>
-        </div > 
-    </script>
+    </div>
+</div>
 
-    <script type="text/html" id="userButtons">
-        <button class = "layui-btn layui-btn-sm" lay-event = "icePriceArea" > 批量删除 </button>
-        <button class = "layui-btn layui-btn-sm" lay-event = "addPriceArea" > 增加 </button>
-    </script>
-<!--    user table 初始化-->
-    <script>
-        layui.use('table', function(){
-            var table = layui.table;
+<script src="./lib/layui/layui.all.js" charset="utf-8"></script>
+<script src="js/jquery.min.js"></script>
+<script src="/js/axios.js"></script>
+<!--<script src="/admin/plugin/step/step-lay/step.js"></script>-->
 
-            //第一个实例
-            table.render({
-                elem: '#demo'
-                ,height: 312
-                ,url: '/admin/priceArea/select' //数据接口
-                ,page: true //开启分页
-                ,response: {
-                    statusCode: 200 //规定成功的状态码，默认：0
-                }
-                ,toolbar: '#userButtons'
-                ,method:'post'
-                ,parseData: function(res){ //res 即为原始返回的数据
-                    // console.log(res);
-                    // console.log(res.data.total);
-                    // console.log(res.data.list);
-                    return {
-                        "code": res.code, //解析接口状态
-                        "msg": res.message, //解析提示文本
-                        "count": res.data.total, //解析数据长度
-                        "data": res.data.list //解析数据列表
-                    };
-                }
-                ,where: {priceAreaSearchEntity:{express:'',status:-1,type:-1,max:-1,min:-1}}
-                ,request: {
-                    pageName: 'start' //页码的参数名称，默认：page
-                    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
-                }
-                ,contentType: 'application/json'
-                ,cols: [[ //表头
-                    {type:'checkbox',title: 'ID',}
-                    ,{field: 'id', title: 'ID', width:80, sort: true, }//fixed: 'left'
-                    ,{field: 'express', title: '表达形式', width:80}
-                    ,{field: 'min', title: '价格区间最小值', width:80}
-                    ,{field: 'max', title: '价格区间最大值', width:80}
-                    ,{field: 'status', title: '删除', width: 90, sort: true,templet:'#statusButton'}
-                ]]
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+    </div>
+</script>
+<script>
+    $(function () {
+        lifuId = getQueryVariable('lifuId');
+
+            layui.use('layedit', function(){
+                layedit = layui.layedit;
+                layedit.set({
+                    uploadImage: {
+                        url: '/upload2' //接口url
+                        ,type: 'post' //默认post
+                    }
+                });
+
+                index = layedit.build('detal'); //建立编辑器
+
             });
+        getClassify();
+        if(lifuId != -1){
+            axios.get('/lifu/get?id='+lifuId).then(function (res) {
+                // console.log(res);
+                $('#id').val(res.data.data.id);
+                $('#name').val(res.data.data.name);
+                // console.log(res.data.data);
+                // console.log(res.data.data.detal);
 
+                layedit.setContent(index,res.data.data.detal);
+                // console.log(detal);
+                // $('#detal').html(detal);
+
+                $('#picImg').attr('src',res.data.data.pic);
+                $('#hot').val(res.data.data.hot);
+                $('#discount').val(res.data.data.discount);
+                $('#isNew').val(res.data.data.isNew);
+                $('#trademarkId').val(res.data.data.trademarkId);
+                $('#warningCount').val(res.data.data.warningCount);
+                $('#truePrice').val(res.data.data.truePrice);
+                $('#originPrice').val(res.data.data.originPrice);
+                $('#trademarkId').val(res.data.data.trademarkId);
+                $('#fStatus1').val(res.data.data.status);
+                $('#typeId').val(res.data.data.typeId);
+                $('#canZuPin').val(res.data.data.canZuPin);
+                $('#showInIndex').val(res.data.data.showInIndex);
+                // showInIndex
+            });
+        }
+
+
+    });
+
+
+    function getQueryVariable(variable)
+    {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(-1);
+    }
+
+    // layui.use('form', function(){
+    //    getClassify();
+    // });
+
+    function getClassify() {
+        $.ajax({
+            url: "/admin/trademark/getUseful",
+            success: function (res) {
+                if (res.code == 200) {
+                    for (var i = 0; i < res.data.length; i++) {
+                        $("#trademarkId").append("<option value=\"" + res.data[i].id + "\">" + res.data[i].name + "</option>");
+                    }
+                    //重新渲染
+                    layui.form.render("select");
+                } else {
+                    layer.msg(res.message);
+                }
+            }
         });
-    </script>
-    <script type="text/html" id="statusButton">
-        <input type = "checkbox" name = "status" value = "{{d.status}}" lay-skin = "switch"lay-text = "冻结|启用" lay-filter = "sexDemo" {{ d.status == 1 ? 'checked': ''}} >
-    </script>
-
-    <script>layui.use('laydate',
-        function() {
-            var laydate = layui.laydate;
-
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#start' //指定元素
-            });
-
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#end' //指定元素
-            });
-
-        });</script>
-    <script>
-        layui.use('table',
-        function() {
-            var table = layui.table;
-
-            //监听单元格编辑
-            table.on('edit(test)',
-            function(obj) {
-                var value = obj.value //得到修改后的值
-                ,
-                data = obj.data //得到所在行所有键值
-                ,
-                field = obj.field; //得到字段
-                layer.msg('[ID: ' + data.id + '] ' + field + ' 字段更改为：' + value);
-            });
-
-            //头工具栏事件
-            table.on('toolbar(test)',
-            function(obj) {
-                var checkStatus = table.checkStatus(obj.config.id);//获取 选中数据
-                var ids = [];//容器
-                for (var c of checkStatus.data){    //遍历添加到容器中
-                    ids.push(c.id);
+        $.ajax({
+            url: "/lifutype/getUseful",
+            success: function (res) {
+                if (res.code == 200) {
+                    for (var i = 0; i < res.data.length; i++) {
+                        $("#typeId").append("<option value=\"" + res.data[i].id + "\">" + res.data[i].name + "</option>");
+                    }
+                    //重新渲染
+                    layui.form.render("select");
+                } else {
+                    layer.msg(res.message);
                 }
-                // axios.post("/admin/priceArea/icePriceAreas",ids).then(function(res){
-                //     console.log(res);
-                //     if (res.data.code == 200) {
-                //         layer.alert("冻结成功！");
-                //     }else {
-                //         layer.alert(res.data.msg);
-                //     }
-                // }).catch(function () {
-                //     alert("操作失败");
-                // });
-                switch (obj.event) {
-                    case 'icePriceArea':
-                        var data = checkStatus.data;
-                        layer.alert(JSON.stringify(data));
-                        break;
-                    case 'addPriceArea':
-                        // var data = checkStatus.data;
-                        layer.msg('增加 priceArea');
-                        break;
-                };
-            });
-        });</script>
-    <script>
-        var _hmt = _hmt || []; (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
+            }
+        });
+    }
 
+
+</script>
+
+
+<script>
+
+    layui.config({
+        // base:'plugin/step/step-lay/'
+    }).use([ 'form'], function () { //, 'step'
+        var $ = layui.$
+            , form = layui.form;
+            // , step = layui.step;
+
+        // step.render({
+        //     elem: '#stepForm',
+        //     filter: 'stepForm',
+        //     width: '100%', //设置容器宽度
+        //     stepWidth: '1400px',
+        //     height: '1800px',
+        //     stepItems: [{
+        //         title: '填写礼服基本信息'
+        //     }, {
+        //         title: '填写礼服size和数量'
+        //     }, {
+        //         title: '完成'
+        //     }]
+        // });
+
+
+        form.on('submit(formStep)', function (data) {
+            // console.log(data);
+            // console.log(data.field);
+            axios.post ("/admin/lifu/addLifu",{id:data.field.id
+                ,name:data.field.name
+                ,canZuPin:data.field.canZuPin
+                ,discount:data.field.discount
+                ,detal:layedit.getContent(index)
+                ,hot:data.field.hot
+                ,isNew:data.field.isNew
+                ,originPrice:data.field.originPrice
+                ,pic:$('#picImg').attr('src')
+                ,status:data.field.status
+                ,trademarkId:data.field.trademarkId
+                ,truePrice:data.field.truePrice
+                ,typeId:data.field.typeId
+                ,warningCount:data.field.warningCount
+                ,showInIndex:data.field.showInIndex})
+                .then(function(res){
+
+                    if(res.data.code == 200){
+                        // console.log("data : "+res.data.data);
+                        lifuId = res.data.data;
+                        // console.log("lifuId : "+lifuId);
+                        window.location.href = 'sku-list.html?lifuId='+lifuId;
+                        // step.next('#stepForm');
+                    }
+                    else{
+                        layer.alert(res.data.message);
+                    }
+            });
+            return false;
+        });
+
+        // form.on('submit(formStep2)', function (data) {
+        //     console.log(data);
+        //
+        //     step.next('#stepForm');
+        //     return false;
+        // });
+        //
+        // $('.pre').click(function () {
+        //     step.pre('#stepForm');
+        // });
+        //
+        // $('.next').click(function () {
+        //     step.next('#stepForm');
+        // });
+    })
+</script>
+
+<script>
+
+    $('#pic').change(function(e) {
+        var _URL = window.URL || window.webkitURL;
+        var file, img;
+        if ((file = this.files[0])) {
+            img = new Image();
+            img.onload = function() {
+                $('#picImg').attr('src', this.src);
+            };
+            img.src = _URL.createObjectURL(file);
+            var formData = new FormData();
+            formData.append("file", file);
+            $.ajax({
+                url:"/upload",
+                type:"POST",
+                data:formData,
+                processData : false,
+                contentType : false,
+                dataType : 'json',
+                async : false,
+                success : function (result) {
+                    // console.log(result);
+                    if(result.code == 200){
+                        $('#picImg').attr('src', result.message);
+                        img.src = result.message;
+                    }else {
+                        alert("error!");
+                    }
+                }
+            });
+        }
+
+    });
+
+    // layui.use(['form','layer','jquery'], function(){
+    //     var form = layui.form
+    //         ,layer = layui.layer
+    //         ,$=layui.jquery,
+    //         table= layui.table;
+    //     //监听提交
+    //     form.on('submit(demo1)', function(data){
+    //         axios.post("/admin/quickComment/add",{content:data.field.content,status:data.field.status}).then(function(res){
+    //             console.log(res.data.code);
+    //             if (res.data.code === 200) {
+    //                 layer.closeAll('loading');
+    //                 layer.load(2);
+    //                 layer.msg("添加成功", {icon: 6});
+    //                 setTimeout(function(){
+    //                     window.parent.location.reload();//修改成功后刷新父界面
+    //                 }, 1000);
+    //                 //加载层-风格
+    //                 // layer.alert("操作成功！");
+    //             }else{
+    //                 layer.alert(res);
+    //                 layer.alert(res.data.message);
+    //             }
+    //         }).catch(function (error) {
+    //             layer.alert('操作失败');
+    //         });
+    //         return false;
+    //     });
+    // });
+</script>
+</body>
 </html>

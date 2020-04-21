@@ -1,5 +1,7 @@
 package com.example.wantlifu.config;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 /**
  * @author 王志坚
  * @createTime 2019.12.09.16:57
@@ -18,4 +20,6 @@ public class AliPayConfig {
     public final String NOTIFY_URL = "http://127.0.0.1:8080/notifyUrl";
     //支付宝同步通知路径,也就是当付款完毕后跳转本项目的页面,可以不是公网地址
     public final String RETURN_URL = "http://127.0.0.1:8080/returnUrl";
+
+//    AnnotationConfigApplicationContext
 }

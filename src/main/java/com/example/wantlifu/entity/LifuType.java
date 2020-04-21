@@ -1,13 +1,19 @@
 package com.example.wantlifu.entity;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class LifuType implements Serializable {
+
     private Integer id;
-
+    @NotNull(message = "礼服类型名称不能为空")
+    @Length(min=1,message = "礼服类型名称长度不和法")
     private String name;
-
+    @NotNull(message = "礼服类型状态不能为空")
     private Integer status;
+
 
     private static final long serialVersionUID = 1L;
 

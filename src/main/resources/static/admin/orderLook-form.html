@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>表单</title>
+    <link rel="stylesheet" href="./lib/layui/css/layui.css">
+<!--    <link rel="stylesheet" href="../frame/static/css/style.css">-->
+<!--    <link rel="icon" href="../frame/static/image/code.png">-->
+    <style>
+        .layui-form-label{
+            width: 100px;
+        }
+        .layui-input-block {
+            margin-left: 130px;
+            min-height: 36px
+        }
+    </style>
+</head>
+<body class="body">
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>查看快速回复</legend>
+</fieldset>
+
+<form class="layui-form layui-from-pane" style="margin-top:20px" >
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">ID</label>
+        <div class="layui-input-block">
+            <input type="text" id="id" name="id" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户id</label>
+        <div class="layui-input-block">
+            <input type="text" id="userid" name="userid" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收货地址</label>
+        <div class="layui-input-block">
+            <input type="text" id="address" name="address" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">订单编号</label>
+        <div class="layui-input-block">
+            <input type="text" id="orderNo" name="orderNo" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否支付</label>
+        <div class="layui-input-block">
+            <input type="text" id="ispay" name="ispay" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">支付时间</label>
+        <div class="layui-input-block">
+            <input type="text" id="payTime" name="payTime" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">创建时间</label>
+        <div class="layui-input-block">
+            <input type="text" id="createdTime" name="createdTime" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">订单状态</label>
+        <div class="layui-input-block">
+            <input type="text" id="status" name="status" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">提取方式</label>
+        <div class="layui-input-block">
+            <input type="text" id="deliverType" name="deliverType" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否退货</label>
+        <div class="layui-input-block">
+            <input type="text" id="isRefund" name="isRefund" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">运费</label>
+        <div class="layui-input-block">
+            <input type="text" id="deliverMoney" name="deliverMoney" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">订单编号</label>
+        <div class="layui-input-block">
+            <input type="text" id="isAppraise" name="isAppraise" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">退货原因</label>
+        <div class="layui-input-block">
+            <input type="text" id="rejectOtherReason" name="rejectOtherReason" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">快递公司id</label>
+        <div class="layui-input-block">
+            <input type="text" id="expressId" name="expressId" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">快递公司名</label>
+        <div class="layui-input-block">
+            <input type="text" id="expressNo" name="expressNo" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">订单状态</label>
+        <div class="layui-input-block">
+            <input type="text" id="tradeNo" name="tradeNo" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">礼服总价格</label>
+        <div class="layui-input-block">
+            <input type="text" id="lifuTotalPrice" name="lifuTotalPrice" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">实付总价</label>
+        <div class="layui-input-block">
+            <input type="text" id="realTotalMoney" name="realTotalMoney" readonly  required  lay-verify="required" autocomplete="off" placeholder="输入礼服名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品</label>
+        <div class="layui-input-block">
+            <table id="goods" lay-filter="test"></table>
+        </div>
+    </div>
+
+</form>
+<script src="./lib/layui/layui.js" charset="utf-8"></script>
+<script src="js/jquery.min.js"></script>
+<script src="/js/axios.js"></script>
+<script>
+    function getQueryVariable(variable)
+    {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+    }
+    $('#id').val(getQueryVariable('id'));
+
+    axios.get('/admin/order/get/'+getQueryVariable('id')).then(function(res){
+        if(res.data.code == 200){
+            console.log(res)
+            var order = res.data.data.order;
+
+            $('#id').val(order.id);
+            $('#userid').val(order.userid);
+            $('#userName').val(order.userName);
+            $('#address').val(order.address);
+            $('#orderNo').val(order.orderNo);
+            $('#ispay').val(order.ispay == 0 ? '已支付':'未支付');
+            $('#payTime').val(order.payTime);
+            $('#createdTime').val(order.createdTime);
+            $('#status').val(order.status);
+            $('#deliverType').val(order.deliverType);
+            $('#isRefund').val(order.isRefund);
+            $('#deliverMoney').val(order.deliverMoney);
+            $('#isAppraise').val(order.isAppraise);
+            $('#rejectOtherReason').val(order.rejectOtherReason);
+            $('#expressId').val(order.expressId == 0 ? '已支付':'未支付');
+            $('#expressNo').val(order.expressNo);
+            $('#tradeNo').val(order.tradeNo);
+            $('#lifuTotalPrice').val(order.lifuTotalPrice);
+            $('#realTotalMoney').val(order.realTotalMoney);
+
+            var goods = res.data.data.goods;
+
+            layui.use('table', function(){
+                var table = layui.table;
+
+                //第一个实例
+                table.render({
+                    elem: '#goods'
+                    ,height: 312
+                    ,page: true //开启分页
+                    ,cols: [[ //表头
+                        {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
+                        ,{field: 'orderid', title: '订单号', width:80}
+                        ,{field: 'goodid', title: '礼服id', width:80, sort: true}
+                        ,{field: 'goodSize', title: '礼服size', width:80}
+                        ,{field: 'goodName', title: '礼服名', width: 177}
+                        ,{field: 'goodNum', title: '礼服数量', width: 80, sort: true}
+                        ,{field: 'goodsPrice', title: '礼服价格', width: 80, sort: true}
+                        ,{field: 'goodsImg', title: '礼服图片', width: 80,templet:'<div><a href="{{d.goodsImg}}" class="layui-table-link"><img src="{{d.goodsImg}}"></a></div>'}
+                    ]]
+                    ,data:goods
+                });
+
+            });
+            // $('#name').val(res.data.data.content);
+            // $('#status').val(res.data.data.status);
+        }
+    });
+    // $('#name').val(getQueryVariable('content'));
+    // $('#status').val(getQueryVariable('status'));
+</script>
+</body>
+</html>

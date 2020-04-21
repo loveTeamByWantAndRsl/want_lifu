@@ -4,9 +4,11 @@ import com.example.wantlifu.config.AliPayConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+@EnableCaching
 public class WantLifuApplication {
     @Bean
     public AliPayConfig aliPayConfig(){

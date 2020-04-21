@@ -8,7 +8,7 @@ public class PriceArea implements Serializable {
     private Integer id;
     @NotNull(message="价格区间 类型 不能为空！")
     private Integer type;
-
+    @NotNull(message="表达式 不能为空！")
     private String express;
 
 
@@ -38,8 +38,8 @@ public class PriceArea implements Serializable {
     }
 
     public String getExpress() {
-        if(express == null)
-            express = ""+min+" ~ "+max;
+//        if(express == null && min != null && max != null)
+//            express = ""+min+" ~ "+max;
         return express;
     }
 

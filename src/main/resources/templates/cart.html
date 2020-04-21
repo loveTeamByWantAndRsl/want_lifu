@@ -335,84 +335,23 @@
 							<table class="table cart_prdct_table text-center">
 								<thead>
 									<tr>
-										<th class="cpt_choose"></th>
+
+										<th class="cpt_choose"><input id="selectAll" role="checkbox" type="checkbox" class="cbox checkbox"></th>
 										<th class="cpt_no">编号</th>
 										<th class="cpt_img">图片</th>
 										<th class="cpt_pn">商品名称</th>
-										<th class="cpt_q">数量</th>
+										<th class="cpt_q" style="width: 40px">数量</th>
+										<th class="cpt_q" style="width: 40px">型号</th>
+										<th class="cpt_q" style="width: 40px">颜色</th>
 										<th class="cpt_p">单价</th>
 										<th class="cpt_t">总价</th>
 										<th class="cpt_r">删除</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td style="text-align:center;width:35px;">
-											<input role="checkbox" type="checkbox" class="cbox checkbox">
-										</td>
-										<td><span class="cp_no">1</span></td>
-										<td><a href="#" class="cp_img"><img src="img/cart-prdct/1.jpg" alt="" /></a></td>
-										<td><a href="#" class="cp_title">This is Product Title</a></td>
-										<td>										
-											<div class="cp_quntty">																			
-												<input name="quantity" value="1" size="2" type="number">													
-											</div>
-										</td>
-										<td><p class="cp_price">$104.99</p></td>
-										<td><p class="cpp_total">$104.99</p></td>
-										<td><a class="btn btn-default cp_remove"><i class="fa fa-trash"></i></a></td>
-									</tr>
+								<tbody id="cartBody">
+
 									
-									<tr>
-										<td style="text-align:center;width:35px;">
-											<input role="checkbox" type="checkbox" class="cbox checkbox">
-										</td>
-										<td><span class="cp_no">2</span></td>
-										<td><a href="#" class="cp_img"><img src="img/cart-prdct/2.jpg" alt="" /></a></td>
-										<td><a href="#" class="cp_title">This is Product Title</a></td>
-										<td>
-											<div class="cp_quntty">																			
-												<input name="quantity" value="1" size="2" type="number">													
-											</div>
-										</td>
-										<td><p class="cp_price">$104.99</p></td>
-										<td><p class="cpp_total">$104.99</p></td>
-										<td><a class="btn btn-default cp_remove"><i class="fa fa-trash"></i></a></td>
-									</tr>
-									
-									<tr>
-										<td>
-											<input role="checkbox" type="checkbox" class="cbox checkbox">
-										</td>
-										<td><span class="cp_no">3</span></td>
-										<td><a href="#" class="cp_img"><img src="img/cart-prdct/3.jpg" alt="" /></a></td>
-										<td><a href="#" class="cp_title">This is Product Title</a></td>
-										<td>
-											<div class="cp_quntty">																			
-												<input name="quantity" value="1" size="2" type="number">													
-											</div>
-										</td>
-										<td><p class="cp_price">$104.99</p></td>
-										<td><p class="cpp_total">$104.99</p></td>
-										<td><a class="btn btn-default cp_remove"><i class="fa fa-trash"></i></a></td>
-									</tr>
-									
-									<tr>
-										<td style="text-align:center;width:35px;">
-											<input role="checkbox" type="checkbox" class="cbox checkbox">
-										</td>
-										<td><span class="cp_no">4</span></td>
-										<td><a href="#" class="cp_img"><img src="img/cart-prdct/4.jpg" alt="" /></a></td>
-										<td><a href="#" class="cp_title">This is Product Title</a></td>
-										<td>
-											<div class="cp_quntty">																			
-												<input name="quantity" value="1" size="2" type="number">													
-											</div>
-										</td>
-										<td><p class="cp_price">$104.99</p></td>
-										<td><p class="cpp_total">$104.99</p></td>
-										<td><a class="btn btn-default cp_remove"><i class="fa fa-trash"></i></a></td>
-									</tr>
+
 									
 								</tbody>
 							</table>
@@ -444,12 +383,56 @@
 					
 					<div class="col-md-4 col-xs-12 cart-checkout-process text-right">
 						<div class="wrap">
-							<p><span>Subtotal</span><span>$200.00</span></p>
-							<h4><span>Grand total</span><span>$190.00</span></h4>
-							<a href="checkout" class="btn border-btn">购买</a>
+<!--							<p><span>Subtotal</span><span>$200.00</span></p>-->
+							<h4><span>总价格</span><span id="allPrice">0.00</span>元</h4>
+							<a onclick="pay()" class="btn border-btn">购买</a>
 						</div>
 					</div>
 					
+				</div>
+
+				<div class="row">
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form id="addOrder" action="/user/pay" method="post">
+										<div class="form-group">
+											<input id="ids"  name="idString" type="text">
+										</div>
+										<div class="form-group">
+										<input id="counts"  name="countString" type="text">
+										</div>
+											<div class="form-group">
+										<input id="sizes"  name="sizeString" type="text">
+											</div>
+												<div class="form-group">
+										<input id="colors"  name="colorString" type="text">
+												</div>
+										<div class="form-group">
+											<label for="address" class="col-form-label">选择您的地址:</label>
+											<select id="address" name="addressId"></select>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+									<button onclick="goPay()" type="button" class="btn btn-primary">确认</button>
+<!--									-->
+								</div>
+							</div>
+						</div>
+					</div>
+<!--					<form hidden id="addOrder" action="/user/pay" method="post">-->
+<!--						<input id="ids" name="idString" type="text">-->
+<!--						<input id="counts" name="countString" type="text">-->
+<!--					</form>-->
 				</div>
 			</div>
 		</div>
@@ -560,10 +543,51 @@
 		<script src="/js/simplePlayer.js"></script>
 		<script src="/js/scrolltopcontrol.js"></script>
 		<script src="/js/main.js"></script>
+		<script src="/js/axios.js"></script>
+		<script src="/js/public.js"></script>
+	<script>
+		$(function () {
+			loadCart();
+			loadCartBody();
+		});
+		function loadCartBody(){
+			let username = $('#username').val();
+			console.log("loadCartBody");
+			let items = window.localStorage.getItem(username);
+
+			if( isNull(items) ){
+				$("#count").html(0);
+				return;
+			}
+			$("#cartBody").empty();
+			let item = JSON.parse(items);
+
+			item.forEach((it,index)=>{
+				$("#cartBody").append("<tr>\n" +
+						"\t\t\t\t\t\t\t\t\t\t<td style=\"text-align:center;width:35px;\">\n" +
+						"\t\t\t\t\t\t\t\t\t\t\t<input role=\"checkbox\" type=\"checkbox\" class=\"cbox checkbox\">\n" +
+						"\t\t\t\t\t\t\t\t\t\t</td>\n" +
+						"\t\t\t\t\t\t\t\t\t\t<td><span class=\"cp_no\">"+(index+1)+"<input name=\"id\" value=\""+it.id+"\" size=\"2\" type=\"text\" hidden readonly></span></td>\n" +
+						"\t\t\t\t\t\t\t\t\t\t<td><a href=\"product-details?id="+it.id+"\" class=\"cp_img\"><img src=\""+it.pic+"\" alt=\"\" /></a></td>\n" +
+						"\t\t\t\t\t\t\t\t\t\t<td><a href=\"product-details?id="+it.id+"\" class=\"cp_title\">"+it.lifuName+"</a></td>\n" +
+						"\t\t\t\t\t\t\t\t\t\t<td>\n" +
+						"\t\t\t\t\t\t\t\t\t\t\t<div class=\"cp_quntty\">\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n" +
+						"\t\t\t\t\t\t\t\t\t\t\t\t<input name=\"quantity\" value=\""+it.count+"\" size=\"2\" type=\"number\" onchange='reSubPrice(this,"+it.id+")'>\t\t\t\t\t\t\t\t\t\t\t\t\t\n" +
+						"\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
+						"\t\t\t\t\t\t\t\t\t\t</td>\n" +
+						"\t\t\t\t\t\t\t\t\t\t<td><p class=\"cp_size\">"+it.size+"</p></td>\n" +
+						"\t\t\t\t\t\t\t\t\t\t<td><p class=\"cpp_color\">"+it.color+"</p></td>\n" +
+						"\t\t\t\t\t\t\t\t\t\t<td><p id=\"cp_price_"+it.id+"\" class=\"cp_price\">"+it.price+"</p>元</td>\n" +
+						"\t\t\t\t\t\t\t\t\t\t<td><p id=\"cpp_total_"+it.id+"\" class=\"cpp_total\">"+it.price*it.count+"</p>元</td>\n" +
+						"\t\t\t\t\t\t\t\t\t\t<td><a onclick='removeOnCartPage("+it.id+")' class=\"btn btn-default cp_remove\"><i class=\"fa fa-trash\"></i></a></td>\n" +
+						"\t\t\t\t\t\t\t\t\t</tr>")
+			});
+		}
+	</script>
 	<script>
 		$(function() {
 			   $("#selectAll").change(function() {
-				       var checkboxs = $("#tbody").find("input[type='checkbox']");
+				       var checkboxs = $("#cartBody").find("input[type='checkbox']");
 				       var isChecked = $(this).is(":checked");
 				//严禁使用foreach，jq对象的遍历会使浏览器崩溃
 				       for(var i = 0; i < checkboxs.length; i++) {
@@ -572,7 +596,130 @@
 						   $(checkboxs[temp]).prop("checked",isChecked);
 					   }
 			   });
+			   $("#cartBody input[type='checkbox']").change(function () {
+				   reAllPrice();
+			   });
+				// $("#cartBody input[type='number']").change(function () {
+				// 	reSubPrice(this);
+				// });
 		});
+		function removeOnCartPage(id) {
+			removeForCart(id);
+			loadCart();
+			loadCartBody();
+		}
+		function reSubPrice(it,id){
+			console.log("reSubPrice");
+
+			let item = it.parentNode.parentNode;
+
+			let count = $(item).find("input[type='number']");
+			// let price = $(item).find("p[class='cp_price']");
+			// let total = $(item).find("p[class='cpp_total']");
+			//
+			// console.log( count );
+			// console.log( $(count[0]).val() );
+			//
+			// console.log( total );
+			// console.log( $(total[0]).html() );
+			// console.log( price );
+			// console.log( $(price[0]).html() );
+			//
+			// console.log(  );
+			let allPrice = $(count[0]).val() * $("#cp_price_"+id).html();
+
+			$("#cpp_total_"+id).text(allPrice+"元");
+			reAllPrice();
+		}
+
+		function reAllPrice(){
+			console.log("reCount");
+			let allPrice = 0;
+			let trs = $("#cartBody").find("tr");
+			console.log(trs[0]);
+			for (let i = 0; i < trs.length; i++) {
+				let c = $(trs[i]).find("input[type='checkbox']");
+				let count = $(trs[i]).find("input[type='number']");
+				let price = $(trs[i]).find("p[class='cp_price']");
+
+				// console.log("$(count[0]).val() = " + $(count[0]).val());
+				// console.log("$(price[0]).text() = " + $(price[0]).text());
+
+				if($(c).is(':checked')){
+					allPrice += $(count[0]).val() * $(price[0]).text();
+				}
+			}
+			$("#allPrice").empty();
+			$("#allPrice").text(allPrice);
+
+		}
+		function pay(){
+			let username = $('#username').val();
+			if( username == 'default'){
+				alert(" 必须登录后才能购买！！！");
+				return;
+			}
+
+			let ids = '';
+			let counts = '';
+			let sizes = '';
+			let colors = '';
+
+			let trs = $("#cartBody").find("tr");
+
+			for (let i = 0; i < trs.length; i++) {
+				let c = $(trs[i]).find("input[type='checkbox']");
+				let count = $(trs[i]).find("input[type='number']");
+				let id = $(trs[i]).find("input[type='text']");
+				let size = $(trs[i]).find("p[class='cp_size']");
+				let color = $(trs[i]).find("p[class='cpp_color']");
+
+				if($(c).is(':checked')){
+					ids += $(id[0]).val() + ",";
+					counts += $(count[0]).val() + ",";
+					sizes += $(size[0]).text() + ",";
+					colors += $(color[0]).text() + ",";
+				}
+			}
+			ids = ids.substr(0,ids.length-1);
+			counts = counts.substr(0,counts.length-1);
+			sizes = sizes.substr(0,sizes.length-1);
+			colors = colors.substr(0,colors.length-1);
+
+			console.log("ids = " + ids);
+			console.log("counts = " + counts);
+			console.log("sizes = " + sizes);
+			console.log("colors = " + colors);
+
+			// alert( "ids = " + ids + "counts = " + counts);
+			$("#ids").val(ids);
+			$("#counts").val(counts);
+			$("#sizes").val(sizes);
+			$("#colors").val(colors);
+			axios.get("/user/getAllAddress").then(function (res) {
+				if(res.data.code == 200){
+					let adds = res.data.data;
+					if( adds.length == 0){
+						alert("您还没有地址呢，快去创建一个吧！");
+						return;
+					}
+					$('#address').empty();
+					for (let i = 0; i < adds.length; i++) {
+						$('#address').append("<option value=\"" + adds[i].id + "\">" + adds[i].address + "</option>")
+					}
+				}
+			});
+			$("#exampleModal").modal('show');
+			// let from = $("#addOrder");
+			//
+			// from.submit();
+		}
+		function goPay() {
+			let from = $("#addOrder");
+			from.submit();
+
+		}
+
 	</script>
 	</body>
 </html>

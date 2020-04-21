@@ -11,10 +11,12 @@ public class CommentSearchEntity {
     private Integer id;
     // 父级 id
     private Integer fatherId;
+
     // 评论的 实体 id
     private Integer entityId;
     // 评论的 实体 type
     private Integer entityType;
+
     //用户id
     private Integer userId;
     //状态

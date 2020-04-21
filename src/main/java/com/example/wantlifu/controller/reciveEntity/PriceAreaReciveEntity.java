@@ -2,6 +2,7 @@ package com.example.wantlifu.controller.reciveEntity;
 
 import com.example.wantlifu.service.search.PriceAreaSearchEntity;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -14,6 +15,7 @@ import javax.validation.constraints.NotNull;
 public class PriceAreaReciveEntity extends ReciveEntity{
 
     @NotNull(message = "参数错误！价格区间查询实体不能为空！")
+    @Valid
     private PriceAreaSearchEntity priceAreaSearchEntity;
 
 

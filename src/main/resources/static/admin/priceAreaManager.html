@@ -29,24 +29,39 @@
                 <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
             </a>
         </div>
-
+<!--        搜索-->
         <div class="layui-fluid">
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
-                            <form class="layui-form layui-col-space5">
-                                <div class="layui-inline layui-show-xs-block">
-                                    <input class="layui-input" autocomplete="off" placeholder="开始日" name="start" id="start"></div>
-                                <div class="layui-inline layui-show-xs-block">
-                                    <input class="layui-input" autocomplete="off" placeholder="截止日" name="end" id="end"></div>
-                                <div class="layui-inline layui-show-xs-block">
-                                    <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input"></div>
-                                <div class="layui-inline layui-show-xs-block">
-                                    <button class="layui-btn" lay-submit="" lay-filter="sreach">
-                                        <i class="layui-icon">&#xe615;</i></button>
+                            <div class="demoTable">
+                                搜索ID：
+                                <div class="layui-inline">
+                                    <input class="layui-input" placeholder="表达式" name="express" id="key" autocomplete="off">
                                 </div>
-                            </form>
+                                <div class="layui-inline">
+                                    <input class="layui-input" placeholder="价格区间最大值" name="express" id="max" autocomplete="off">
+                                </div>
+                                <div class="layui-inline">
+                                    <input class="layui-input" placeholder="价格区间最小值" name="express" id="min" autocomplete="off">
+                                </div>
+                                <div class="layui-inline">
+                                    <select class="layui-input" name="status" id="type" autocomplete="off">
+                                        <option value="-1"> 全部类型</option>
+                                        <option value="0"> 租聘类型</option>
+                                        <option value="1"> 定制类型</option>
+                                    </select>
+                                </div>
+                                <div class="layui-inline">
+                                    <select class="layui-input" name="status" id="status" autocomplete="off">
+                                        <option value="-1"> 全部价格区间</option>
+                                        <option value="0"> 冻结价格区间</option>
+                                        <option value="1"> 有效价格区间</option>
+                                    </select>
+                                </div>
+                                <button class="layui-btn" data-type="reload">搜索</button>
+                            </div>
                         </div>
                         <div class="layui-card-body ">
                             <table id="demo" class="layui-table" lay-filter="test"></table>
@@ -55,39 +70,151 @@
                 </div>
             </div>
         </div>
-    <div id="addForm" style="display: none">
-        <form action="/admin/priceArea/add" method="post">
-            表达:<input name="express"><br>
-            mix:<input name="min" type="number"><br>
-            max:<input name="max" type="number"><br>
-            状态:
-            <select>
-                <option  value="1" >启用</option>
-                <option value="0">冻结</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-            </select>
-            <button type="reset">重置</button>
-            <button type="submit">提交</button>
-        </form>
-    </div>
+<!--        增加价格区间的表单-->
+        <div id="addForm" style="display: none">
+<!--            <form action="/admin/priceArea/add" method="post">-->
+                表达:<input id="fExp1" name="express"><br>
+                mix:<input id="fMin1" name="min" type="number"><br>
+                max:<input id="fMax1" name="max" type="number"><br>
+                状态:
+                <select id="fStatus1" name="status">
+                    <option  value="1" >启用</option>
+                    <option value="0">冻结</option>
+                </select><br>
+                状态:
+                <select id="fType1" name="type">
+                    <option  value="0" >租聘类型</option>
+                    <option value="1">定制类型</option>
+                </select><br>
+<!--                <button type="reset">重置</button>-->
+                <button type="button" onclick="add()">提交</button>
+<!--            type="submit"-->
+<!--            </form>-->
+        </div>
+<!--        修改价格区间的表单-->
+        <div id="updateForm" style="display: none" >
+<!--            <form action="/admin/priceArea/update" method="post">-->
+                <input id="fId" name="id" hidden>
+                表达:<input id="fExp" name="express"><br>
+                mix:<input id="fMin" name="min" type="number"><br>
+                max:<input id="fMax" name="max" type="number"><br>
+                状态:
+                <select id="fStatus" name="status">
+                    <option  value="1" >启用</option>
+                    <option value="0">冻结</option>
+                </select><br>
+                状态:
+                <select id="fType" name="type">
+                    <option  value="0" >租聘类型</option>
+                    <option value="1">定制类型</option>
+                </select><br>
+                <button type="submit" onclick="update()">提交</button>
+<!--            </form>-->
+        </div>
     </body>
     <script src="/js/axios.js"></script>
-    <script type="text/html" id="toolbarDemo">
-        <div class = "layui-btn-container" > 
-            <button class = "layui-btn layui-btn-sm" lay-event = "getCheckData" > 获取选中行数据 </button>
-            <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button > 
-            <button class = "layui-btn layui-btn-sm" lay-event = "isAll" > 验证是否全选</button>
-        </div > 
-    </script>
 
+<!--    监听button操作 -->
+    <script>
+        function add(){
+            var keyDom = $('#fExp1').val();
+            var statusDom = $('#fStatus1').val();
+            var typeDom = $('#fType1').val();
+            var maxDom = $('#fMax1').val();
+            var minDom = $('#fMin1').val();
+            axios.post("/admin/priceArea/add",{express:keyDom,status:statusDom,type:typeDom,max:maxDom,min:minDom}).then(function(res){
+                if (res.data.code == 200) {
+                    layer.alert("操作成功！");
+                }else {
+                    layer.alert(res.data.msg);
+                }
+            }).catch(function () {
+                layer.alert("操作失败");
+            });
+            //当你在iframe页面关闭自身时
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+
+            parent.layer.close(index); //再执行关闭
+        }
+        function update(){
+            var id = $("#fId").val();
+            var keyDom = $('#fExp').val();
+            var statusDom = $('#fStatus').val();
+            var typeDom = $('#fType').val();
+            var maxDom = $('#fMax').val();
+            var minDom = $('#fMin').val();
+            axios.post("/admin/priceArea/update",{id:id,express:keyDom,status:statusDom,type:typeDom,max:maxDom,min:minDom}).then(function(res){
+                if (res.data.code == 200) {
+                    layer.alert("操作成功！");
+                }else {
+                    layer.alert(res.data.msg);
+                }
+            }).catch(function () {
+                layer.alert("操作失败");
+            });
+            //当你在iframe页面关闭自身时
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+
+            parent.layer.close(index); //再执行关闭
+        }
+        layui.use('table', function(){
+
+            var form = layui.form;
+            //监听性别操作
+            //监听锁定操作
+            form.on('switch(statusDemo)', function(obj){
+                var url;
+                console.log(obj.elem.checked+"--"+obj.othis)
+                if(obj.elem.checked){
+                    url = "/admin/priceArea/reback";
+                }else{
+                    url = "/admin/priceArea/ice";
+                }
+                var ids = [];
+                ids.push(this.value);
+                axios.post(url,ids).then(function(res){
+                    if (res.data.code == 200) {
+                        layer.alert("操作成功！");
+                    }else {
+                        layer.alert(res.data.msg);
+                    }
+                }).catch(function () {
+                    layer.alert("操作失败");
+                });
+            });
+        });
+    </script>
+    <!--    toolbar-->
     <script type="text/html" id="userButtons">
         <button class = "layui-btn layui-btn-sm" lay-event = "icePriceArea" > 批量删除 </button>
+    <button class = "layui-btn layui-btn-sm" lay-event = "rebackPriceAre" > 批量恢复 </button>
         <button class = "layui-btn layui-btn-sm" lay-event = "addPriceArea" > 增加 </button>
         <button class = "layui-btn layui-btn-sm" lay-event = "updatePriceArea" > 修改该区间 </button>
     </script>
+<!--    bar-->
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    </script>
+    <!--    type template-->
+    <script type="text/html" id="typeButton">
+        {{# if(d.type === 1){ }}
+        <p >定制类型</p>
+        {{# } else { }}
+        <p>租聘类型</p>
+        {{# } }}
+    </script>
+<!--    状态-->
+    <script type="text/html" id="statusButton">
+        <input type = "checkbox" name = "status" value = "{{d.id}}" lay-skin = "switch" lay-text = "冻结|启用" lay-filter = "statusDemo" {{ d.status == 1 ? 'checked': ''}} >
+    </script>
 <!--    user table 初始化-->
     <script>
+        myKey = "";
+        myStatus = -1;
+        myType = -1;
+        myMax = -1;
+        myMin = -1;
         layui.use('table', function(){
             var table = layui.table;
 
@@ -103,9 +230,6 @@
                 ,toolbar: '#userButtons'
                 ,method:'post'
                 ,parseData: function(res){ //res 即为原始返回的数据
-                    // console.log(res);
-                    // console.log(res.data.total);
-                    // console.log(res.data.list);
                     return {
                         "code": res.code, //解析接口状态
                         "msg": res.message, //解析提示文本
@@ -113,7 +237,7 @@
                         "data": res.data.list //解析数据列表
                     };
                 }
-                ,where: {priceAreaSearchEntity:{express:'',status:-1,type:-1,max:-1,min:-1}}
+                ,where: {priceAreaSearchEntity:{express:myKey,status:myStatus,type:myType,max:myMax,min:myMin}}
                 ,request: {
                     pageName: 'start' //页码的参数名称，默认：page
                     ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
@@ -125,16 +249,47 @@
                     ,{field: 'express', title: '表达形式', width:80}
                     ,{field: 'min', title: '价格区间最小值', width:80}
                     ,{field: 'max', title: '价格区间最大值', width:80}
+                    ,{field: 'type', title: '类型', width: 90, sort: true,templet:'#typeButton'}
                     ,{field: 'status', title: '删除', width: 90, sort: true,templet:'#statusButton'}
+                    ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
                 ]]
+                ,id:"priceAreaTable"
             });
+            var $ = layui.$, active = {
+                reload: function(){
+                    console.log("reload");
+                    //监听锁定操作
+                    var keyDom = $('#key');
+                    var statusDom = $('#status');
+                    var typeDom = $('#type');
+                    var maxDom = $('#max');
+                    var minDom = $('#min');
 
+                    myKey = keyDom.val();
+                    myStatus = statusDom.val();
+                    myType = typeDom.val()
+                    myMax = maxDom.val();
+                    myMin = minDom.val()
+
+                    table.reload('priceAreaTable',{
+                        where: {
+                            priceAreaSearchEntity:{express:myKey,status:myStatus,type:myType,max:myMax,min:myMin}
+                        }
+                        ,page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                    });
+                }
+            };
+            // 搜索时间促发
+            $('.demoTable .layui-btn').on('click', function(){
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
         });
     </script>
-    <script type="text/html" id="statusButton">
-        <input type = "checkbox" name = "status" value = "{{d.status}}" lay-skin = "switch"lay-text = "冻结|启用" lay-filter = "sexDemo" {{ d.status == 1 ? 'checked': ''}} >
-    </script>
 
+<!--    未知操作-->
     <script>layui.use('laydate',
         function() {
             var laydate = layui.laydate;
@@ -150,59 +305,88 @@
             });
 
         });</script>
+<!--    table 监听-->
     <script>
         layui.use('table',
         function() {
             var table = layui.table;
 
-            //监听单元格编辑
-            table.on('edit(test)',
-            function(obj) {
-                var value = obj.value //得到修改后的值
-                ,
-                data = obj.data //得到所在行所有键值
-                ,
-                field = obj.field; //得到字段
-                layer.msg('[ID: ' + data.id + '] ' + field + ' 字段更改为：' + value);
-            });
+            //监听工具条
+            table.on('tool(test)', function(obj){
+                var data = obj.data;
+                if(obj.event === 'detail'){
+                    layer.msg('ID：'+ data.id + ' 的查看操作');
+                }else if(obj.event === 'edit'){
+                    //layer.alert('编辑行：<br>'+ JSON.stringify(data));
 
+                    $("#fId").val(data.id);
+                    $("#fExp").val(data.express);
+                    $("#fMax").val(data.max);
+                    $("#fMin").val(data.min);
+                    $("#fType").val(data.type);
+                    $("#fStatus").val(data.status);
+                    layer.open({
+                        title:"修改价格区间",
+                        type: 1,
+                        content: $('#updateForm') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响});
+                    });
+                    // $("#max").val(data.max);
+                }
+            });
             //头工具栏事件
             table.on('toolbar(test)',
-            function(obj) {
-                var checkStatus = table.checkStatus(obj.config.id);//获取 选中数据
-                var ids = [];//容器
-                for (var c of checkStatus.data){    //遍历添加到容器中
-                    ids.push(c.id);
-                }
-                // axios.post("/admin/priceArea/icePriceAreas",ids).then(function(res){
-                //     console.log(res);
-                //     if (res.data.code == 200) {
-                //         layer.alert("冻结成功！");
-                //     }else {
-                //         layer.alert(res.data.msg);
-                //     }
-                // }).catch(function () {
-                //     alert("操作失败");
-                // });
-                switch (obj.event) {
-                    case 'icePriceArea':
-                        var data = checkStatus.data;
-                        layer.alert(JSON.stringify(data));
-                        break;
-                    case 'addPriceArea':
-                        // var data = checkStatus.data;
-                        layer.open({
-                            title:"增加价格区间",
-                            type: 1,
-                            content: $('#addForm') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响});
-                        });
-                        break;
-                    case 'updatePriceArea':
-                        // var data = checkStatus.data;
-                        layer.msg('修改 priceArea');
-                        break;
-                };
-            });
+                function(obj) {
+                    var checkStatus = table.checkStatus(obj.config.id);//获取 选中数据
+                    var ids = [];//容器
+                    for (var c of checkStatus.data){    //遍历添加到容器中
+                        ids.push(c.id);
+                    }
+                    switch (obj.event) {
+                        case 'icePriceArea':
+                            axios.post("/admin/priceArea/ice",ids).then(function(res){
+                                console.log(res);
+                                if (res.data.code == 200) {
+                                    layer.alert("冻结成功！");
+                                }else {
+                                    layer.alert(res.data.msg);
+                                }
+                            }).catch(function () {
+                                alert("操作失败");
+                            });
+                            break;
+                        case 'addPriceArea':
+                            layer.open({
+                                title:"增加价格区间",
+                                type: 1,
+                                content: $('#addForm') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响});
+                            });
+                            break;
+                        case 'updatePriceArea':
+                            if(ids.length > 1){
+                                layer.alert("只能选择一条记录！！！");
+                                return;
+                            }
+                            layer.open({
+                                title:"修改价格区间",
+                                type: 1,
+                                content: $('#updateForm') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响});
+                            });
+                            // layer.msg('修改 priceArea');
+                            break;
+                        case 'rebackPriceAre':
+                            axios.post("/admin/priceArea/reback",ids).then(function(res){
+                                console.log(res);
+                                if (res.data.code == 200) {
+                                    layer.alert("恢复成功！");
+                                }else {
+                                    layer.alert(res.data.msg);
+                                }
+                            }).catch(function () {
+                                alert("操作失败");
+                            });
+                            break;
+                    };
+                });
         });</script>
     <script>
         var _hmt = _hmt || []; (function() {

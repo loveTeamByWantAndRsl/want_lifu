@@ -3,19 +3,29 @@ package com.example.wantlifu.controller;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.example.wantlifu.base.ApiResponse;
-import com.example.wantlifu.base.ApiResponseFactory;
 import com.example.wantlifu.config.AliPayConfig;
-import com.example.wantlifu.controller.reciveEntity.A;
-import com.example.wantlifu.controller.reciveEntity.B;
+import com.example.wantlifu.controller.reciveEntity.OrderEntity;
+import com.example.wantlifu.controller.reciveEntity.PayEntity;
+import com.example.wantlifu.entity.UserAddress;
+import com.example.wantlifu.entity.WtOrder;
+import com.example.wantlifu.exception.TestException;
 import com.example.wantlifu.service.IAliPayService;
+import com.example.wantlifu.service.impl.LifuService;
+import com.example.wantlifu.service.impl.OrderService;
+import com.example.wantlifu.service.impl.OrdersGoodsService;
+import com.example.wantlifu.service.impl.UserAddressService;
+import com.example.wantlifu.service.security.LoginEntityHelper;
+import com.example.wantlifu.util.StaticPool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -29,18 +39,57 @@ public class HelloController {
     IAliPayService aliPayService;
     @Autowired
     AliPayConfig aliPayConfig;
+    @Autowired
+    LifuService lifuService;
+    @Autowired
+    OrderService orderService;
+    @Autowired
+    LoginEntityHelper loginEntityHelper;
+    @Autowired
+    UserAddressService addressService;
+    @Autowired
+    OrdersGoodsService ordersGoodsService;
 
 
-    @ResponseBody
-    @RequestMapping("ms")
-    public ApiResponse ms(@RequestBody B b){
-        System.out.println("B = " + b);
-        return ApiResponseFactory.genSuccessApiResponse("",b);
-    }
+//    @ResponseBody
+//    @RequestMapping("ms")
+//    public ApiResponse ms(@RequestBody B b){
+//        System.out.println("B = " + b);
+//        return ApiResponseFactory.genSuccessApiResponse("",b);
+//    }
 
-        @GetMapping("payTest")
-        public void payTest(HttpServletResponse httpResponse){
-            String form = aliPayService.genPage();
+        @RequestMapping("/user/pay")
+        public String payTest(@RequestParam String idString,@RequestParam String countString
+                ,@RequestParam String sizeString,@RequestParam String colorString
+                ,@RequestParam Integer addressId,HttpServletResponse httpResponse){
+            PayEntity payEntity = new PayEntity(idString,countString,sizeString,colorString);
+            OrderEntity orderEntity = lifuService.setCountAndValidaCount(payEntity);
+
+            if( orderEntity == null)
+                return "500";
+            //订单生成
+            WtOrder order = new WtOrder();
+            order.setUserid(loginEntityHelper.getOnlineEntity().getId());
+            order.setUserName(loginEntityHelper.getOnlineEntity().getEntityName());
+
+            UserAddress address = addressService.getAddressById(addressId);
+            if( address == null)
+                return "500";
+            order.setAddress(address.getAllAddress());
+            //商户订单号，商户网站订单系统中唯一订单号，必填
+            //生成随机Id
+            String out_trade_no = UUID.randomUUID().toString();
+
+            order.setOrderNo(out_trade_no);
+            order.setLifuTotalPrice(new BigDecimal(orderEntity.getTotal_amount()));
+            order.setRealTotalMoney(new BigDecimal(orderEntity.getTotal_amount()));
+            Map<String, String> map = orderService.addOrder(order);
+            if(!map.containsKey(StaticPool.SUCCESS))
+                return "500";
+            ordersGoodsService.addGoods(orderEntity.getGoods(),order.getId());
+
+            String form = aliPayService.genPage(out_trade_no,orderEntity.getTotal_amount()
+                    ,orderEntity.getSubject(),orderEntity.getBody());
             httpResponse.setContentType("text/html;charset=" + aliPayConfig.CHARSET);
             try{
                 httpResponse.getWriter().write(form);// 直接将完整的表单html输出到页面
@@ -49,6 +98,7 @@ public class HelloController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            return null;
         }
 
     @GetMapping("oss/upload")
@@ -117,5 +167,14 @@ public class HelloController {
             e.printStackTrace();
         }
 
+    }
+
+    /**
+     * 测试 全局异常
+     * @return
+     */
+    @GetMapping("testException")
+    public ApiResponse testException(){
+            throw new TestException();
     }
 }

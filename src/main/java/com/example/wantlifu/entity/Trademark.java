@@ -1,18 +1,26 @@
 package com.example.wantlifu.entity;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class Trademark implements Serializable {
     private Integer id;
-
+    @NotNull(message = "品牌名不能为空")
+    @Length(min=1,max = 50,message = "名字长度不和法")
     private String name;
 
+    @NotNull(message = "品牌详细不能为空")
+    @Length(min=1,message = "品牌详细长度不和法")
     private String detail;
 
     private Integer lovecount;
-
+    @Length(min=1,message = "品牌图片长度不和法")
+    @NotNull(message = "品牌图片不能为空")
     private String pic;
-
+    @Length(min=1,message = "品牌logo长度不和法")
+    @NotNull(message = "品牌logo不能为空")
     private String logo;
 
     private Integer lifucount;
@@ -20,7 +28,7 @@ public class Trademark implements Serializable {
     private String firstchar;
 
     private Integer commentcount;
-
+    @NotNull(message = "品牌状态不能为空")
     private Integer status;
 
     private String remark;

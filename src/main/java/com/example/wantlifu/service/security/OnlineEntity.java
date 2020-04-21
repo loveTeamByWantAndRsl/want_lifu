@@ -139,4 +139,16 @@ public class OnlineEntity implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "OnlineEntity{" +
+                "id=" + id +
+                ", companyId=" + companyId +
+                ", entityName='" + entityName + '\'' +
+                ", headImg='" + headImg + '\'' +
+                ", roles='" + roles + '\'' +
+                ", nickName='" + nickName + '\'' +
+                '}';
+    }
 }

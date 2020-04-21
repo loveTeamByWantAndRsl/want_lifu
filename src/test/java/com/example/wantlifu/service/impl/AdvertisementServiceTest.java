@@ -32,6 +32,13 @@ public class AdvertisementServiceTest {
     AdvertisementService advertisementService;
 
     @Test
+    public void test1(){
+        int i = 0;
+        int j = i + i++;
+        System.out.println("j = " + j);
+    }
+
+    @Test
     public void addAdvert() {
         for (int i = 0; i < 10; i++) {
             Advertising advertising = new Advertising();

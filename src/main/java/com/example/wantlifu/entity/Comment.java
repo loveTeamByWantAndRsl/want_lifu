@@ -16,6 +16,8 @@ public class Comment implements Serializable {
 
     private Integer entityType;
 
+    private String userName;
+
     private Integer userid;
 
     private String content;
@@ -78,6 +80,14 @@ public class Comment implements Serializable {
         this.entityType = entityType;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public Integer getUserid() {
         return userid;
     }
@@ -138,6 +148,7 @@ public class Comment implements Serializable {
         sb.append(", time=").append(time);
         sb.append(", entityId=").append(entityId);
         sb.append(", entityType=").append(entityType);
+        sb.append(", userName=").append(userName);
         sb.append(", userid=").append(userid);
         sb.append(", content=").append(content);
         sb.append(", fatherId=").append(fatherId);

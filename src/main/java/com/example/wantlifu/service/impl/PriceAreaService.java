@@ -3,6 +3,9 @@ package com.example.wantlifu.service.impl;
 import com.example.wantlifu.dao.PriceAreaMapper;
 import com.example.wantlifu.entity.PriceArea;
 import com.example.wantlifu.entity.PriceAreaExample;
+import com.example.wantlifu.exception.IceException;
+import com.example.wantlifu.exception.IceOrBack;
+import com.example.wantlifu.exception.ReBackException;
 import com.example.wantlifu.service.search.PriceAreaSearchEntity;
 import com.example.wantlifu.util.StaticPool;
 import com.github.pagehelper.PageHelper;
@@ -34,7 +37,7 @@ public class PriceAreaService {
      */
     public Map<String,String> addPriceArea(PriceArea priceArea){
         PriceAreaExample example = new PriceAreaExample();
-        example.createCriteria().andExpressEqualTo(priceArea.getExpress());
+        example.createCriteria().andExpressEqualTo(priceArea.getExpress()).andTypeEqualTo(priceArea.getType());;
         List<PriceArea> priceAreas = priceAreaMapper.selectByExample(example);
 
         if( !priceAreas.isEmpty())
@@ -52,9 +55,11 @@ public class PriceAreaService {
      * @return
      */
     public Map<String,String> updatePriceArea(PriceArea priceArea){
+        if(priceArea.getId() == null)
+            return StaticPool.genFailRes("Id为空！！错误");
         if( !StringUtils.isEmpty(priceArea.getExpress())){
             PriceAreaExample example = new PriceAreaExample();
-            example.createCriteria().andExpressEqualTo(priceArea.getExpress()).andIdEqualTo(priceArea.getId());
+            example.createCriteria().andExpressEqualTo(priceArea.getExpress()).andIdNotEqualTo(priceArea.getId()).andTypeEqualTo(priceArea.getType());
             List<PriceArea> priceAreas = priceAreaMapper.selectByExample(example);
 
             if( !priceAreas.isEmpty())
@@ -74,7 +79,10 @@ public class PriceAreaService {
      */
     public List<PriceArea> selectPriceAreaFormUserByType(Integer type){
         PriceAreaExample example = new PriceAreaExample();
-        example.createCriteria().andTypeEqualTo(type).andStatusEqualTo(1);
+        PriceAreaExample.Criteria criteria = example.createCriteria();
+        criteria.andStatusEqualTo(1);
+        if(type != null && type >= 0)
+            criteria.andTypeEqualTo(type);
 
         return priceAreaMapper.selectByExample(example);
     }
@@ -102,14 +110,55 @@ public class PriceAreaService {
     }
 
     /**
-     *删除 价格 区间
+     *根据 id 删除 价格 区间
      * @param id
      * @return
      */
-    public Map<String,String> deletePriceArea(int id){
+    public Map<String,String> deletePriceAreaById(int id){
         PriceArea priceArea = new PriceArea();
         priceArea.setId(id);
-        priceArea.setStatus(0);
+        priceArea.setStatus(StaticPool.notUseful);
         return this.updatePriceArea(priceArea);
+    }
+
+    /**
+     *
+     * 批量删除 价格 区间 -- > 内部实现为循环调用 deletePriceAreaById
+     * @param ids
+     * @return
+     */
+    public Map<String,String> icePriceAreaByIds(Integer[] ids){
+        for(Integer id : ids){
+            Map<String, String> res = deletePriceAreaById(id);
+            if(res.containsKey(StaticPool.ERROR))
+                throw new IceException(IceOrBack.PRICE_AREA);
+        }
+        return StaticPool.genSuccessRes();
+    }
+
+    /**
+     *恢复价格 区间
+     * @param id
+     * @return
+     */
+    public Map<String,String> reBackPriceAreaById(int id){
+        PriceArea priceArea = new PriceArea();
+        priceArea.setId(id);
+        priceArea.setStatus(StaticPool.useful);
+        return this.updatePriceArea(priceArea);
+    }
+
+    /**
+     * 批量 恢复价格 区间 -- > 内部实现为循环调用 reBackPriceAreaById
+     * @param ids
+     * @return
+     */
+    public Map<String,String> reBackPriceAreaByIds(Integer[] ids){
+        for(Integer id : ids){
+            Map<String, String> res = reBackPriceAreaById(id);
+            if(res.containsKey(StaticPool.ERROR))
+                throw new ReBackException(IceOrBack.PRICE_AREA);
+        }
+        return StaticPool.genSuccessRes();
     }
 }

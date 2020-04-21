@@ -38,10 +38,11 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.wantlifu.dao"
                              targetProject="src\main\java"/>
         <!--生成全部表tableName设为%-->
-        <table tableName="user_comment">
+        <table tableName="orders_goods">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <!--    Mybatis自动生成插件对数据库类型为text的处理     -->
             <!--    修改generatorConfig.xml配置文件，其中column为你需要覆盖的数据库字段        -->
+<!--            <columnOverride column="detail" jdbcType="VARCHAR" />-->
 <!--            <columnOverride column="company_desc" jdbcType="VARCHAR" />-->
         </table>
     </context>

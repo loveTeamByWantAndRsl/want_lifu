@@ -11,6 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -39,7 +42,19 @@ public class ImageUploadController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+//        URLDecoder
         return ApiResponseFactory.genSuccessApiResponse("/upload/"+name);
+    }
+
+    @PostMapping("upload2")
+    @ResponseBody
+    public ApiResponse upload2(HttpServletRequest request, MultipartFile file){
+        ApiResponse upload = upload(request, file);
+        Map<String,String> res = new HashMap<>();
+        res.put("src",upload.getMessage());
+        ApiResponse apiResponse = ApiResponseFactory.genSuccessApiResponse(res);
+        apiResponse.setCode(0);
+        return apiResponse;
     }
 
 }

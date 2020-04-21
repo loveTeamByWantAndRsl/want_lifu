@@ -313,14 +313,13 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-6 text-left">
-						<h3>Account</h3>
+						<h3>注册/登录</h3>
 					</div>		
 
 					<div class="col-sm-6 text-right">
 						<ul class="p_items">
 							<li><a href="/index">home</a></li>
-							<li><a href="#">category</a></li>
-							<li><span>Login</span></li>
+							<li><span>注册/登录</span></li>
 						</ul>					
 					</div>	
 				</div>
@@ -334,44 +333,67 @@
 				<div class="row">
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<div class="create_account_area caa_pdngbtm">
-							<h2 class="caa_heading">Create an account</h2>
+							<h2 class="caa_heading">创建账号</h2>
 							<div class="caa_form_area">
-								<p>Please enter your email address to create an account.</p>
+								<p>创建账号</p>
 								<div class="caa_form_group">
 									<div class="caf_form">
-										<label>Email address</label>
-										<div class="input-area"><input type="email" /></div>
+										<label>注册邮箱</label>
+										<div class="input-area"><input id="register_email" type="email" placeholder="输入您的邮箱"/></div>
 									</div>
-									<button class="btn btn-default acc_btn" type="submit" id="acc_Create"> 
-										<span> <i class="fa fa-user btn_icon"></i> Create an account </span> 
+									<div class="caf_form">
+										<label>验证码</label>
+										<div class="input-area">
+											<input type="text" id="code" placeholder="输入发送到您邮箱的验证码/忽略大小写"/>
+											<button onclick="getCode()" type="button" class="btn btn-default acc_btn">
+												<span> 获取验证码 </span>
+											</button>
+										</div>
+									</div>
+									<div class="caf_form">
+										<label>用户名</label>
+										<div class="input-area"><input id="register_username" name="username" type="text" placeholder="输入用户名"/></div>
+									</div>
+									<div class="caf_form">
+										<label>密码</label>
+										<div class="input-area"><input id="register_password" name="password" type="password" placeholder="输入密码"/></div>
+									</div>
+									<div class="caf_form">
+										<label>再次输入密码</label>
+										<div class="input-area"><input id="register_password2" name="password2" type="password" placeholder="输入密码"/></div>
+									</div>
+									<button class="btn btn-default acc_btn" onclick="register()" type="button" id="acc_Create">
+										<span> <i class="fa fa-user btn_icon"></i> 创建 </span>
 									</button>
 								</div>
 							</div>
 						</div>
 					</div>
+
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<div class="create_account_area">
-							<h2 class="caa_heading">Already registered?</h2>
+							<h2 class="caa_heading">登录</h2>
 							<div class="caa_form_area">
 								<div class="caa_form_group">
 									<div class="login_email">
-										<label>Email address</label>
-										<div class="input-area"><input type="email" /></div>
+										<label>邮箱</label>
+										<div class="input-area"><input id="login_email" type="email" /></div>
 									</div>
 									<div class="login_password">
-										<label>Password</label>
-										<div class="input-area"><input type="password" /></div>
+										<label>密码</label>
+										<div class="input-area"><input id="password" type="password" /></div>
 									</div>
 									<p class="forgot_password">
-										<a href="#" title="Recover your forgotten password" rel="">Forgot your password?</a>
+										<a href="/findBack" title="忘记密码" rel="">忘记密码?</a>
 									</p>
-									<button type="submit" id="acc_Login" class="btn btn-default acc_btn"> 
-										<span> <i class="fa fa-lock btn_icon"></i> Sign in </span> 
+									<button onclick="login()" type="button" id="acc_Login" class="btn btn-default acc_btn">
+										<span> <i class="fa fa-lock btn_icon"></i> 登录 </span>
 									</button>
 								</div>
 							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>		
@@ -482,5 +504,67 @@
 		<script src="/js/simplePlayer.js"></script>
 		<script src="/js/scrolltopcontrol.js"></script>
 		<script src="/js/main.js"></script>
+		<script src="/js/axios.js"></script>
+		<script src="/js/public.js"></script>
+		<script>
+			$(function () {
+				loadCart();
+			})
+		</script>
+		<script>
+			function getCode(){
+				var email = $('#register_email').val();
+				axios.get("/getCode?email="+email+"&type=1").then(function(res){
+					if(res.data.code == 200){
+						alert("发送邮件成功，请去邮箱查看！");
+					}else {
+						alert(res.data.message);
+					}
+				})
+			}
+			function register(){
+				var email = $('#register_email').val();
+				var username = $('#register_username').val();
+				var code = $('#code').val();
+				var password = $('#register_password').val();
+				var password2 = $('#register_password2').val();
+				if(password != password2){
+					alert("两次 密码啊不一致！");
+					return;
+				}
+				axios.post('/user/register',{email:email,code:code,password:password,username:username} )
+					.then(function(res){
+						console.log(res.data);
+						if(res.data.code == 200){
+							alert("注册成功！");
+							// window.location.href = "/user/loginPage";
+						}else{
+							alert(res.data.message);
+						}
+					}).catch(function (res) {console.log("error")});
+			}
+			function login(){
+				var username = $('#login_email').val();
+				var password = $('#password').val();
+				axios.post('/user/login',{username:username,password:password})
+						.then(function(res){
+							console.log(res.data);
+							if(res.data.code == 200){
+								setCookie(res.data.data.header,res.data.data.token);
+								initCart(username);
+								alert("登陆成功！2s后跳转");
+								setTimeout(function () {
+									window.location.href="/";
+								},2000);
+
+								//console.log(res.data.data);
+							}else {
+								alert(res.data.message);
+							}
+						})
+						.catch(function (res) {console.log("error")});
+				// 18216308307@163.com
+			}
+		</script>
 	</body>
 </html>

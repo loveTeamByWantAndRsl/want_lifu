@@ -8,6 +8,7 @@
 
     <!--  Start Header  -->
     <header id="header_area" th:fragment="header_area">
+
         <div class="header_top_area">
             <div class="container">
                 <div class="row">
@@ -22,16 +23,16 @@
 
                     <div class="col-xs-12 col-sm-6">
                         <ul class="hdr_tp_right text-right">
-                            <li class="lan_area dropdown">
-                                <a class="account_area" href="#"><i class="ti-user"></i> 用户名：Kerwin</a>
+                            <input id="username" hidden="hidden" th:value="${entity == null ? 'default' : entity.entityName}">
+                            <li th:if="${entity != null}" class="lan_area dropdown">
+                                <a class="account_area" href="#" th:text="'用户名：'+${entity.nickName}"><i class="ti-user"></i> 用户名：Kerwin</a>
                             </li>
-                            <li class="lan_area dropdown">
-                                <a class="account_area" href="#"><i class="ti-user"></i> 退出登陆</a>
+                            <li th:if="${entity != null}"  class="lan_area dropdown">
+                                <a class="account_area" onclick="logout()"><i class="ti-user"></i> 退出登陆</a>
                             </li>
-                            <li class="account_area"><a href="/account"><i class="ti-user"></i> 我的账户</a></li>
+                            <li th:if="${entity == null}" class="account_area"><a href="/account"><i class="ti-user"></i> 登录</a></li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div> <!--  HEADER START  -->
@@ -49,10 +50,15 @@
                                 <nav>
                                     <ul>
                                         <li><a href="/index">首页</a></li>
-
-                                        <li><a href="/shop">礼服</a></li>
+                                        <li><a href="/shop">所有礼服<i class="fa fa-angle-down"></i></a>
+                                            <!-- Sub Menu -->
+                                            <ul class="sub-menu">
+                                                <li><a href="/shop?bigType=0">定制礼服</a></li>
+                                                <li><a href="/shop?bigType=1">租聘礼服</a></li>
+                                            </ul>
+                                        </li>
                                         <li><a href="/cart">购物车</a></li>
-                                        <li><a href="/wishlist">我的收藏</a></li>
+                                        <li th:if="${entity != null}" ><a href="/wishlist">我的收藏</a></li>
                                         <li><a href="/full-width-blog">客户评价</a></li>
                                         <li><a href="/about-us">关于本店<i class="fa fa-angle-down"></i></a>
                                             <!-- Sub Menu -->
@@ -61,7 +67,7 @@
                                                 <li><a href="/servers">服务介绍</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="/about-us">个人中心<span class="badge badge-light">4</span><i class="fa fa-angle-down"></i></a>
+                                        <li th:if="${entity != null}" ><a>个人中心<span class="badge badge-light">4</span><i class="fa fa-angle-down"></i></a>
                                             <!-- Sub Menu -->
                                             <ul class="sub-menu">
                                                 <li><a href="/user/userInfo">个人信息修改</a></li>
@@ -116,28 +122,31 @@
                                     <div class="cart_menu_area">
                                         <div class="cart_icon">
                                             <a href="/#"><i class="ti-shopping-cart-full" aria-hidden="true"></i></a>
-                                            <span class="cart_number">2</span>
+                                            <span id="count" class="cart_number">2</span>
                                         </div>
                                         <!-- Mini Cart Wrapper -->
                                         <div class="mini-cart-wrapper">
                                             <!-- Product List -->
-                                            <div class="mc-pro-list fix">
-                                                <div class="mc-sin-pro fix">
-                                                    <a href="/#" class="mc-pro-image float-left"><img src="img/mini-cart/1.jpg" alt="" /></a>
-                                                    <div class="mc-pro-details fix">
-                                                        <a href="/#">This is Product Name</a>
-                                                        <span>1x$25.00</span>
-                                                        <a class="pro-del" href="#"><i class="fa fa-times-circle"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="mc-sin-pro fix">
-                                                    <a href="/#" class="mc-pro-image float-left"><img src="img/mini-cart/2.jpg" alt="" /></a>
-                                                    <div class="mc-pro-details fix">
-                                                        <a href="/#">This is Product Name</a>
-                                                        <span>1x$25.00</span>
-                                                        <a class="pro-del" href="#"><i class="fa fa-times-circle"></i></a>
-                                                    </div>
-                                                </div>
+                                            <div id="list" class="mc-pro-list fix">
+
+<!--                                                <div class="mc-sin-pro fix">-->
+<!--                                                    <a href="/#" class="mc-pro-image float-left"><img src="img/mini-cart/1.jpg" alt="" /></a>-->
+<!--                                                    <div class="mc-pro-details fix">-->
+<!--                                                        <a href="/#">This is Product Name</a>-->
+<!--                                                        <span>1x$25.00</span>-->
+<!--                                                        <a class="pro-del" href="#"><i class="fa fa-times-circle"></i></a>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+<!--                                                <div class="mc-sin-pro fix">-->
+<!--                                                    <a href="/#" class="mc-pro-image float-left"><img src="img/mini-cart/2.jpg" alt="" /></a>-->
+<!--                                                    <div class="mc-pro-details fix">-->
+<!--                                                        <a href="/#">This is Product Name</a>-->
+<!--                                                        <span>1x$25.00</span>-->
+<!--                                                        <a class="pro-del" href="#"><i class="fa fa-times-circle"></i></a>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
                                             </div>
                                             <!-- Sub Total -->
                                             <div class="mc-subtotal fix">

@@ -31,6 +31,8 @@ spring:
     servlet:
       content-type: text/html
     cache: false
+    suffix: .html
+    prefix: classpath:/templates/
   redis:
     host: localhost
     port: 6379
@@ -54,6 +56,14 @@ mail:
   routing:
     key:
       name: local.mail.routing.key
+msg:
+  queue:
+    name: local.msg.queue
+  exchange:
+    name: local.msg.exchange
+  routing:
+    key:
+      name: local.msg.routing.key
 elasticSearch:
   host: 127.0.0.1
   port: 9200

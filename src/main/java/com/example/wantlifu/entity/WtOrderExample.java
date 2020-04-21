@@ -376,52 +376,62 @@ public class WtOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andOrderNoEqualTo(Integer value) {
+        public Criteria andOrderNoEqualTo(String value) {
             addCriterion("order_no =", value, "orderNo");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNoNotEqualTo(Integer value) {
+        public Criteria andOrderNoNotEqualTo(String value) {
             addCriterion("order_no <>", value, "orderNo");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNoGreaterThan(Integer value) {
+        public Criteria andOrderNoGreaterThan(String value) {
             addCriterion("order_no >", value, "orderNo");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNoGreaterThanOrEqualTo(Integer value) {
+        public Criteria andOrderNoGreaterThanOrEqualTo(String value) {
             addCriterion("order_no >=", value, "orderNo");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNoLessThan(Integer value) {
+        public Criteria andOrderNoLessThan(String value) {
             addCriterion("order_no <", value, "orderNo");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNoLessThanOrEqualTo(Integer value) {
+        public Criteria andOrderNoLessThanOrEqualTo(String value) {
             addCriterion("order_no <=", value, "orderNo");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNoIn(List<Integer> values) {
+        public Criteria andOrderNoLike(String value) {
+            addCriterion("order_no like", value, "orderNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNoNotLike(String value) {
+            addCriterion("order_no not like", value, "orderNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNoIn(List<String> values) {
             addCriterion("order_no in", values, "orderNo");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNoNotIn(List<Integer> values) {
+        public Criteria andOrderNoNotIn(List<String> values) {
             addCriterion("order_no not in", values, "orderNo");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNoBetween(Integer value1, Integer value2) {
+        public Criteria andOrderNoBetween(String value1, String value2) {
             addCriterion("order_no between", value1, value2, "orderNo");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNoNotBetween(Integer value1, Integer value2) {
+        public Criteria andOrderNoNotBetween(String value1, String value2) {
             addCriterion("order_no not between", value1, value2, "orderNo");
             return (Criteria) this;
         }
@@ -436,63 +446,113 @@ public class WtOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andIspayEqualTo(String value) {
+        public Criteria andIspayEqualTo(Integer value) {
             addCriterion("ispay =", value, "ispay");
             return (Criteria) this;
         }
 
-        public Criteria andIspayNotEqualTo(String value) {
+        public Criteria andIspayNotEqualTo(Integer value) {
             addCriterion("ispay <>", value, "ispay");
             return (Criteria) this;
         }
 
-        public Criteria andIspayGreaterThan(String value) {
+        public Criteria andIspayGreaterThan(Integer value) {
             addCriterion("ispay >", value, "ispay");
             return (Criteria) this;
         }
 
-        public Criteria andIspayGreaterThanOrEqualTo(String value) {
+        public Criteria andIspayGreaterThanOrEqualTo(Integer value) {
             addCriterion("ispay >=", value, "ispay");
             return (Criteria) this;
         }
 
-        public Criteria andIspayLessThan(String value) {
+        public Criteria andIspayLessThan(Integer value) {
             addCriterion("ispay <", value, "ispay");
             return (Criteria) this;
         }
 
-        public Criteria andIspayLessThanOrEqualTo(String value) {
+        public Criteria andIspayLessThanOrEqualTo(Integer value) {
             addCriterion("ispay <=", value, "ispay");
             return (Criteria) this;
         }
 
-        public Criteria andIspayLike(String value) {
-            addCriterion("ispay like", value, "ispay");
-            return (Criteria) this;
-        }
-
-        public Criteria andIspayNotLike(String value) {
-            addCriterion("ispay not like", value, "ispay");
-            return (Criteria) this;
-        }
-
-        public Criteria andIspayIn(List<String> values) {
+        public Criteria andIspayIn(List<Integer> values) {
             addCriterion("ispay in", values, "ispay");
             return (Criteria) this;
         }
 
-        public Criteria andIspayNotIn(List<String> values) {
+        public Criteria andIspayNotIn(List<Integer> values) {
             addCriterion("ispay not in", values, "ispay");
             return (Criteria) this;
         }
 
-        public Criteria andIspayBetween(String value1, String value2) {
+        public Criteria andIspayBetween(Integer value1, Integer value2) {
             addCriterion("ispay between", value1, value2, "ispay");
             return (Criteria) this;
         }
 
-        public Criteria andIspayNotBetween(String value1, String value2) {
+        public Criteria andIspayNotBetween(Integer value1, Integer value2) {
             addCriterion("ispay not between", value1, value2, "ispay");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayTimeIsNull() {
+            addCriterion("pay_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayTimeIsNotNull() {
+            addCriterion("pay_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayTimeEqualTo(Date value) {
+            addCriterion("pay_time =", value, "payTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayTimeNotEqualTo(Date value) {
+            addCriterion("pay_time <>", value, "payTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayTimeGreaterThan(Date value) {
+            addCriterion("pay_time >", value, "payTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("pay_time >=", value, "payTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayTimeLessThan(Date value) {
+            addCriterion("pay_time <", value, "payTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayTimeLessThanOrEqualTo(Date value) {
+            addCriterion("pay_time <=", value, "payTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayTimeIn(List<Date> values) {
+            addCriterion("pay_time in", values, "payTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayTimeNotIn(List<Date> values) {
+            addCriterion("pay_time not in", values, "payTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayTimeBetween(Date value1, Date value2) {
+            addCriterion("pay_time between", value1, value2, "payTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayTimeNotBetween(Date value1, Date value2) {
+            addCriterion("pay_time not between", value1, value2, "payTime");
             return (Criteria) this;
         }
 
@@ -566,133 +626,113 @@ public class WtOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(String value) {
+        public Criteria andStatusEqualTo(Integer value) {
             addCriterion("status =", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(String value) {
+        public Criteria andStatusNotEqualTo(Integer value) {
             addCriterion("status <>", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(String value) {
+        public Criteria andStatusGreaterThan(Integer value) {
             addCriterion("status >", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(String value) {
+        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
             addCriterion("status >=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(String value) {
+        public Criteria andStatusLessThan(Integer value) {
             addCriterion("status <", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(String value) {
+        public Criteria andStatusLessThanOrEqualTo(Integer value) {
             addCriterion("status <=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLike(String value) {
-            addCriterion("status like", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotLike(String value) {
-            addCriterion("status not like", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusIn(List<String> values) {
+        public Criteria andStatusIn(List<Integer> values) {
             addCriterion("status in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<String> values) {
+        public Criteria andStatusNotIn(List<Integer> values) {
             addCriterion("status not in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusBetween(String value1, String value2) {
+        public Criteria andStatusBetween(Integer value1, Integer value2) {
             addCriterion("status between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotBetween(String value1, String value2) {
+        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andDelivertypeIsNull() {
-            addCriterion("deliverType is null");
+        public Criteria andDeliverTypeIsNull() {
+            addCriterion("deliver_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andDelivertypeIsNotNull() {
-            addCriterion("deliverType is not null");
+        public Criteria andDeliverTypeIsNotNull() {
+            addCriterion("deliver_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDelivertypeEqualTo(String value) {
-            addCriterion("deliverType =", value, "delivertype");
+        public Criteria andDeliverTypeEqualTo(Integer value) {
+            addCriterion("deliver_type =", value, "deliverType");
             return (Criteria) this;
         }
 
-        public Criteria andDelivertypeNotEqualTo(String value) {
-            addCriterion("deliverType <>", value, "delivertype");
+        public Criteria andDeliverTypeNotEqualTo(Integer value) {
+            addCriterion("deliver_type <>", value, "deliverType");
             return (Criteria) this;
         }
 
-        public Criteria andDelivertypeGreaterThan(String value) {
-            addCriterion("deliverType >", value, "delivertype");
+        public Criteria andDeliverTypeGreaterThan(Integer value) {
+            addCriterion("deliver_type >", value, "deliverType");
             return (Criteria) this;
         }
 
-        public Criteria andDelivertypeGreaterThanOrEqualTo(String value) {
-            addCriterion("deliverType >=", value, "delivertype");
+        public Criteria andDeliverTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("deliver_type >=", value, "deliverType");
             return (Criteria) this;
         }
 
-        public Criteria andDelivertypeLessThan(String value) {
-            addCriterion("deliverType <", value, "delivertype");
+        public Criteria andDeliverTypeLessThan(Integer value) {
+            addCriterion("deliver_type <", value, "deliverType");
             return (Criteria) this;
         }
 
-        public Criteria andDelivertypeLessThanOrEqualTo(String value) {
-            addCriterion("deliverType <=", value, "delivertype");
+        public Criteria andDeliverTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("deliver_type <=", value, "deliverType");
             return (Criteria) this;
         }
 
-        public Criteria andDelivertypeLike(String value) {
-            addCriterion("deliverType like", value, "delivertype");
+        public Criteria andDeliverTypeIn(List<Integer> values) {
+            addCriterion("deliver_type in", values, "deliverType");
             return (Criteria) this;
         }
 
-        public Criteria andDelivertypeNotLike(String value) {
-            addCriterion("deliverType not like", value, "delivertype");
+        public Criteria andDeliverTypeNotIn(List<Integer> values) {
+            addCriterion("deliver_type not in", values, "deliverType");
             return (Criteria) this;
         }
 
-        public Criteria andDelivertypeIn(List<String> values) {
-            addCriterion("deliverType in", values, "delivertype");
+        public Criteria andDeliverTypeBetween(Integer value1, Integer value2) {
+            addCriterion("deliver_type between", value1, value2, "deliverType");
             return (Criteria) this;
         }
 
-        public Criteria andDelivertypeNotIn(List<String> values) {
-            addCriterion("deliverType not in", values, "delivertype");
-            return (Criteria) this;
-        }
-
-        public Criteria andDelivertypeBetween(String value1, String value2) {
-            addCriterion("deliverType between", value1, value2, "delivertype");
-            return (Criteria) this;
-        }
-
-        public Criteria andDelivertypeNotBetween(String value1, String value2) {
-            addCriterion("deliverType not between", value1, value2, "delivertype");
+        public Criteria andDeliverTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("deliver_type not between", value1, value2, "deliverType");
             return (Criteria) this;
         }
 
@@ -706,62 +746,52 @@ public class WtOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsRefundEqualTo(String value) {
+        public Criteria andIsRefundEqualTo(Integer value) {
             addCriterion("is_refund =", value, "isRefund");
             return (Criteria) this;
         }
 
-        public Criteria andIsRefundNotEqualTo(String value) {
+        public Criteria andIsRefundNotEqualTo(Integer value) {
             addCriterion("is_refund <>", value, "isRefund");
             return (Criteria) this;
         }
 
-        public Criteria andIsRefundGreaterThan(String value) {
+        public Criteria andIsRefundGreaterThan(Integer value) {
             addCriterion("is_refund >", value, "isRefund");
             return (Criteria) this;
         }
 
-        public Criteria andIsRefundGreaterThanOrEqualTo(String value) {
+        public Criteria andIsRefundGreaterThanOrEqualTo(Integer value) {
             addCriterion("is_refund >=", value, "isRefund");
             return (Criteria) this;
         }
 
-        public Criteria andIsRefundLessThan(String value) {
+        public Criteria andIsRefundLessThan(Integer value) {
             addCriterion("is_refund <", value, "isRefund");
             return (Criteria) this;
         }
 
-        public Criteria andIsRefundLessThanOrEqualTo(String value) {
+        public Criteria andIsRefundLessThanOrEqualTo(Integer value) {
             addCriterion("is_refund <=", value, "isRefund");
             return (Criteria) this;
         }
 
-        public Criteria andIsRefundLike(String value) {
-            addCriterion("is_refund like", value, "isRefund");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsRefundNotLike(String value) {
-            addCriterion("is_refund not like", value, "isRefund");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsRefundIn(List<String> values) {
+        public Criteria andIsRefundIn(List<Integer> values) {
             addCriterion("is_refund in", values, "isRefund");
             return (Criteria) this;
         }
 
-        public Criteria andIsRefundNotIn(List<String> values) {
+        public Criteria andIsRefundNotIn(List<Integer> values) {
             addCriterion("is_refund not in", values, "isRefund");
             return (Criteria) this;
         }
 
-        public Criteria andIsRefundBetween(String value1, String value2) {
+        public Criteria andIsRefundBetween(Integer value1, Integer value2) {
             addCriterion("is_refund between", value1, value2, "isRefund");
             return (Criteria) this;
         }
 
-        public Criteria andIsRefundNotBetween(String value1, String value2) {
+        public Criteria andIsRefundNotBetween(Integer value1, Integer value2) {
             addCriterion("is_refund not between", value1, value2, "isRefund");
             return (Criteria) this;
         }
@@ -776,62 +806,52 @@ public class WtOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andDeliverMoneyEqualTo(String value) {
+        public Criteria andDeliverMoneyEqualTo(BigDecimal value) {
             addCriterion("deliver_money =", value, "deliverMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDeliverMoneyNotEqualTo(String value) {
+        public Criteria andDeliverMoneyNotEqualTo(BigDecimal value) {
             addCriterion("deliver_money <>", value, "deliverMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDeliverMoneyGreaterThan(String value) {
+        public Criteria andDeliverMoneyGreaterThan(BigDecimal value) {
             addCriterion("deliver_money >", value, "deliverMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDeliverMoneyGreaterThanOrEqualTo(String value) {
+        public Criteria andDeliverMoneyGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("deliver_money >=", value, "deliverMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDeliverMoneyLessThan(String value) {
+        public Criteria andDeliverMoneyLessThan(BigDecimal value) {
             addCriterion("deliver_money <", value, "deliverMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDeliverMoneyLessThanOrEqualTo(String value) {
+        public Criteria andDeliverMoneyLessThanOrEqualTo(BigDecimal value) {
             addCriterion("deliver_money <=", value, "deliverMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDeliverMoneyLike(String value) {
-            addCriterion("deliver_money like", value, "deliverMoney");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeliverMoneyNotLike(String value) {
-            addCriterion("deliver_money not like", value, "deliverMoney");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeliverMoneyIn(List<String> values) {
+        public Criteria andDeliverMoneyIn(List<BigDecimal> values) {
             addCriterion("deliver_money in", values, "deliverMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDeliverMoneyNotIn(List<String> values) {
+        public Criteria andDeliverMoneyNotIn(List<BigDecimal> values) {
             addCriterion("deliver_money not in", values, "deliverMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDeliverMoneyBetween(String value1, String value2) {
+        public Criteria andDeliverMoneyBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("deliver_money between", value1, value2, "deliverMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDeliverMoneyNotBetween(String value1, String value2) {
+        public Criteria andDeliverMoneyNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("deliver_money not between", value1, value2, "deliverMoney");
             return (Criteria) this;
         }
@@ -846,62 +866,52 @@ public class WtOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsAppraiseEqualTo(String value) {
+        public Criteria andIsAppraiseEqualTo(Integer value) {
             addCriterion("is_appraise =", value, "isAppraise");
             return (Criteria) this;
         }
 
-        public Criteria andIsAppraiseNotEqualTo(String value) {
+        public Criteria andIsAppraiseNotEqualTo(Integer value) {
             addCriterion("is_appraise <>", value, "isAppraise");
             return (Criteria) this;
         }
 
-        public Criteria andIsAppraiseGreaterThan(String value) {
+        public Criteria andIsAppraiseGreaterThan(Integer value) {
             addCriterion("is_appraise >", value, "isAppraise");
             return (Criteria) this;
         }
 
-        public Criteria andIsAppraiseGreaterThanOrEqualTo(String value) {
+        public Criteria andIsAppraiseGreaterThanOrEqualTo(Integer value) {
             addCriterion("is_appraise >=", value, "isAppraise");
             return (Criteria) this;
         }
 
-        public Criteria andIsAppraiseLessThan(String value) {
+        public Criteria andIsAppraiseLessThan(Integer value) {
             addCriterion("is_appraise <", value, "isAppraise");
             return (Criteria) this;
         }
 
-        public Criteria andIsAppraiseLessThanOrEqualTo(String value) {
+        public Criteria andIsAppraiseLessThanOrEqualTo(Integer value) {
             addCriterion("is_appraise <=", value, "isAppraise");
             return (Criteria) this;
         }
 
-        public Criteria andIsAppraiseLike(String value) {
-            addCriterion("is_appraise like", value, "isAppraise");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsAppraiseNotLike(String value) {
-            addCriterion("is_appraise not like", value, "isAppraise");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsAppraiseIn(List<String> values) {
+        public Criteria andIsAppraiseIn(List<Integer> values) {
             addCriterion("is_appraise in", values, "isAppraise");
             return (Criteria) this;
         }
 
-        public Criteria andIsAppraiseNotIn(List<String> values) {
+        public Criteria andIsAppraiseNotIn(List<Integer> values) {
             addCriterion("is_appraise not in", values, "isAppraise");
             return (Criteria) this;
         }
 
-        public Criteria andIsAppraiseBetween(String value1, String value2) {
+        public Criteria andIsAppraiseBetween(Integer value1, Integer value2) {
             addCriterion("is_appraise between", value1, value2, "isAppraise");
             return (Criteria) this;
         }
 
-        public Criteria andIsAppraiseNotBetween(String value1, String value2) {
+        public Criteria andIsAppraiseNotBetween(Integer value1, Integer value2) {
             addCriterion("is_appraise not between", value1, value2, "isAppraise");
             return (Criteria) this;
         }
@@ -1306,52 +1316,52 @@ public class WtOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andRealTotalMoneyEqualTo(Long value) {
+        public Criteria andRealTotalMoneyEqualTo(BigDecimal value) {
             addCriterion("real_total_money =", value, "realTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andRealTotalMoneyNotEqualTo(Long value) {
+        public Criteria andRealTotalMoneyNotEqualTo(BigDecimal value) {
             addCriterion("real_total_money <>", value, "realTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andRealTotalMoneyGreaterThan(Long value) {
+        public Criteria andRealTotalMoneyGreaterThan(BigDecimal value) {
             addCriterion("real_total_money >", value, "realTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andRealTotalMoneyGreaterThanOrEqualTo(Long value) {
+        public Criteria andRealTotalMoneyGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("real_total_money >=", value, "realTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andRealTotalMoneyLessThan(Long value) {
+        public Criteria andRealTotalMoneyLessThan(BigDecimal value) {
             addCriterion("real_total_money <", value, "realTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andRealTotalMoneyLessThanOrEqualTo(Long value) {
+        public Criteria andRealTotalMoneyLessThanOrEqualTo(BigDecimal value) {
             addCriterion("real_total_money <=", value, "realTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andRealTotalMoneyIn(List<Long> values) {
+        public Criteria andRealTotalMoneyIn(List<BigDecimal> values) {
             addCriterion("real_total_money in", values, "realTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andRealTotalMoneyNotIn(List<Long> values) {
+        public Criteria andRealTotalMoneyNotIn(List<BigDecimal> values) {
             addCriterion("real_total_money not in", values, "realTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andRealTotalMoneyBetween(Long value1, Long value2) {
+        public Criteria andRealTotalMoneyBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("real_total_money between", value1, value2, "realTotalMoney");
             return (Criteria) this;
         }
 
-        public Criteria andRealTotalMoneyNotBetween(Long value1, Long value2) {
+        public Criteria andRealTotalMoneyNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("real_total_money not between", value1, value2, "realTotalMoney");
             return (Criteria) this;
         }

@@ -28,6 +28,17 @@ public class OrdersGoodsService {
         goods.forEach(ordersGoods -> ordersGoodsMapper.insertSelective(ordersGoods));
     }
     /**
+     * 增加
+     * @param goods
+     */
+
+    public void addGoods(List<OrdersGoods> goods,Integer orderId){
+        goods.forEach(ordersGoods -> {
+            ordersGoods.setOrderid(orderId);
+            ordersGoodsMapper.insertSelective(ordersGoods);
+        });
+    }
+    /**
      * 查询
      */
     public List<OrdersGoods> selectByOrderId(int orderId){

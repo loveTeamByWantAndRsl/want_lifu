@@ -10,12 +10,10 @@ import com.example.wantlifu.util.StaticPool;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,38 +22,50 @@ import java.util.Map;
  *
  * 价格区间的控制器
  */
-@Controller
-@RequestMapping("/admin/priceArea")
+@RestController
 public class priceAreaController {
 
     @Autowired
     PriceAreaService priceAreaService;
 
-    @ResponseBody
-    @RequestMapping("/select")
-    public ApiResponse selectPriceAreaByEntity(@RequestBody @Valid PriceAreaReciveEntity entity) {
-//        if (jsonObject.get("start") == null || jsonObject.get("pageSize") == null
-//                || jsonObject.get("status") == null || jsonObject.get("key") == null
-//                || jsonObject.get("min") == null || jsonObject.get("max") == null
-//                || jsonObject.get("type") == null)
-//            return ApiResponseFactory.genFailApiResponse("参数 错误 ！");
-//        Integer start = Integer.valueOf(jsonObject.get("start").toString());
-//        Integer status = Integer.valueOf(jsonObject.get("status").toString());
-//        Integer pageSize = Integer.valueOf(jsonObject.get("pageSize").toString());
-//        String key = jsonObject.get("key").toString();
-//        Integer min = Integer.valueOf(jsonObject.get("min").toString());
-//        Integer max = Integer.valueOf(jsonObject.get("max").toString());
-//        Integer type = Integer.valueOf(jsonObject.get("type").toString());
 
+    @RequestMapping("/admin/priceArea/select")
+    public ApiResponse selectPriceAreaByEntity(@RequestBody @Valid PriceAreaReciveEntity entity) {
         PageInfo<PriceArea> priceAreaPageInfo = priceAreaService.selectPriceAreaByPriceAreaSearchEntity(entity.getPriceAreaSearchEntity(),entity.getStart(),entity.getPageSize());
         return  ApiResponseFactory.genSuccessApiResponse(StaticPool.SUCCESS,priceAreaPageInfo);
     }
 
-    @PostMapping("/add")
-    public ApiResponse add(PriceArea priceArea){
+    @RequestMapping("/admin/priceArea/update")
+    public ApiResponse update(@RequestBody @Valid PriceArea priceArea){
+        Map<String, String> map = priceAreaService.updatePriceArea(priceArea);
+        if(map.containsKey(StaticPool.SUCCESS))
+            return ApiResponseFactory.genSuccessApiResponse(map.get(StaticPool.SUCCESS));
+        return ApiResponseFactory.genFailApiResponse(map.get(StaticPool.ERROR));
+    }
+    @RequestMapping("/admin/priceArea/add")
+    public ApiResponse add(@RequestBody @Valid PriceArea priceArea){
         Map<String, String> map = priceAreaService.addPriceArea(priceArea);
         if(map.containsKey(StaticPool.SUCCESS))
             return ApiResponseFactory.genSuccessApiResponse(map.get(StaticPool.SUCCESS));
         return ApiResponseFactory.genFailApiResponse(map.get(StaticPool.ERROR));
+    }
+    @PostMapping("/admin/priceArea/ice")
+    public ApiResponse icePriceAreaByIds(@RequestBody Integer[] ids){
+        Map<String, String> map = priceAreaService.icePriceAreaByIds(ids);
+        if(map.containsKey(StaticPool.SUCCESS))
+            return ApiResponseFactory.genSuccessApiResponse(map.get(StaticPool.SUCCESS));
+        return ApiResponseFactory.genFailApiResponse(map.get(StaticPool.ERROR));
+    }
+    @PostMapping("/admin/priceArea/reback")
+    public ApiResponse rebackPriceAreaByIds(@RequestBody Integer[] ids){
+        Map<String, String> map = priceAreaService.reBackPriceAreaByIds(ids);
+        if(map.containsKey(StaticPool.SUCCESS))
+            return ApiResponseFactory.genSuccessApiResponse(map.get(StaticPool.SUCCESS));
+        return ApiResponseFactory.genFailApiResponse(map.get(StaticPool.ERROR));
+    }
+    @RequestMapping("/priceArea/getPriceArea")
+    public ApiResponse getPriceArea(@RequestParam("type")int type){
+        List<PriceArea> priceAreas = priceAreaService.selectPriceAreaFormUserByType(type);
+        return ApiResponseFactory.genSuccessApiResponse(priceAreas);
     }
 }
