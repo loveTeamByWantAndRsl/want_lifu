@@ -12,19 +12,6 @@ spring:
     username: root
     password: 110412
   #邮箱配置
-  mail:
-    host: smtp.163.com
-    username: 18216308307@163.com
-    #QQ邮箱的授权码
-    password: m4gewo
-    default-encoding: UTF-8
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-            required: true
   thymeleaf:
     mode: HTML
     encoding: UTF-8
@@ -70,19 +57,6 @@ elasticSearch:
   client:
     connectNum: 10
     connectPerRoute: 50
-# OSS相关配置信息
-aliyun:
-  oss:
-    endpoint: http://oss-cn-beijing.aliyuncs.com # oss对外服务的访问域名
-    accessKeyId: LTAI4FgRjW61NiLHLbLJdLkx # 访问身份验证中用到用户标识
-    accessKeySecret: 6NznrJTR3Q2YrDbMd5bfLhFGjpCOAT # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
-    bucketName: team-pic # oss的存储空间
-    policy:
-      expire: 300 # 签名有效期(S)
-    #maxSize: 20 # 上传文件大小(M)
-    callback: http://localhost:8080/aliyun/oss/callback # 文件上传成功后的回调地址
-    dir:
-      prefix: want-lifu/ # 上传文件夹路径前缀
 
 #设置一个邮件发送人
 want:
